@@ -13,6 +13,17 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Delete the table data
+	\DB::table('brand')->delete();
+	// Add a new entry to the table
+	\DB::table('brand')->insert([
+		'name' => 'Burger King',
+		'isin' => 'CA76131D1033']);
+	\DB::table('brand')->insert([
+		'name' => 'The Good Burger',
+		'isin' => 'CA8765111064']);
+	\DB::table('brand')->insert([
+		'name' => 'McDonald\'s',
+		'isin' => 'US5801351017']);
     }
 }
