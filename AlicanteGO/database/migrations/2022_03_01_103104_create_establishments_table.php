@@ -22,7 +22,7 @@ class CreateEstablishmentsTable extends Migration
             $table->string('postal_code');
             $table->double('latitude', 17, 14);
             $table->double('longitude');
-            $table->foreignId("brand_id")->nullable()->constrained("brands");
+            $table->foreignId("brand_id")->nullable()->constrained("brands")->onDelete('cascade');
         });
     }
 
