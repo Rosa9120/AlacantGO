@@ -18,7 +18,7 @@ class CreateEstablishmentsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('phone_number');
-            $table->string('street');
+            $table->string('address');
             $table->string('postal_code');
             $table->double('latitude', 11, 8);
             $table->double('longitude');
