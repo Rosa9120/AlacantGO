@@ -13,34 +13,34 @@ class EstablishmentSeeder extends Seeder
      */
     public function run()
     {
-        $BK = \DB::table('brand')->where('name', 'Burger King')->first()->id;
-        $TGB = \DB::table('brand')->where('name', 'The Good Burger')->first()->id;
-        $MD = \DB::table('brand')->where('name', 'McDonald\'s')->first()->id;
+        $BK = \DB::table('brands')->where('name', 'Burger King')->first()->id;
+        $TGB = \DB::table('brands')->where('name', 'The Good Burger')->first()->id;
+        $MD = \DB::table('brands')->where('name', 'McDonald\'s')->first()->id;
         
-	\DB::table('establishment')->delete();
+	\DB::table('establishments')->delete();
 	// Add a new entry to the table
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'Restaurante L\'alacanti',
 		'address' => 'C. Álvarez Sereix, 10',
 		'postal_code' => '03001',
 		'latitude' => '38.34598563809095',
 		'longitude' => '-0.48890237064772996']);
 		
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'SOHO PLAZA',
 		'address' => 'Plaça de l\'Ajuntament, 7',
 		'postal_code' => '03002',
 		'latitude' => '38.34660685077837',
 		'longitude' => '-0.4807297838516754']);
 		
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'La Cocina',
 		'address' => 'C. José Gutiérrez Petén, 10',
 		'postal_code' => '03004',
 		'latitude' => '38.34938516538533',
 		'longitude' => '-0.4871595194473304']);
 		
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'La Casona Alicantina',
 		'address' => 'C. Mayor, 14',
 		'postal_code' => '03002',
@@ -48,7 +48,7 @@ class EstablishmentSeeder extends Seeder
 		'longitude' => '-0.48107310661578184',
 		'brand_id' => $BK]);
 		
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'Burger King Paseo',
 		'address' => 'Paseo, Passeig Esplanada d\'Espanya, 4',
 		'postal_code' => '03002',
@@ -56,7 +56,7 @@ class EstablishmentSeeder extends Seeder
 		'longitude' => '-0.4817486229803378',
 		'brand_id' => $BK]);
 		
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'Burger King Renfe',
 		'address' => 'Frente a Renfe, Av. Salamanca, 4Bis',
 		'postal_code' => '03006',
@@ -64,14 +64,14 @@ class EstablishmentSeeder extends Seeder
 		'longitude' => '-0.4941248148288982',
 		'brand_id' => $BK]);
 	
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'Burger King Calle Colombia',
 		'address' => 'C. Colombia, 27',
 		'postal_code' => '03010',
 		'latitude' => '38.36625512805321',
 		'longitude' => '-0.4857488602153263']);
 	
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'McDonald\'s Esplanada',
 		'address' => 'Passeig Esplanada d\'Espanya, 8',
 		'postal_code' => '03002',
@@ -79,7 +79,7 @@ class EstablishmentSeeder extends Seeder
 		'longitude' => '-0.4825133277066535',
 		'brand_id' => $MD]);
 	
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'McDonald\'s Avenida de Dénia',
 		'address' => 'Avd de Dénia, s/n, Plaza Mar, 2, Centro comercial',
 		'postal_code' => '03016',
@@ -87,27 +87,27 @@ class EstablishmentSeeder extends Seeder
 		'longitude' => '-0.4720150441895938',
 		'brand_id' => $MD]);
 	
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'McDonald\'s Calle Ciudad Real',
 		'address' => 'C. Cdad. Real, 28',
 		'postal_code' => '03005',
-		'latitude' => '38.354847040776704'
+		'latitude' => '38.354847040776704',
 		'longitude' => '-0.4983531711735167',
 		'brand_id' => $MD]);
 	
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'TGB Portal de Elche',
 		'address' => 'Pl. Portal de Elche, 03001',
 		'postal_code' => '03003',
-		'latitude' => '38.344249509605945'
+		'latitude' => '38.344249509605945',
 		'longitude' => '-0.4837816507142489',
 		'brand_id' => $TGB]);
 	
-	\DB::table('establishment')->insert([
+	\DB::table('establishments')->insert([
 		'name' => 'TGB Luceros',
 		'address' => 'Pl. de los Luceros, 7',
 		'postal_code' => '03003',
-		'latitude' => '38.345574014748976'
+		'latitude' => '38.345574014748976',
 		'longitude' => '-0.4908615970320252',
 		'brand_id' => $TGB]);
     }
