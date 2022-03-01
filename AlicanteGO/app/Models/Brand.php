@@ -12,4 +12,8 @@ class Brand extends Model
     public function establishments() {
         return $this->hasMany(Establishment::class);
     }
+
+    public function items() {
+        return $this->hasMany(Item::class);
+    }
 }

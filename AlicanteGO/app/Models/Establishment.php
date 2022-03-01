@@ -12,4 +12,8 @@ class Establishment extends Model
     public function brand() {
         return $this->belongsTo(Brand::class);
     }
+
+    public function items() {
+        return $this->hasMany(Item::class);
+    }
 }
