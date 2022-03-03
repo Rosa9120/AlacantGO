@@ -41,11 +41,11 @@ class EstablishmentSeeder extends Seeder
 		'longitude' => '-0.4871595194473304']);
 		
 	\DB::table('establishments')->insert([
-		'name' => 'La Casona Alicantina',
-		'address' => 'C. Mayor, 14',
+		'name' => 'Madness Specialty Cofee',
+		'address' => 'C. San Nicolás, nº4, Bajo',
 		'postal_code' => '03002',
-		'latitude' => '38.3469294199067',
-		'longitude' => '-0.48107310661578184',
+		'latitude' => '38.34558581212322',
+		'longitude' => '-0.4819446993979722',
 		'brand_id' => $BK]);
 		
 	\DB::table('establishments')->insert([
