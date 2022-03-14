@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->float('price', 5, 2);
             $table->string('picture')->nullable();
             $table->string('description')->nullable();
+            $table->string('type')->nullable();
             $table->foreignId('establishment_id')->nullable()->constrained('establishments')->onDelete('cascade');
             $table->foreignId('brand_id')->nullable()->constrained('brands')->onDelete('cascade');
         });
