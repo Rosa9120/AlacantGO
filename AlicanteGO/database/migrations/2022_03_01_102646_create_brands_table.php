@@ -18,6 +18,7 @@ class CreateBrandsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('isin');
+            $table->foreignId("manager_id")->constrained("managers");
         });
     }
 
