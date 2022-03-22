@@ -18,12 +18,15 @@ class BrandSeeder extends Seeder
 	// Add a new entry to the table
 	\DB::table('brands')->insert([
 		'name' => 'Burger King',
-		'isin' => 'CA76131D1033']);
+		'isin' => 'CA76131D1033',
+		'manager_id' => 1]);
 	\DB::table('brands')->insert([
 		'name' => 'The Good Burger',
-		'isin' => 'CA8765111064']);
+		'isin' => 'CA8765111064',
+		'manager_id' => 2]);
 	\DB::table('brands')->insert([
 		'name' => 'McDonald\'s',
-		'isin' => 'US5801351017']);
+		'isin' => 'US5801351017',
+		'manager_id' => 3]);
     }
 }

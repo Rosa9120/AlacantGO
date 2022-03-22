@@ -14,7 +14,7 @@ class ManagerSeeders extends Seeder
      */
     public function run()
     {
-        DB::table('managers')->delete();
+        \DB::table('managers')->delete();
 
         Manager::create([
             'name' => 'Amancio Ortega',
