@@ -16,4 +16,9 @@ class Brand extends Model
     public function items() {
         return $this->hasMany(Item::class);
     }
+
+    public function manager() {
+        return $this->hasOne(Manager::class);
+    }
+
 }

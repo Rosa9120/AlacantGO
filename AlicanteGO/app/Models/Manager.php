@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Manager extends Model
 {
     use HasFactory;
+    
+    public function establishment() {
+        return $this->belongsTo(Establishment::class);
+    }
+
+    public function brand() {
+        return $this->belongsTo(Brand::class);
+    }
 }
