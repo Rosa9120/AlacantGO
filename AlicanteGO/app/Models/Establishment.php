@@ -16,4 +16,8 @@ class Establishment extends Model
     public function items() {
         return $this->hasMany(Item::class);
     }
+
+    public function manager() {
+        return $this->hasOne(Managers::class);
+    }
 }
