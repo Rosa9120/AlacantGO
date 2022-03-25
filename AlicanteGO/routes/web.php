@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
+Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
