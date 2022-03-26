@@ -13,7 +13,7 @@
     <body>
         <div class="head">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="navbar-brand">Administrator</a>
+                <a class="navbar-brand" href="/admin">Administrator</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -23,7 +23,7 @@
                     <a class="nav-item nav-link" href="establishments">Establishments</a>
                     <a class="nav-item nav-link" href="#">Brands</a>
                     <a class="nav-item nav-link" href="#">Categories</a>
-                    <a class="nav-item nav-link" href="#">Items</a>
+                    <a class="nav-item nav-link" href="/items">Items</a>
                 </div>
                 </div>
               </nav>
@@ -34,19 +34,21 @@
         
              
         </div>
-        <div class="map">
-        
+
+        <div class="content">
             @yield('content')
-            
         </div>
     </body>
 
     <style>
+        body {
+            background-color: #f5f1f1;
+        }
 
         .head{
             height: 70px;
-            background-color: #f5f1f1;
             display:flex;
+            border-bottom: 1px solid black;
         }
     
         .input-group{
@@ -64,18 +66,7 @@
             width: 50px;
             height: 50px;
         }
-
-        .map {
-            
-            background-image: url('../assets/images/maps.png');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            height:600px;
-         /*  background-color:blue;*/
-        }
         
-
     </style>
 
 </html>

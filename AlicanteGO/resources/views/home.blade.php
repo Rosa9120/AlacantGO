@@ -25,7 +25,7 @@
                 </button>
    
             </div>
-            <a href="/items">Items</a>
+            <a href="/admin" style="display:inline-block;width:100px;">Admin view</a>
             <button type="button" class="login">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
