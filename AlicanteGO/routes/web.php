@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrandController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,7 @@ use App\Http\Controllers\BrandController;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', function () {return view('welcome');});
 
 
@@ -27,3 +29,18 @@ Route::get('brand/set', function () {return view('brand.setForm');});
 Route::post('brand', [BrandController::class, 'set_brand'])->name('brand.setBrand');
 
 //Route::put('brand', [BrandController::class, 'form'])->name('brand.getBrand');
+=======
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
+Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
+Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
+Route::get('/establishmentadd', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
+>>>>>>> ea12c157931d50a392360c1955a836dfaec68c7f
