@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);

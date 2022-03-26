@@ -25,7 +25,7 @@
                 </button>
    
             </div>
-            <a href="/items">Items</a>
+
             <button type="button" class="login">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -33,10 +33,18 @@
                 </svg>
             </button>
         </div>
-        <div class="map-container">
-            <div class="map">
 
-            </div>
+        <div>
+            @foreach ($items as $item)
+                <form action="{{ url('/items', ['id' => $item->id]) }}" method="post">
+                    <div style="margin-top:20px;">
+                        <span>{{$item->name}}</span>
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                    </div>
+                    @method('delete')
+                    @csrf
+                </form>
+            @endforeach
         </div>
     </body>
 
@@ -83,5 +91,4 @@
         
 
     </style>
-
 </html>
