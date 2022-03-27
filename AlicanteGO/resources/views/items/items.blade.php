@@ -11,7 +11,19 @@
     </div>
 </div>
 
-<table class="table table-bordered" style="width:85%;margin:auto;box-sizing:border-box;margin-top:60px;margin-bottom:60px;">
+<div class="form-group has-search search">
+    <form class="search-form" action="{{ url('/items/search') }}" method="POST">
+        @csrf
+        @method('post')
+        @if(empty($search))
+            {{$search = null}}
+        @endif
+        <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search by name...">
+        <input type="submit" class="btn btn-primary" value="Search"/>
+    </form>
+</div>
+
+<table class="table table-bordered" style="width:85%;margin:auto;box-sizing:border-box;margin-top:30px;margin-bottom:60px;">
     <tr>
         <th>ID #</th>
         {{-- <th>Image</th> For now we will not have an image--}}
@@ -44,8 +56,21 @@
 @endsection
 
 @section('style')
+
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
     .pagination {
         justify-content: center;    
+    }
+
+    .search-form {
+        display: flex;
+    }
+
+    .search {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
     }
 
     form {

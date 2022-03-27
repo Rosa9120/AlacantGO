@@ -21,4 +21,18 @@ class ItemController extends Controller
     public function show(Item $item) {
         return view('items.item', ["success" => true, "item" => $item]);
     }
+
+    public function search() {
+        $search = \Request::get('search');
+
+        if ($search == null) {
+            return redirect('/items');
+        }
+
+        $search = trim($search);
+        
+        $count = \DB::table('items')->where('name', 'like', '%' . $search . '%')->count();
+        $items = \DB::table('items')->where('name', 'like', '%' . $search . '%')->paginate(7);
+        return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search]);
+    }
 }

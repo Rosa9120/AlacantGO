@@ -25,6 +25,7 @@ Route::get('/admin', function () {
 
 // ITEMS' ROUTES
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::post('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
 Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
 Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
 
