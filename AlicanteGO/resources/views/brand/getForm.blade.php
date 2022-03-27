@@ -6,7 +6,7 @@
 <body>
     <h1>Hello, select a ID to know which brand is related to it</h1>
 
-    <form action="{{url('brand')}}" method="POST">
+    <form action="{{url('/brandg')}}" method="POST">
         @csrf
         Brand id: <input type="number" name="brand_id">
 

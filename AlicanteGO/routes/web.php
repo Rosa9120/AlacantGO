@@ -25,6 +25,7 @@ Route::get('/admin', function () {
 
 // ITEMS' ROUTES
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
 Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
 
 /**
@@ -33,9 +34,8 @@ Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'del
 Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
 Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
 
-/**
- * ESTABLISHMENT ROUTES
- */
+// ESTABLISHMENTS' ROUTES
+Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
 Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
 Route::get('/establishmentadd', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);

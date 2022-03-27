@@ -13,26 +13,22 @@
     <body>
         <div class="head">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="navbar-brand" href="/admin">Administrator</a>
+                <a class="navbar-brand" style="position:absolute;color:rgb(221, 221, 221);" href="/admin">Administrator</a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                  <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="managers">Managers </a>
-                    <a class="nav-item nav-link" href="establishments">Establishments</a>
-                    <a class="nav-item nav-link" href="#">Brands</a>
-                    <a class="nav-item nav-link" href="#">Categories</a>
-                    <a class="nav-item nav-link" href="/items">Items</a>
-                </div>
-                </div>
-              </nav>
-    
 
-       
-            
-        
-             
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav" style="margin-left:50%;transform:translateX(-50%);">
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/managers">Managers</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/establishments">Establishments</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/brands">Brands</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/categories">Categories</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/items">Items</a>
+                    </div>
+                </div>
+            </nav>             
         </div>
 
         <div class="content">
@@ -41,14 +37,29 @@
     </body>
 
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+        html, body {
             background-color: #f5f1f1;
+            height: 100%;
+        }
+
+        .content {
+            height: 100%;
         }
 
         .head{
             height: 70px;
             display:flex;
             border-bottom: 1px solid black;
+            font-family: "Montserrat", sans-serif;
+            background-color: #5c5c5c;
+        }
+
+        nav {
+            width:100%;
+            box-sizing: border-box;
+            margin-left: 20px;
         }
     
         .input-group{
@@ -66,6 +77,8 @@
             width: 50px;
             height: 50px;
         }
+
+        @yield('style')
         
     </style>
 

@@ -21,7 +21,7 @@
 <body>
     <h1>Hello, introduce the name of a valid establishment and the brand to which it belongs</h1>
 
-    <form action="{{url('brand')}}" method="POST">
+    <form action="{{url('brand_set')}}" method="POST">
         @csrf
 
         <label>Establishment: </label><input type="text" name="establishment_name">
