@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Brand;
+use App\Models\Establishment;
 
 class ItemController extends Controller
 {
@@ -34,5 +36,31 @@ class ItemController extends Controller
         $count = \DB::table('items')->where('name', 'like', '%' . $search . '%')->count();
         $items = \DB::table('items')->where('name', 'like', '%' . $search . '%')->paginate(7);
         return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search]);
+    }
+
+    public function edit_view(Item $item) {
+        $establishments = \DB::table('establishments')->get();
+        $brands = \DB::table('brands')->get();
+        return view('items.item_edit', ["success" => true, "item" => $item, "brands" => $brands, "establishments" => $establishments]);
+    }
+
+    public function edit(Item $item) {
+        $request = \Request::all();
+        $item->name = trim($request["name"]);
+        $item->price = $request["price"];
+        $item->description = trim($request["description"]);
+        $item->type = trim($request["type"]);
+        if (\Request::has("brand")) {
+            $brand = Brand::whereId($request["brand"])->first();
+            $item->brand()->associate($brand);
+        }
+        else {
+            $establishment = Establishment::whereId($request["establishment"])->first();
+            $item->establishment()->associate($establishment);
+        }
+
+        $item->save();
+
+        return redirect('/items/' . $item->id);
     }
 }

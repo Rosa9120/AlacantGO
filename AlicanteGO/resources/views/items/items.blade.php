@@ -16,7 +16,7 @@
         @csrf
         @method('post')
         @if(empty($search))
-            {{$search = null}}
+            {{ $search = null }}
         @endif
         <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search by name...">
         <input type="submit" class="btn btn-primary" value="Search"/>
@@ -39,7 +39,7 @@
         <td>{{ $item->price }}€</td>
         <td>
             <a class="btn btn-primary" href="{{ url("/items/" . $item->id) }}">Show</a>
-            <a class="btn btn-warning" href="#">Edit</a>
+            <a class="btn btn-warning" href="{{ url("/items/" . $item->id . "/edit") }}">Edit</a>
  
             <form action="{{ url('/items', ['id' => $item->id]) }}" method="POST">
                 @csrf
