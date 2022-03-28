@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('title', 'Edit Item')
+
 @section('content')
 
     <div class="container">
@@ -16,7 +18,7 @@
                 <span>ID #: {{ $item->id }}</span>
                 <form action="{{ url('/items', ["id" => $item->id]) }}" method="POST">
                     @csrf
-                    @method('PATCH')
+                    @method('patch')
                     <ul>
                         <li>Name: 
                             <input class="editable" name="name" type="text" value="{{ $item->name }}" />
@@ -149,6 +151,8 @@
         width: 40%;
         border-radius: 5px;
         border: none;
+        padding: 3px;
+        padding-left: 5px;
     }
 
     .dropdown {

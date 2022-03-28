@@ -63,4 +63,29 @@ class ItemController extends Controller
 
         return redirect('/items/' . $item->id);
     }
+
+    public function create_view() {
+        $brands = Brand::all();
+        $establishments = Establishment::all();
+
+        return view('items.item_create', ["success" => true, "brands" => $brands, "establishments" =>$establishments]);
+    }
+
+    public function create(Request $request) {
+        $item = new Item;
+        $item->name = $request->input('name');
+        $item->price = $request->input('price');
+        $item->description = $request->input('description');
+        $item->type = $request->input('type');
+
+        if ($request->input('radioItem') == 'brand') {
+            $item->brand()->associate(Brand::whereId($request->input('dropdownItem'))->first());
+        } else {
+            $item->establishment()->associate(Establishment::whereId($request->input('dropdownItem'))->first());
+        }
+
+        $item->save();
+
+        return redirect('/items/' . $item->id);
+    }
 }

@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('title', 'Items List')
+
 @section('content')
 
 <div style="display:flex;justify-content:space-around;margin-top:40px;">
@@ -7,7 +9,7 @@
         <h3>Total items: {{ $count }}</h3>
     </div>
     <div>
-        <a class="btn btn-success" href="{{ 1+1 }}"> Create New Product</a>
+        <a class="btn btn-success" href="{{ url('/items/create') }}"> Create New Product</a>
     </div>
 </div>
 

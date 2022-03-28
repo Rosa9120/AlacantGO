@@ -25,6 +25,8 @@ Route::get('/admin', function () {
 
 // ITEMS' ROUTES
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
+Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
 Route::post('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
 Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
 Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);

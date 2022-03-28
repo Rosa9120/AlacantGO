@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('title', 'Item Info')
+
 @section('content')
 
     <div class="container">
