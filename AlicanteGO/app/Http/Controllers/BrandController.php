@@ -8,6 +8,13 @@ use App\Models\Establishment;
 
 class BrandController extends Controller
 {
+    public function index()
+    {
+        $count = Brand::all()->count();
+        $brands = Brand::paginate(7);
+        return view('brand.brands', ["success" => true, "brands" => $brands, "count" => $count]);
+    }
+
     public function get_brand(Request $request) 
     {
         if( Brand::find($request->input('brand_id')) ) //SI EL ID PERTENECE A UNA BRAND EXISTENTE
@@ -21,15 +28,16 @@ class BrandController extends Controller
             return view('brand.exceptions.notFoundById', ['wrong_id' => $request->input('brand_id')]); //DEBERÍA ESTAR EN UNA CARPETA LLAMADA EXCEPTION???  
     }
 
-    public function set_brand(Request $request) 
+    public function update_brand(Request $request) 
     {
-        if( !Establishment::where ('name', '=', $request->input('establishment_name'))) //SI EL ESTABLISHMENT NO EXISTE
+
+        if(Establishment::where ('name', '=', $request->input('establishment_name'))->get()->count() == 0) //SI EL ESTABLISHMENT NO EXISTE
             return view('establishment.exceptions.establishmentNotFound', ['inexistent_name' => $request->input('establishment_name')]);
         
-        else if( !Brand::where ('name', '=', $request->input('brand_name'))) //SI LA BRAND NO EXISTE
+        else if(Brand::where ('name', '=', $request->input('brand_name'))->get()->count() == 0) //SI LA BRAND NO EXISTE
             return view('brand.exceptions.brandNotFound', ['inexistent_name' => $request->input('brand_name')]);
 
-        else //POR ALGÚN MOTIVO BURGUER KING DEVUELVE NULL, NO TENGO NI IDEA DE POR QUÉ
+        else
         {
             $brand = Brand::where ('name', '=', $request->input('brand_name'))->first(); //ONLY THE ID IS NEEDED TO LINK
 
@@ -37,7 +45,7 @@ class BrandController extends Controller
 
             $establish_wanted->update(array('brand_id' => $brand->id));
 
-            return view('brand.setDone', 
+            return view('brand.updateDone', 
             ['e_name' => $request->input('establishment_name'), 'b_name' => $request->input('brand_name')]);
         }
     }

@@ -1,18 +1,24 @@
-<html>
-<head>
-    <title>Brand View by ID</title>
-</head>
+@extends('admin')
 
-<body>
-    <h1>Hello, select a ID to know which brand is related to it</h1>
+@section('content')
 
-    <form action="{{url('/brandg')}}" method="POST">
-        @csrf
-        Brand id: <input type="number" name="brand_id">
+<div style="display:flex; justify-content:center; padding-top:35px">
+    <div class="m-3 justify-content-center text-dark" style="display:inline-block; padding: 20px; background-color:rgba(255,255,255,0.7);">
 
-        <button type="submit">Send</button>
-    </form>
+        <h5 class="card-header">
+            <span class="text-dark"> <h1> Hello, select a ID to know which brand is related to it </h1></span>
 
-</body>
+            <span class="text-dark"> 
+            <form action="{{url('/brands/get')}}" method="POST">
+                @csrf
+                Brand id: <input type="number" name="brand_id">
 
-</html>
+                <button type="submit">Send</button>
+            </form>
+            </span>
+            
+        </h5>
+
+    </div>
+</div>
+@endsection

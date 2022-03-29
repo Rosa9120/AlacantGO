@@ -7,8 +7,8 @@ After downloading the project execute
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan migrate:refresh
-php artisan migrate --seed
+
+php artisan migrate:fresh --seed
 
 http://localhost/adminer
 

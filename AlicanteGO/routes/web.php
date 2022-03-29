@@ -52,9 +52,10 @@ Route::get('/establishmentadd', [App\Http\Controllers\EstablishmentController::c
 /**
  * BRAND ROUTES
  */
-//Route::put('brand', [BrandController::class, 'form'])->name('brand.getBrand');
-Route::get('brand', function () {return view('brand.paths_overview');});
-Route::get('brand/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
-Route::post('brand', [BrandController::class, 'get_brand'])->name('brand.getBrand'); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
-Route::get('brand/set', function () {return view('brand.setForm');});
-Route::post('brand', [BrandController::class, 'set_brand'])->name('brand.setBrand');
+
+Route::get('/brands', [App\Http\Controllers\BrandController::class, 'index']);
+Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
+Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
+
+Route::get('/brands/update', function () {return view('brand.updateForm');});
+Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']);
