@@ -13,10 +13,23 @@
                 <label for="phone"> Phone Number </label>
                 <input required name="phone" type="text" value="{{ old('phone') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
                 <label for="establishment"> Establishment </label>
-                <input name="establishment" type="text" value="{{ old('establishment') }}" class="form-control" placeholder="(Optional) Enter establishment name " id="establishment">
-                <label for="brand"> Brand </label>
-                <input name="brand" type="text" value="{{ old('brand') }}" class="form-control" placeholder="(Optional) Enter brand name" id="brand">
          
+                <select id="dropdown" name="dropdownEstablishment" class="form-control editable dropdown">
+                    <option value = ""> </option>
+                    @foreach ($establishments as $idx => $establishment)
+                        <option value="{{ $establishment->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $establishment->name }}</option>
+                    @endforeach
+                </select>
+                <label for="brand"> Brand </label>
+              
+                <select id="dropdown" name="dropdownBrand" class="form-control editable dropdown">
+            
+                    <option value = ""> </option>
+                    @foreach ($brands as $idx => $brand)
+                        <option value="{{ $brand->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                    @endforeach
+                </select>
+
             </div>
             <div class="text-right">
                 <button type="submit" class="btn btn-primary">Create Manager</button>

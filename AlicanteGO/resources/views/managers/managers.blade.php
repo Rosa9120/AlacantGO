@@ -4,14 +4,12 @@
 
 <div style="display:flex;justify-content:space-around;margin-top:40px;">
     <div>
-        <h3>Total items: {{ $count }}</h3>
+        <h3>Total managers: {{ $count }}</h3>
     </div>  
     <div>  
-        <a href="{{url('/addmanagers')}}"> 
+        <a href="{{ url('/addmanagers') }}" method="GET"> 
             <button type="button" class="btn btn-success">Create Manager</button>
         </a>
-
-        {{-- <a class="btn btn-success" href="/addmanagers" > Create Manager </a> --}}
     </div>
 </div>
 
@@ -55,7 +53,7 @@
             <td style="font-style:italic;"> none </td>
         @endif
         <td>
-            <a class="btn btn-primary" href="{{ url("/managers/" . $manager->id) }}">Show</a>
+            <a class="btn btn-primary" href="{{ url("/managers/show/" .$manager->id) }}">Show</a>
             <a class="btn btn-warning" href="{{ url("/managers/edit/" . $manager->id) }}">Edit</a>
  
             <form action="{{ url('/managers', ['id' => $manager->id]) }}" method="POST">
