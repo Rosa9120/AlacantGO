@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/items/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/brands/search') }}" method="POST">
         @csrf
         @method('post')
         @if(empty($search))
@@ -35,10 +35,9 @@
     <tr>
         <td>{{ $brand->id }}</td>
         <td>{{ $brand->name }}</td>
-        <td>{{ $brand->isin }}€</td>
+        <td>{{ $brand->isin }}</td>
 
         <td>
-            <a class="btn btn-primary" href="{{ url("/brands/" . $brand->id) }}">Show</a>
             <a class="btn btn-warning" href="{{ url("/brands/" . $brand->id . "/edit") }}">Edit</a>
  
             <form action="{{ url('/brands', ['id' => $brand->id]) }}" method="POST">

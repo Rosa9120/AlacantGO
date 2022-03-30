@@ -61,3 +61,11 @@ Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_br
 
 Route::get('/brands/update', function () {return view('brand.updateForm');});
 Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']);
+
+Route::get('/brands/create', function () {return view('brand.brand_create');});
+Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
+Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
+Route::post('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
+
+Route::get('/brands/{brand}/edit', function () {return view('brand.edit_brand');});
+Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
