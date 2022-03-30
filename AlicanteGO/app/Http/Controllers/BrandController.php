@@ -49,4 +49,51 @@ class BrandController extends Controller
             ['e_name' => $request->input('establishment_name'), 'b_name' => $request->input('brand_name')]);
         }
     }
+
+    public function search_brand() {
+        $search = \Request::get('search');
+
+        if ($search == null) {
+            return redirect('/brands');
+        }
+
+        $search = trim($search);
+        
+        $count = \DB::table('brands')->where('name', 'like', '%' . $search . '%')->count();
+        $brands = \DB::table('brands')->where('name', 'like', '%' . $search . '%')->paginate(7);
+        return view('brand.brands', ["success" => true, "brands" => $brands, "count" => $count, "search" => $search]);
+    }
+
+    public function delete_brand(Brand $brand) 
+    {
+        $brand->delete();
+        return redirect()->back();
+    }
+
+    public function create_brand(Request $request) 
+    {
+        $brand = new Brand;
+        $brand->name = $request->input('name');
+
+        if($request->input('isin') == NULL)
+            $brand->isin = NULL;
+
+        else
+            $brand->isin =$request->input('isin');
+
+        $brand->save();
+
+        return redirect('/brands');
+    }
+
+    public function edit_brand(Item $brand) 
+    {
+        $request = \Request::all();
+        $brand->name = trim($request["name"]);
+        $brand->isin = $request["isin"];
+
+        $brand->save();
+
+        return redirect('/brands');
+    }
 }
