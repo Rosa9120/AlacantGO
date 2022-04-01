@@ -16,11 +16,11 @@ class ManagerController extends Controller
     public function delete($manager){
         $manager = Manager::findOrFail($manager);
         $manager->delete();
-        return redirect()->back();
+        return redirect('/managers');
     }
 
-    public function search() {
-        $search = \Request::get('search');
+    public function search(Request $request) {
+        $search = $request->input('search');
 
         if ($search == null) {
             return redirect('/managers');
@@ -30,7 +30,7 @@ class ManagerController extends Controller
         
         $count = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->count();
         $managers = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->paginate(7);
-        return view('managers.managers', ["success" => true, "managers" => $managers, "count" => $count, "search" => $search]);
+        return view('managers.managers', ["success" => true, "managers" => $managers, "count" => $count]);
     }
 
     public function show(Manager $manager) {

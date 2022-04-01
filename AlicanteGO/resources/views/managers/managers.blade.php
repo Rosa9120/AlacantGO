@@ -41,13 +41,13 @@
         <td>{{ $manager->name }}</td>
         <td>{{ $manager->DNI }}</td>
         <td>{{ $manager->phone }}</td>
-        @if($manager->brand != null)
+        @if(isset($manager->brand))
             <td>{{ $manager->brand->name }}</td>    
         @else
         <td style="font-style:italic;" > none </td>    
         @endif
 
-        @if($manager->establishment != null )
+        @if(isset($manager->establishment))
             <td>{{ $manager->establishment->name }}</td>
         @else
             <td style="font-style:italic;"> none </td>
