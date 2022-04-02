@@ -10,7 +10,7 @@ class EstablishmentController extends Controller
 {
     function get_all() {
         $count = Establishment::all()->count();
-        $establishments = Establishment::paginate(7);
+        $establishments = Establishment::paginate(5);
         return view('establishment/establishments', ["establishments" => $establishments, "count" => $count]);
     }
 
