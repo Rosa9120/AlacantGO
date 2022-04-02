@@ -21,11 +21,11 @@
             {{ $search = null }}
         @endif
         <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..." autofocus></input>
-        <button type="submit" class="btn btn-primary" value="Search"></button>
+        <button style="margin-left:5px;" type="submit" class="btn btn-primary" value="Search">Search</button>
     </form>
 </div>
 
-<table class="table table-bordered" style="width:85%;margin:auto;box-sizing:border-box;margin-top:30px;margin-bottom:60px;">
+<table class="table table-bordered" style="width:85%;margin:auto;box-sizing:border-box;margin-top:30px;margin-bottom:30px;">
     <tr>
         <th>ID #</th>
         <th>Name</th>
@@ -33,7 +33,7 @@
         <th>Address</th>
         <th>Brand</th>
         <th>Category</th>
-        <th width="280px">Action</th>
+        <th width="260px">Action</th>
     </tr>
     @foreach ($establishments as $establishment)
     <tr>
@@ -58,6 +58,8 @@
     @endforeach
 </table>
 
+{{ $establishments->links() }}
+
 <script>
     function showEstablishment(id) {
         window.location.href = `{{url('/establishment/')}}/${id}`;
@@ -72,4 +74,27 @@
     }
 </script>
 
+@endsection
+
+@section('style')
+
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+    .pagination {
+        justify-content: center;    
+    }
+
+    .search-form {
+        display: flex;
+    }
+
+    .search {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    form {
+        display: inline-block;
+    }
 @endsection
