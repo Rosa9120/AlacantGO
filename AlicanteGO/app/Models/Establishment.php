@@ -10,7 +10,7 @@ class Establishment extends Model
     use HasFactory;
 
     public function brand() {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class)->withDefault(['name' => 'None',]);
     }
 
     public function items() {
@@ -19,5 +19,9 @@ class Establishment extends Model
 
     public function manager() {
         return $this->hasOne(Managers::class);
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class)->withDefault(['name' => 'None',]);
     }
 }
