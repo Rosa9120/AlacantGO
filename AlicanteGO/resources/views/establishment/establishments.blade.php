@@ -1,39 +1,75 @@
 @extends('admin')
 
+@section('title', 'Establishments List')
+
 @section('content')
 
-<div style="display:flex; justify-content:center; padding-top:50px">
+<div style="display:flex;justify-content:space-around;margin-top:40px;">
+    <div>
+        <h3>Total establishments: {{ $count }}</h3>
+    </div>
     <div onclick="createEstablishment()">
-        <label class="btn btn-primary">New Establishment</label>
+        <a class="btn btn-success"> Create New Establishment</a>
     </div>
-    <div class="justify-content-center text-dark" style="display:inline-block; padding: 50px; background-color:rgba(255,255,255,0.7);">
-        <form action="{{ url('/establishments') }}" method="POST" class="form-group">
-            @csrf
-            <div class="mb-3">
-                <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..." autofocus></input>
-                <button hidden type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </form>
-
-        @foreach($establishments as $establishment)
-        <div class="mb-1" style="cursor: pointer;" onclick="showEstablishment({{$establishment->id}})">
-            <h5 class="card-header">
-                <span class="text-dark">{{ $establishment->name }}</span>
-            </h5>
-        </div>
-        @endforeach
-        <div class="text-center d-flex justify-content-center" style="padding-top:50px;">
-            {{ $establishments->links() }}
-        </div>
-    </div>
-    <script>
-        function showEstablishment(id) {
-            window.location.href = `{{url('/establishment/')}}/${id}`;
-        }
-
-        function createEstablishment() {
-            window.location.href = '/establishmentadd';
-        }
-    </script>
 </div>
+
+<div class="form-group has-search search">
+    <form class="search-form" action="{{ url('/establishment/search') }}" method="POST">
+        @csrf
+        @method('post')
+        @if(empty($search))
+            {{ $search = null }}
+        @endif
+        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..." autofocus></input>
+        <button type="submit" class="btn btn-primary" value="Search"></button>
+    </form>
+</div>
+
+<table class="table table-bordered" style="width:85%;margin:auto;box-sizing:border-box;margin-top:30px;margin-bottom:60px;">
+    <tr>
+        <th>ID #</th>
+        <th>Name</th>
+        <th>Phone number</th>
+        <th>Address</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th width="280px">Action</th>
+    </tr>
+    @foreach ($establishments as $establishment)
+    <tr>
+        <td>{{ $establishment->id }}</td>
+        <td>{{ $establishment->name }}</td>
+        <td>{{ $establishment->phone_number }}</td>
+        <td>{{ $establishment->address }}</td>
+        <td>{{ $establishment->brand->name }}</td>
+        <td>{{ $establishment->category->name}}</td>
+
+        <td>
+            <a class="btn btn-primary" onclick="showEstablishment({{ $establishment->id }})">Show</a>
+            <a class="btn btn-warning" onclick="editEstablishment({{ $establishment->id }})">Edit</a>
+ 
+            <form action="{{ url('/establishments', ['id' => $establishment->id]) }}" method="POST">
+                @csrf
+                @method('delete')
+                <input type="submit" class="btn btn-danger" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</table>
+
+<script>
+    function showEstablishment(id) {
+        window.location.href = `{{url('/establishment/')}}/${id}`;
+    }
+
+    function createEstablishment() {
+        window.location.href = '/establishmentadd';
+    }
+
+    function editEstablishment(id) {
+        window.location.href = `{{url('/establishmentedit/')}}/${id}`;
+    }
+</script>
+
 @endsection

@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class EstablishmentController extends Controller
 {
     function get_all() {
-        return view('establishment/establishments')->with("establishments", Establishment::simplePaginate(5));
+        $count = Establishment::all()->count();
+        $establishments = Establishment::paginate(7);
+        return view('establishment/establishments', ["establishments" => $establishments, "count" => $count]);
     }
 
     /**
