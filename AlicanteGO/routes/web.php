@@ -46,10 +46,13 @@ Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::
 
 
 // ESTABLISHMENTS' ROUTES
-Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
+Route::get('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
 Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
-Route::get('/establishmentadd', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
+Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::post('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
+Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
+Route::post('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
 
 /**
  * BRAND ROUTES
