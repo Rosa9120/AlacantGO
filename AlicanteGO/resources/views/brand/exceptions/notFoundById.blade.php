@@ -1,14 +1,19 @@
-<html>
-<head>
-    <title>ID does not belong to any brand</title>
-</head>
+@extends('admin')
 
-<body>
+@section('content')
 
-    <p href="{{ route('brand.getBrand', ['wrong_id' => $wrong_id]) }}">
-        <?php echo "There is not any brand with the following ID: $wrong_id"; ?>
-    </p>
+<div style="display:flex; justify-content:center; padding-top:35px">
+    <div class="m-3 justify-content-center text-dark" style="display:inline-block; padding: 20px; background-color:rgba(255,255,255,0.7);">
 
-</body>
+        <h5 class="card-header">
+            <span class="text-dark"> 
+            <p href="{{ url('/brands/notFoundById', ['wrong_id' => $wrong_id]) }}">
+                <?php echo "There is not any brand with the following ID: $wrong_id"; ?>
+            </p>
+            </span>
+            
+        </h5>
 
-</html>
+    </div>
+</div>
+@endsection

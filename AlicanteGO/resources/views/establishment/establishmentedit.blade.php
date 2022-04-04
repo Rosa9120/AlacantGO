@@ -1,6 +1,6 @@
 @extends('admin')
 
-@section('title', 'Create Establishment')
+@section('title', 'Edit Establishment')
 
 @section('content')
 
@@ -8,28 +8,42 @@
     <div class="back">
         <a href="/establishments" id="back">Go Back</a>
     </div>
-
     <div class="establishment">
         <div class="information">
-            <form action="{{ url('/establishment/new') }}" method="POST">
+            <span>ID #: {{ $establishment->id }}</span>
+            <form action="{{ url('/establishments', ["id" => $establishment->id]) }}" method="POST">
                 @csrf
-                @method('post')
+                @method('patch')
                 <ul>
                     <li>Name: 
-                        <input class="editable" required name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter name" id="name">
+                        <input class="editable" name="name" type="text" value="{{ $establishment->name }}" />
                     </li>
                     <li>Phone Number: 
-                        <input class="editable" required name="phone_number" type="text" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
+                        <input class="editable" name="phone_number" type="number" lang="en" step="0.01" value="{{ $establishment->phone_number }}" />
                     </li>
                     <li>Address: 
-                        <input class="editable"requiered name="address" type="text" value="{{ old('address') }}" class="form-control" placeholder="Enter address" id="address">
+                        <input class="editable" name="address" type="text" value="{{ $establishment->address }}" />
                     </li>
                     <li>Postal Code: 
-                        <input class="editable" requiered name="postal_code" type="text" value="{{ old('postal_code') }}" class="form-control" placeholder="Enter postal code" id="postal_code">
+                        <input class="editable" name="type" type="text" value="{{ $establishment->postal_code }}" />
                     </li>
-                </ul>           
+                    <li>Brand: 
+                        <select name="brand" class="form-control editable dropdown">
+                            @foreach ($brands as $brand)
+                            <option value="{{ $brand->id }}" {{ ($brand->id == $establishment->brand->id) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <li>Category: 
+                        <select name="category" class="form-control editable dropdown">
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ ($category->id == $establishment->category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                </ul>  
                 <div class="submit">
-                    <button type="submit" class="btn btn-success">Create</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </div>
             </form>
         </div>
@@ -104,19 +118,6 @@
         padding: 20px;
     }
 
-    ::-webkit-input-placeholder {
-        font-style: italic;
-     }
-     :-moz-placeholder {
-        font-style: italic;  
-     }
-     ::-moz-placeholder {
-        font-style: italic;  
-     }
-     :-ms-input-placeholder {  
-        font-style: italic; 
-     }
-
     li {
         display: flex;
         justify-content: space-between;
@@ -130,6 +131,10 @@
         border: none;
         padding: 3px;
         padding-left: 5px;
+    }
+
+    .dropdown {
+        line-height: 20px;
     }
 
     .submit {

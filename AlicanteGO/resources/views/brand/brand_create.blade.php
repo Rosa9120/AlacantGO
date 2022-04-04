@@ -1,28 +1,34 @@
 @extends('admin')
 
-@section('title', 'Establishment Info')
+@section('title', 'Create Brand')
 
 @section('content')
 
-<div class="container">
-    <div class="back">
-        <a href="/establishments" id="back">Go Back</a>
-    </div>
+    <div class="container">
+        <div class="back">
+            <a href="/brands" id="back">Go Back</a>
+        </div>
 
-    <div class="establishment">
-        <div class="information">
-            <ul>
-                <li>ID #: {{ $establishment->id }}</li>
-                <li>Name: {{ $establishment->name }}</li>
-                <li>Phone Number: {{ $establishment->phone_number }}</li>
-                <li>Address: {{$establishment->address }}</li>
-                <li>Postal Code: {{ $establishment->postal_code }}</li>
-                <li>Brand: {{ $establishment->brand->name }}</li>
-                <li>Category: {{ $establishment->category->name }}</li>
-            </ul>
+        <div class="item">
+            <div class="information">
+                <form action="{{ url('/brands/create') }}" method="POST">
+                    @csrf
+                    @method('post')
+                    <ul>
+
+                        <li>Name: <input class="editable" required name="name" type="text" placeholder="Brand Name"/>
+                        </li>
+                        <li>Isin: <input class="editable" name="isin" type="text" lang="en" placeholder="AA11111A1111"/>
+                        </li>
+                    </ul>
+                
+                    <div class="submit">
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 @endsection
 
@@ -64,7 +70,7 @@
         color: white;
     }
 
-    .establishment {
+    .item {
         display: flex;
         flex-direcion: row;
         flex-grow: 0;
@@ -77,7 +83,7 @@
         border: 1px solid grey;
         border-radius: 10px;
         font-size: 22px;
-        max-width: 50%;
+        max-width: 70%;
         max-height: 80%;
         margin: auto;
         margin-top: 0;

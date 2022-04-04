@@ -1,16 +1,21 @@
-<html>
-<head>
-    <title>Brand Name - Getter</title>
-</head>
+@extends('admin')
 
-<body>
+@section('content')
 
-    <h1> The selected brand is: <h1>
+<div style="display:flex; justify-content:center; padding-top:35px">
+    <div class="m-3 justify-content-center text-dark" style="display:inline-block; padding: 20px; background-color:rgba(255,255,255,0.7);">
 
-    <p href="{{ route('brand.getBrand', ['name' => $name]) }}">
-        <h1><?php echo $name; ?><h1>
-    </p>
+        <h5 class="card-header">
+            <span class="text-dark"> <h1> The selected brand is: </h1></span>
 
-</body>
+            <span class="text-dark"> 
+            <p href="{{ route('brand.getBrand', ['name' => $name]) }}">
+                    <h1><?php echo $name; ?><h1>
+            </p>
+            </span>
+            
+        </h5>
 
-</html>
+    </div>
+</div>
+@endsection
