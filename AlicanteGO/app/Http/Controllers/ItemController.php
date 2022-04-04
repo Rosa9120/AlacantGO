@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Brand;
 use App\Models\Establishment;
@@ -34,7 +33,8 @@ class ItemController extends Controller
         $search = trim($search);
         
         $count = \DB::table('items')->where('name', 'like', '%' . $search . '%')->count();
-        $items = \DB::table('items')->where('name', 'like', '%' . $search . '%')->paginate(7);
+        // We have to append the query, otherwise it will reset the search parameters each time that we change the page
+        $items = \DB::table('items')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
         return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search]);
     }
 
