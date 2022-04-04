@@ -72,3 +72,17 @@ Route::post('/brands/search', [App\Http\Controllers\BrandController::class, 'sea
 
 Route::get('/brands/{brand}/edit', function () {return view('brand.edit_brand');});
 Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
+
+/**
+ * CATEGORY ROUTES
+ */
+
+Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index']);
+Route::get('/categories/create', function () {return view('categories.category_create');});
+Route::post('/categories/create', [App\Http\Controllers\CategoryController::class, 'create_category']);
+
+Route::delete('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'delete_category']);
+Route::post('/categories/search', [App\Http\Controllers\CategoryController::class, 'search_category']);
+
+Route::get('/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit']);
+Route::patch('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'edit_category']);
