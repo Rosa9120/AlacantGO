@@ -25,7 +25,7 @@ Route::get('/admin', function () {
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
 Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
 Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
-Route::post('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
+Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
 Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
 Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
 Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
@@ -44,10 +44,13 @@ Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::
 
 
 // ESTABLISHMENTS' ROUTES
-Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
+Route::get('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
 Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
-Route::get('/establishmentadd', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
+Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::post('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
+Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
+Route::post('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
 
 /**
  * BRAND ROUTES

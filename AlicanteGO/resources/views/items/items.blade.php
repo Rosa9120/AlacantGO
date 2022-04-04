@@ -14,12 +14,31 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/items/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/items/search') }}" method="GET">
         @csrf
-        @method('post')
+        @method('get')
         @if(empty($search))
             {{ $search = null }}
         @endif
+        <div class="dropdown-container">
+            <select name="orderBy" class="form-control dropdown">
+                <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
+                    selected
+                @endif>
+                    Order by
+                </option>
+                <option value="1" @if (!empty($orderBy) and $orderBy == 1)
+                    selected
+                @endif>
+                    Price: High to Low
+                </option>
+                <option value="2" @if (!empty($orderBy) and $orderBy == 2)
+                    selected
+                @endif>
+                    Price: Low to High
+                </option>
+            </select>
+        </div>
         <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search by name...">
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
@@ -67,6 +86,7 @@
 
     .search-form {
         display: flex;
+        flex-wrap: wrap;
     }
 
     .search {
@@ -78,4 +98,17 @@
     form {
         display: inline-block;
     }
+
+    .dropdown-container {
+        margin-right: 0.6em;
+        border-right: 1px solid #a6a6a6;
+        padding-right: 0.6em;        
+    }
+
+    .dropdown {
+        line-height: 20px;
+        width: 10em;
+        padding: 0.6em;
+    }
+
 @endsection
