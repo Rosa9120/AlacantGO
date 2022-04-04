@@ -86,10 +86,15 @@ class BrandController extends Controller
         return redirect('/brands');
     }
 
-    public function edit_brand(Item $brand) 
+    public function edit(Brand $brand)
+    {
+        return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
+    }
+
+    public function edit_brand(Brand $brand) 
     {
         $request = \Request::all();
-        $brand->name = trim($request["name"]);
+        $brand->name = $request["name"];
         $brand->isin = $request["isin"];
 
         $brand->save();
