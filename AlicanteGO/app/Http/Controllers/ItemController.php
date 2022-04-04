@@ -25,17 +25,34 @@ class ItemController extends Controller
 
     public function search() {
         $search = \Request::get('search');
+        $orderBy = \Request::get('orderBy');
 
         if ($search == null) {
             return redirect('/items');
         }
 
         $search = trim($search);
-        
+
+        $items = \DB::table('items');
         $count = \DB::table('items')->where('name', 'like', '%' . $search . '%')->count();
-        // We have to append the query, otherwise it will reset the search parameters each time that we change the page
-        $items = \DB::table('items')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
-        return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search]);
+
+        switch ($orderBy) {
+            // We have to append the query, otherwise it will reset the search parameters each time that we change the page
+            case -1:
+                $items = $items->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
+                break;
+            case 1:
+                $items = $items->where('name', 'like', '%' . $search . '%')->orderBy('price', 'desc')->paginate(7)->appends(request()->query());
+                break;
+            case 2:
+                $items = $items->where('name', 'like', '%' . $search . '%')->orderBy('price', 'asc')->paginate(7)->appends(request()->query());
+                break;
+            default:
+                abort(500); // It should never reach this code
+                break;
+        }
+        
+        return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search, "orderBy" => $orderBy]);
     }
 
     public function edit_view(Item $item) {
