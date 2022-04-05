@@ -49,6 +49,15 @@ class EstablishmentController extends Controller
         return redirect('/establishments');
     }
 
+    /**
+     * Search establishments
+     */
+    function search_establishment(Request $req) {
+        return view('estabishment/establishments')->with('establishments', Establishment::where('name', 'LIKE', "%{$req->input('search')}%")
+                                                                                        ->orwhere('brand', 'LIKE', "%{$req->input('search')}%")
+                                                                                        ->simplePaginate(5));
+    }
+
      /**
      * Processes to form to add a new establishment
      */
