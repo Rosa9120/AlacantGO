@@ -53,8 +53,13 @@ class EstablishmentController extends Controller
      * Search establishments
      */
     function search_establishment(Request $req) {
-        $establishments = Establishment::where('name', 'LIKE', "%{$req->input('search')}%")->simplePaginate(5);
-        $count = Establishment::where('name', 'LIKE', "%{$req->input('search')}%")->count();
+        $establishments = Establishment::leftJoin('brands', 'establishments.brand_id', '=', 'brands.id')
+                                        ->leftJoin('categories', 'establishments.category_id', '=', 'categories.id')
+                                        ->where('establishments.name', 'LIKE', "%{$req->input('search')}%")
+                                        ->orwhere('brands.name', 'LIKE', "%{$req->input('search')}%")
+                                        ->orwhere('categories.name', 'LIKE', "%{$req->input('search')}%")
+                                        ->simplePaginate(5, 'establishments.*');
+        $count = $establishments->count();
         return view('establishment/establishments', ['establishments' => $establishments, 'count' => $count]);
                                                                                         
     }

@@ -14,13 +14,13 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/establishments/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/establishments/search') }}" method="GET">
         @csrf
-        @method('post')
+        @method('get')
         @if(empty($search))
             {{ $search = null }}
         @endif
-        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..." autofocus></input>
+        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..."></input>
         <button style="margin-left:5px;" type="submit" class="btn btn-primary" value="Search">Search</button>
     </form>
 </div>
