@@ -60,7 +60,7 @@ class BrandController extends Controller
         $search = trim($search);
         
         $count = \DB::table('brands')->where('name', 'like', '%' . $search . '%')->count();
-        $brands = \DB::table('brands')->where('name', 'like', '%' . $search . '%')->paginate(7);
+        $brands = \DB::table('brands')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
         return view('brand.brands', ["success" => true, "brands" => $brands, "count" => $count, "search" => $search]);
     }
 

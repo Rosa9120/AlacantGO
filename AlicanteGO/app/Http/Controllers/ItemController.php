@@ -27,25 +27,27 @@ class ItemController extends Controller
         $search = \Request::get('search');
         $orderBy = \Request::get('orderBy');
 
-        if ($search == null) {
-            return redirect('/items');
+        if ($search != null) {
+            $items = \DB::table('items')->where('name', 'like', '%' . $search . '%');
+            // return redirect('/items');
+        } else {
+            $items = \DB::table('items');
         }
 
         $search = trim($search);
 
-        $items = \DB::table('items');
         $count = \DB::table('items')->where('name', 'like', '%' . $search . '%')->count();
 
         switch ($orderBy) {
             // We have to append the query, otherwise it will reset the search parameters each time that we change the page
             case -1:
-                $items = $items->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
+                $items = $items->paginate(7)->appends(request()->query());
                 break;
             case 1:
-                $items = $items->where('name', 'like', '%' . $search . '%')->orderBy('price', 'desc')->paginate(7)->appends(request()->query());
+                $items = $items->orderBy('price', 'desc')->paginate(7)->appends(request()->query());
                 break;
             case 2:
-                $items = $items->where('name', 'like', '%' . $search . '%')->orderBy('price', 'asc')->paginate(7)->appends(request()->query());
+                $items = $items->orderBy('price', 'asc')->paginate(7)->appends(request()->query());
                 break;
             default:
                 abort(500); // It should never reach this code

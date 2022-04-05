@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/brands/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/brands/search') }}" method="get">
         @csrf
         @method('post')
         @if(empty($search))
