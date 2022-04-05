@@ -29,6 +29,7 @@
                     </li>
                     <li>Brand: 
                         <select name="brand" class="form-control editable dropdown">
+                            <option> </option>
                             @foreach ($brands as $brand)
                             <option value="{{ $brand->id }}" {{ ($brand->id == $establishment->brand->id) ? 'selected' : '' }}>{{ $brand->name }}</option>
                             @endforeach
@@ -36,6 +37,7 @@
                     </li>
                     <li>Category: 
                         <select name="category" class="form-control editable dropdown">
+                            <option> </option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}" {{ ($category->id == $establishment->category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
