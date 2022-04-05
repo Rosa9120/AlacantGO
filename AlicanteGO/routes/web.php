@@ -68,7 +68,7 @@ Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'up
 Route::get('/brands/create', function () {return view('brand.brand_create');});
 Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
 Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
-Route::post('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
+Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
 
 Route::get('/brands/{brand}/edit', function () {return view('brand.edit_brand');});
 Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
@@ -82,7 +82,7 @@ Route::get('/categories/create', function () {return view('categories.category_c
 Route::post('/categories/create', [App\Http\Controllers\CategoryController::class, 'create_category']);
 
 Route::delete('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'delete_category']);
-Route::post('/categories/search', [App\Http\Controllers\CategoryController::class, 'search_category']);
+Route::get('/categories/search', [App\Http\Controllers\CategoryController::class, 'search_category']);
 
 Route::get('/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit']);
 Route::patch('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'edit_category']);

@@ -27,27 +27,6 @@ class CategoryController extends Controller
             return view('categories.exceptions.notFoundById', ['wrong_id' => $request->input('categories_id')]); //DEBERÍA ESTAR EN UNA CARPETA LLAMADA EXCEPTION???  
     }
 
-    public function update_brand(Request $request) 
-    {
-
-        if(Establishment::where ('name', '=', $request->input('establishment_name'))->get()->count() == 0) //SI EL ESTABLISHMENT NO EXISTE
-            return view('establishment.exceptions.establishmentNotFound', ['inexistent_name' => $request->input('establishment_name')]);
-        
-        else if(Category::where ('name', '=', $request->input('brand_name'))->get()->count() == 0) //SI LA BRAND NO EXISTE
-            return view('brand.exceptions.brandNotFound', ['inexistent_name' => $request->input('brand_name')]);
-
-        else
-        {
-            $category = Category::where ('name', '=', $request->input('brand_name'))->first(); //ONLY THE ID IS NEEDED TO LINK
-
-            $establish_wanted = Establishment::where ('name', '=', $request->input('establishment_name'));
-
-            $establish_wanted->update(array('brand_id' => $category->id));
-
-            return view('brand.updateDone', 
-            ['e_name' => $request->input('establishment_name'), 'b_name' => $request->input('brand_name')]);
-        }
-    }
 
     public function search_category() {
         $search = \Request::get('search');
@@ -59,7 +38,7 @@ class CategoryController extends Controller
         $search = trim($search);
         
         $count = \DB::table('categories')->where('name', 'like', '%' . $search . '%')->count();
-        $categories = \DB::table('categories')->where('name', 'like', '%' . $search . '%')->paginate(7);
+        $categories = \DB::table('categories')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
         return view('categories.categories', ["success" => true, "categories" => $categories, "count" => $count, "search" => $search]);
     }
 
