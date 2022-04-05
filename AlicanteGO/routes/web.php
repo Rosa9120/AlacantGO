@@ -51,6 +51,7 @@ Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentControll
 Route::post('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
 Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
 Route::post('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
+Route::post('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
 
 /**
  * BRAND ROUTES
