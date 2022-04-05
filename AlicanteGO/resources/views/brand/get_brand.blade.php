@@ -9,7 +9,7 @@
             <span class="text-dark"> <h1> The selected brand is: </h1></span>
 
             <span class="text-dark"> 
-            <p href="{{ route('brand.getBrand', ['name' => $name]) }}">
+            <p href="{{ url('/brands/get', ['name' => $name]) }}">
                     <h1><?php echo $name; ?><h1>
             </p>
             </span>

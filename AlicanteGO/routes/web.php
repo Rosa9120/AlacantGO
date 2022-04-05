@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BrandController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +68,7 @@ Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'cre
 Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
 Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
 
-Route::get('/brands/{brand}/edit', function () {return view('brand.edit_brand');});
+Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);
 Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
 
 /**
