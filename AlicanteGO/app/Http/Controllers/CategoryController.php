@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function index()
     {
         $count = Category::all()->count();
-        $categories = Category::paginate(7);
+        $categories = Category::orderBy('name')->paginate(7);
         return view('categories.categories', ["success" => true, "categories" => $categories, "count" => $count]);
     }
 
@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $search = trim($search);
         
         $count = \DB::table('categories')->where('name', 'like', '%' . $search . '%')->count();
-        $categories = \DB::table('categories')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
+        $categories = \DB::table('categories')->where('name', 'like', '%' . $search . '%')->orderBy('name')->paginate(7)->appends(request()->query());
         return view('categories.categories', ["success" => true, "categories" => $categories, "count" => $count, "search" => $search]);
     }
 
