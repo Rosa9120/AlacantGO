@@ -9,7 +9,7 @@ class ManagerController extends Controller
 {
     public function index (){
         $count = Manager::all()->count();
-        $managers = Manager::all(); //\DB::table('managers')->paginate(7);
+        $managers = Manager::paginate(7);
         return view('managers.managers', ["success" => true, "managers" => $managers, "count" => $count]);
     }
 
@@ -29,7 +29,7 @@ class ManagerController extends Controller
         $search = trim($search);
         
         $count = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->count();
-        $managers = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->paginate(7);
+        $managers = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
         return view('managers.managers', ["success" => true, "managers" => $managers, "count" => $count]);
     }
 
@@ -54,7 +54,7 @@ class ManagerController extends Controller
         $data=array('name'=>$name,"DNI"=>$DNI,"phone"=>$phone, "establishment_id" => $establishment_id, "brand_id"=>$brand_id);
         \DB::table('managers')->insert($data);
 
-        return redirect('/managers')->with('success','Manager added successfully'); //no va ninguna ruta
+        return redirect('/managers')->with('success','Manager added successfully'); 
     }
 
   

@@ -14,9 +14,9 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/managers/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/managers/search') }}" method="GET">
         @csrf
-        @method('post')
+        @method('get')
         @if(empty($search))
             {{$search = null}}
         @endif
@@ -66,7 +66,8 @@
     @endforeach
 </table>
 
-{{-- {{ $managers->links() }} --}}
+{{$managers->links() }}
+
 <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
