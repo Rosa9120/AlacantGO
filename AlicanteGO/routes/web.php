@@ -42,7 +42,7 @@ Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'crea
 Route::post('/addmanagers/create', [App\Http\Controllers\ManagerController::class, 'create']);
 Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
 Route::get('/managers/edit/{manager}', [App\Http\Controllers\ManagerController::class, 'edit_view']);
-
+Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'edit']);
 
 // ESTABLISHMENTS' ROUTES
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);

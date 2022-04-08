@@ -13,31 +13,69 @@
             </div>
 
             <div class="information">
+                <form action="{{ url('/managers', ["id" => $manager->id]) }}" method="POST">
+                    @csrf
+                    @method('patch')
                 <ul>
-                    <li>ID #: {{ $manager->id }}</li>
-                    <li>Full name: {{ $manager->name }}</li>
-                    <li>DNI: {{ $manager->DNI }}</li>
-                    <li>Phone number: {{$manager->phone}}</li>
-                    {{-- @if($manager->establishment == null)
-                        <li>Brand: <a href="{{ url("/brand/get") }}">{{ $item->brand->name }}</a></li>
-                    @else
-                        {{-- <li>Establishment: <a href="{{ url("/establishment/" . $manager->establishment->id) }}">{{ $manager->establishment->name }}</a></li> --}}
-                    {{-- @endif --}} 
+                    <li>ID #: <input class="custom" name="id" disabled="disabled" value = "{{ $manager->id }}" ></li>
+                    <li>Full name: <input class="custom" name="name" required value="{{$manager->name}}"> </li>
+                    <li>DNI: <input class="custom" name="DNI" required value = "{{ $manager->DNI }}" class="@error('DNI') is-invalid @enderror"  > </li>
+                    @error('DNI')
+                    <div class="alert alert-danger"> DNI must have 8 numbers and one capital letter</div>
+                    @enderror
+
+                    <li>Phone number: <input class="custom" name="phone" required class="@error('phone') is-invalid @enderror" value="{{$manager->phone}}"> </li>
+                    @error('phone')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                    <li>Brand:                
+                        <select id="dropdown" name="dropdownBrand" class="custom dropdown">
+                            @if(isset($manager->brand))
+                            <option value = "{{ $manager->brand->name }}"> </option>
+                        @else
+                        <option value = "none"> </option>
+                        @endif
+
+                        @foreach ($brands as $idx => $brand)
+                            <option value="{{ $brand->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                        @endforeach
+                    </select>
+                    </li> 
+
+                    <li>Establishment:                
+                        <select id="dropdown" name="dropdownEstablishment" class="custom dropdown">
+                            @if(isset($manager->establishment))
+                            <option value = "{{ $manager->establishment->name }}"> </option>
+                            @else
+                            <option value = "none"> </option>
+                            @endif
+
+                        @foreach ($establishments as $idx => $establishment)
+                            <option value="{{ $establishment->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $establishment->name }}</option>
+                        @endforeach
+                    </select>
+                    </li> 
                 </ul>
+                <div class="submit">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </form>
             </div>
+
         </div>
+
     </div>
 
     <style>
 
-    .container {
-        font-family: "Montserrat", sans-serif;
+.container {
+    font-family: "Montserrat", sans-serif;
         margin-top: 100px;
         padding: 15px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 50%;
+        width: 70%;
         height: auto;
         max-height: 100%;
         background-color: rgba(109, 109, 109, 0.2);
@@ -62,7 +100,6 @@
     }
 
     #back:hover {
-        font-size: 21px;
         color: white;
     }
 
@@ -90,16 +127,40 @@
     }
 
     .information {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         border: 1px solid grey;
         border-radius: 10px;
         font-size: 22px;
-        max-width: 50%;
+        min-width: 60%
+        max-width: 70%;
         max-height: 80%;
-        margin: auto;
-        margin-top: 0;
-        margin-bottom: 20px;
+        flex-grow: 1;
+        margin: 0 10 20 20;
         overflow-y: auto;
         padding: 20px;
+    }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .custom{
+        line-height: 14px;
+        margin-bottom: 8px;
+        width: 40%;
+        border-radius: 5px;
+        border: none;
+        padding: 3px;
+        padding-left: 5px;
+    }
+
+    .submit {
+        display: flex;
+        justify-content: flex-end;
     }
     </style>
 

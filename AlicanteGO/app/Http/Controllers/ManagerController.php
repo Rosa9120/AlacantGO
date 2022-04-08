@@ -49,7 +49,6 @@ class ManagerController extends Controller
             'name' => 'required',
             'DNI' => 'required|regex:/^\d{8}[A-Z]$/',
             'phone' => 'required|numeric|digits:9',
-            
             ]);
 
         
@@ -66,7 +65,27 @@ class ManagerController extends Controller
     }
     
     public function edit_view(Manager $manager){
-        return view('managers.editmanagers', ["success" => true, "manager" => $manager]);     
+        $brands = \DB::table('brands')->get();
+        $establishments = \DB::table('establishments')->get();
+        return view('managers.editmanagers', ["success" => true, "manager" => $manager, "brands" => $brands, "establishments" => $establishments]);     
+    }
+
+    public function edit(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'DNI' => 'required|regex:/^\d{8}[A-Z]$/',
+            'phone' => 'required|numeric|digits:9',
+            ]);
+
+        $manager = Managers::find($request->input('id'));
+        $manager->name = $request->input('name');
+        $manager->DNI = $request->input('DNI');
+        $manager->phone = $request->input('phone');
+        $manager->establishment_id = $request->input('dropdownEstablishment', null);
+        $manager->brand_id = $request->input('dropdownBrand', null);
+
+        $manager->save();
+        return redirect('/managers')->with('success','Manager updated successfully'); 
     }
   
 }
