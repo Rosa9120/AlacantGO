@@ -76,18 +76,18 @@ class EstablishmentController extends Controller
             switch ($orderBy) {
             // We have to append the query, otherwise it will reset the search parameters each time that we change the page
             case '-1':
-                $establishments = $establishments->paginate(5);
+                $establishments = $establishments->paginate(5)->appends(request()->query());
                 break;
             case '1':
-                $establishments = $establishments->orderBy('name')->paginate(5);
+                $establishments = $establishments->orderBy('name')->paginate(5)->appends(request()->query());
                 break;
             case '2':
                 $establishments = $establishments->leftJoin('brands', 'establishments.brand_id', '=', 'brands.id')
-                                                 ->orderBy('brands.name')->paginate(5, 'establishments.*');
+                                                 ->orderBy('brands.name')->paginate(5, 'establishments.*')->appends(request()->query());
                 break;
             case '3':
                 $establishments = $establishments->leftJoin('categories', 'establishments.category_id', '=', 'categories.id')
-                                                 ->orderBy('categories.name')->paginate(5, 'establishments.*');
+                                                 ->orderBy('categories.name')->paginate(5, 'establishments.*')->appends(request()->query());
                 break;
             default:
                 abort(500); // It should never reach this code

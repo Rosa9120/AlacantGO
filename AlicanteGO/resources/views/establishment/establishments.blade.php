@@ -22,10 +22,10 @@
         @endif
         <div class="dropdown-container">
             <select name="orderBy" id="orderBy" class="form-control dropdown">
-                <option value="-1" disabled selected>Order by</option>
-                <option value="1">Order by Name</option>
-                <option value="2">Order by Brand</option>
-                <option value="3">Order by Category</option>
+                <option value="-1" @if (!empty($orderBy) or $orderBy == -1) selected @endif>Order by</option>
+                <option value="1" @if (!empty($orderBy) and $orderBy == 1) selected @endif>Order by Name</option>
+                <option value="2" @if (!empty($orderBy) and $orderBy == 2) selected @endif>Order by Brand</option>
+                <option value="3" @if (!empty($orderBy) and $orderBy == 3) selected @endif>Order by Category</option>
             </select>
         </div>
         
