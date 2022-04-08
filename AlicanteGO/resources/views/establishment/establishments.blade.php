@@ -21,29 +21,14 @@
             {{ $search = null }}
         @endif
         <div class="dropdown-container">
-            <select name="orderBy" class="form-control dropdown">
-                <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
-                    selected
-                @endif>
-                    Order by
-                </option>
-                <option value="1" @if (!empty($orderBy) and $orderBy == 1)
-                    selected
-                @endif>
-                    Name
-                </option>
-                <option value="2" @if (!empty($orderBy) and $orderBy == 2)
-                    selected
-                @endif>
-                    Brand
-                </option>
-                <option value="3" @if (!empty($orderBy) and $orderBy == 3)
-                    selected
-                @endif>
-                    Category
-                </option>
+            <select name="orderBy" id="orderBy" class="form-control dropdown">
+                <option value="-1" disabled selected>Order by</option>
+                <option value="1">Order by Name</option>
+                <option value="2">Order by Brand</option>
+                <option value="3">Order by Category</option>
             </select>
         </div>
+        
         <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..."></input>
         <button type="submit" class="btn btn-primary" value="Search">Search</button>
     </form>
