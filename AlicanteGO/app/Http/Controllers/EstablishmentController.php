@@ -6,7 +6,6 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Establishment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class EstablishmentController extends Controller
 {
@@ -47,6 +46,56 @@ class EstablishmentController extends Controller
         $establishment = Establishment::findOrFail($id);
         $establishment->delete();
         return redirect('/establishments');
+    }
+
+    /**
+     * Search establishments
+     */
+    function search_establishment(Request $req) {
+        $search = $req->get('search');
+        $orderBy = $req->get('orderBy');
+
+        if ($search == null && $orderBy == null) {
+            return redirect('/establishments');
+        }
+
+        if ($search != null) {
+            $establishments = Establishment::leftJoin('brands', 'establishments.brand_id', '=', 'brands.id')
+                                        ->leftJoin('categories', 'establishments.category_id', '=', 'categories.id')
+                                        ->where('establishments.name', 'LIKE', "%{$search->input('search')}%")
+                                        ->orwhere('brands.name', 'LIKE', "%{$search->input('search')}%")
+                                        ->orwhere('categories.name', 'LIKE', "%{$search->input('search')}%")
+                                        ->get('establishments.*');
+            $count = $establishments->count();
+        } else {
+            $count = Establishment::all()->count();
+            $establishments = new Establishment();
+        }
+
+        if ($orderBy != null) {
+            switch ($orderBy) {
+            // We have to append the query, otherwise it will reset the search parameters each time that we change the page
+            case '-1':
+                $establishments = $establishments->paginate(5)->appends(request()->query());
+                break;
+            case '1':
+                $establishments = $establishments->orderBy('name')->paginate(5)->appends(request()->query());
+                break;
+            case '2':
+                $establishments = $establishments->leftJoin('brands', 'establishments.brand_id', '=', 'brands.id')
+                                                 ->orderBy('brands.name')->paginate(5, 'establishments.*')->appends(request()->query());
+                break;
+            case '3':
+                $establishments = $establishments->leftJoin('categories', 'establishments.category_id', '=', 'categories.id')
+                                                 ->orderBy('categories.name')->paginate(5, 'establishments.*')->appends(request()->query());
+                break;
+            default:
+                abort(500); // It should never reach this code
+                break;
+            }
+        }
+
+        return view('establishment/establishments', ['establishments' => $establishments, 'count' => $count, "search" => $search, "orderBy" => $orderBy]);                                                                              
     }
 
      /**
