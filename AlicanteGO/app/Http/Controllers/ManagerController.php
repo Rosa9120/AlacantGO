@@ -45,6 +45,14 @@ class ManagerController extends Controller
     }
 
     public function create(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'DNI' => 'required|regex:/^\d{8}[A-Z]$/',
+            'phone' => 'required|numeric|digits:9',
+            
+            ]);
+
+        
         $name = $request->input('name');
         $DNI = $request->input('DNI');
         $phone = $request->input('phone');
@@ -56,6 +64,9 @@ class ManagerController extends Controller
 
         return redirect('/managers')->with('success','Manager added successfully'); 
     }
-
+    
+    public function edit_view(Manager $manager){
+        return view('managers.editmanagers', ["success" => true, "manager" => $manager]);     
+    }
   
 }

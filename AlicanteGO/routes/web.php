@@ -41,6 +41,7 @@ Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class
 Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'create_view']);
 Route::post('/addmanagers/create', [App\Http\Controllers\ManagerController::class, 'create']);
 Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
+Route::get('/managers/edit/{manager}', [App\Http\Controllers\ManagerController::class, 'edit_view']);
 
 
 // ESTABLISHMENTS' ROUTES
