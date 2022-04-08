@@ -20,8 +20,17 @@
         @if(empty($search))
             {{ $search = null }}
         @endif
+        <div class="dropdown-container">
+            <select name="orderBy" id="orderBy" class="form-control dropdown">
+                <option value="-1" disabled selected>Order by</option>
+                <option value="1">Order by Name</option>
+                <option value="2">Order by Brand</option>
+                <option value="3">Order by Category</option>
+            </select>
+        </div>
+        
         <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..."></input>
-        <button style="margin-left:5px;" type="submit" class="btn btn-primary" value="Search">Search</button>
+        <button type="submit" class="btn btn-primary" value="Search">Search</button>
     </form>
 </div>
 
@@ -86,12 +95,25 @@
 
     .search-form {
         display: flex;
+        flex-wrap: wrap;
     }
 
     .search {
         display: flex;
         justify-content: center;
         margin-top: 20px;
+    }
+
+    .dropdown-container {
+        margin-right: 0.6em;
+        border-right: 1px solid #a6a6a6;
+        padding-right: 0.6em;        
+    }
+
+    .dropdown {
+        line-height: 20px;
+        width: 10em;
+        padding: 0.6em;
     }
 
     form {
