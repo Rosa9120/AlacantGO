@@ -21,16 +21,36 @@ class ManagerController extends Controller
 
     public function search(Request $request) {
         $search = $request->input('search');
+        $orderBy = $request->get('orderBy');
 
-        if ($search == null) {
+        if ($search == null && $orderBy == null) {
             return redirect('/managers');
         }
 
         $search = trim($search);
-        
         $count = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->count();
         $managers = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
-        return view('managers.managers', ["success" => true, "managers" => $managers, "count" => $count]);
+        
+        if ($orderBy != null) {
+            switch ($orderBy) {
+            // We have to append the query, otherwise it will reset the search parameters each time that we change the page
+            case '-1':
+                $managers = \DB::table('managers')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
+                break;
+            case '1':
+                $managers = \DB::table('managers')->orderBy('name','asc')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
+                break;
+            case '2':
+                $managers = \DB::table('managers')->orderBy('name','desc')->where('name', 'like', '%' . $search . '%')->paginate(7)->appends(request()->query());
+                break;
+            default:
+                abort(500); // It should never reach this code
+                break;
+            }
+        }
+
+        
+        return view('managers.managers', ["success" => true, "managers" => $managers, "count" => $count, "search" => $search, "orderBy" => $orderBy]);
     }
 
     public function show(Manager $manager) {
