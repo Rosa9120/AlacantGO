@@ -31,6 +31,10 @@ class BrandController extends Controller
     public function update_brand(Request $request) 
     {
 
+        $request->validate([
+            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
+        ]);
+
         if(Establishment::where ('name', '=', $request->input('establishment_name'))->get()->count() == 0) //SI EL ESTABLISHMENT NO EXISTE
             return view('establishment.exceptions.establishmentNotFound', ['inexistent_name' => $request->input('establishment_name')]);
         
@@ -72,6 +76,10 @@ class BrandController extends Controller
 
     public function create_brand(Request $request) 
     {
+        $request->validate([
+            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
+        ]);
+
         $brand = new Brand;
         $brand->name = $request->input('name');
 
@@ -91,9 +99,13 @@ class BrandController extends Controller
         return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
     }
 
-    public function edit_brand(Brand $brand) 
+    public function edit_brand(Request $request, Brand $brand) 
     {
-        $request = \Request::all();
+
+        $request->validate([
+            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
+        ]);
+
         $brand->name = $request["name"];
         $brand->isin = $request["isin"];
 

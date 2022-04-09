@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Brand;
 use App\Models\Establishment;
+use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {

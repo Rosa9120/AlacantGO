@@ -14,14 +14,26 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/establishment/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/establishments/search') }}" method="GET">
         @csrf
-        @method('post')
+        @method('get')
         @if(empty($search))
             {{ $search = null }}
         @endif
-        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..." autofocus></input>
-        <button style="margin-left:5px;" type="submit" class="btn btn-primary" value="Search">Search</button>
+        @if(empty($orderBy))
+            {{ $orderBy = null }}
+        @endif
+        <div class="dropdown-container">
+            <select name="orderBy" id="orderBy" class="form-control dropdown">
+                <option value="-1" @if (!empty($orderBy) or $orderBy == -1) selected @endif>Order by</option>
+                <option value="1" @if (!empty($orderBy) and $orderBy == 1) selected @endif>Order by Name</option>
+                <option value="2" @if (!empty($orderBy) and $orderBy == 2) selected @endif>Order by Brand</option>
+                <option value="3" @if (!empty($orderBy) and $orderBy == 3) selected @endif>Order by Category</option>
+            </select>
+        </div>
+        
+        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..."></input>
+        <button type="submit" class="btn btn-primary" value="Search">Search</button>
     </form>
 </div>
 
@@ -86,12 +98,25 @@
 
     .search-form {
         display: flex;
+        flex-wrap: wrap;
     }
 
     .search {
         display: flex;
         justify-content: center;
         margin-top: 20px;
+    }
+
+    .dropdown-container {
+        margin-right: 0.6em;
+        border-right: 1px solid #a6a6a6;
+        padding-right: 0.6em;        
+    }
+
+    .dropdown {
+        line-height: 20px;
+        width: 10em;
+        padding: 0.6em;
     }
 
     form {

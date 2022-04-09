@@ -36,12 +36,13 @@ Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'del
  */
 Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
 Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/managers/search', [App\Http\Controllers\ManagerController::class, 'search']);
 Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
-Route::post('/managers/search', [App\Http\Controllers\ManagerController::class, 'search']);
 Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'create_view']);
 Route::post('/addmanagers/create', [App\Http\Controllers\ManagerController::class, 'create']);
 Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
-
+Route::get('/managers/edit/{manager}', [App\Http\Controllers\ManagerController::class, 'edit_view']);
+Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'edit']);
 
 // ESTABLISHMENTS' ROUTES
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
@@ -51,6 +52,7 @@ Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentControll
 Route::post('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
 Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
 Route::post('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
+Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
 
 /**
  * BRAND ROUTES

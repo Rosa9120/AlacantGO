@@ -16,10 +16,13 @@
                     @method('patch')
                     <ul>
                         <li>Name: 
-                            <input class="editable" name="name" type="text" value="{{ $brand->name }}" />
+                            <input class="editable" required name="name" type="text" value="{{ $brand->name }}" />
                         </li>
                         <li>Isin: 
-                            <input class="editable" name="isin" type="text" lang="en" value="{{ $brand->isin }}" /></li>
+                            <input class="editable" required name="isin" type="text" lang="en" class="@error('isin') is-invalid @enderror" value="{{ $brand->isin }}" /></li>
+                            @error('isin')
+                                <div class="alert alert-danger"> ISIN must have 2 capital letters and 9 numbers </div>
+                            @enderror
                     </ul>
                 
                     <div class="submit">
