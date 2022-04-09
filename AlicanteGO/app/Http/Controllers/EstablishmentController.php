@@ -62,12 +62,12 @@ class EstablishmentController extends Controller
         }
 
         if ($search != null) {
-            $establishments = Establishment::leftJoin('brands', 'establishments.brand_id', '=', 'brands.id')
+            $establishments = Establishment::select('establishments.*')
+                                        ->leftJoin('brands', 'establishments.brand_id', '=', 'brands.id')
                                         ->leftJoin('categories', 'establishments.category_id', '=', 'categories.id')
-                                        ->where('establishments.name', 'LIKE', "%{$search->input('search')}%")
-                                        ->orwhere('brands.name', 'LIKE', "%{$search->input('search')}%")
-                                        ->orwhere('categories.name', 'LIKE', "%{$search->input('search')}%")
-                                        ->get('establishments.*');
+                                        ->where('establishments.name', 'LIKE', "%{$search}%")
+                                        ->orwhere('brands.name', 'LIKE', "%{$search}%")
+                                        ->orwhere('categories.name', 'LIKE', "%{$search}%");
             $count = $establishments->count();
         } else {
             $count = Establishment::all()->count();
@@ -96,7 +96,7 @@ class EstablishmentController extends Controller
                 break;
             }
         }
-
+        
         return view('establishment/establishments', ['establishments' => $establishments, 'count' => $count, "search" => $search, "orderBy" => $orderBy]);                                                                              
     }
 
