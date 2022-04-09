@@ -20,6 +20,9 @@
         @if(empty($search))
             {{ $search = null }}
         @endif
+        @if(empty($orderBy))
+            {{ $orderBy = null }}
+        @endif
         <div class="dropdown-container">
             <select name="orderBy" id="orderBy" class="form-control dropdown">
                 <option value="-1" @if (!empty($orderBy) or $orderBy == -1) selected @endif>Order by</option>

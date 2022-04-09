@@ -12,8 +12,7 @@ class EstablishmentController extends Controller
     function get_all() {
         $count = Establishment::all()->count();
         $establishments = Establishment::paginate(5);
-        $orderBy = null;
-        return view('establishment/establishments', ["establishments" => $establishments, "count" => $count, "orderBy" => $orderBy]);
+        return view('establishment/establishments', ["establishments" => $establishments, "count" => $count]);
     }
 
     /**
