@@ -70,14 +70,14 @@ class ManagerController extends Controller
         return view('managers.editmanagers', ["success" => true, "manager" => $manager, "brands" => $brands, "establishments" => $establishments]);     
     }
 
-    public function edit(Request $request){
+    public function edit(Manager $manager, Request $request){
+
         $request->validate([
             'name' => 'required',
             'DNI' => 'required|regex:/^\d{8}[A-Z]$/',
             'phone' => 'required|numeric|digits:9',
             ]);
 
-        $manager = Managers::find($request->input('id'));
         $manager->name = $request->input('name');
         $manager->DNI = $request->input('DNI');
         $manager->phone = $request->input('phone');

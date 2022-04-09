@@ -17,42 +17,47 @@
                     @csrf
                     @method('patch')
                 <ul>
-                    <li>ID #: <input class="custom" name="id" disabled="disabled" value = "{{ $manager->id }}" ></li>
-                    <li>Full name: <input class="custom" name="name" required value="{{$manager->name}}"> </li>
-                    <li>DNI: <input class="custom" name="DNI" required value = "{{ $manager->DNI }}" class="@error('DNI') is-invalid @enderror"  > </li>
+                    <li>ID #: <input class="custom" name="id" disabled="disabled" value = "{{ old('id', $manager->id)  }}" ></li>
+                    <li>Full name: <input class="custom" name="name" required value="{{ old('name', $manager->name) }}"> </li>
+                    <li>DNI: <input class="custom" name="DNI" required value = "{{ old('DNI',$manager->DNI) }}"class="@error('DNI') is-invalid @enderror"  > </li>
                     @error('DNI')
                     <div class="alert alert-danger"> DNI must have 8 numbers and one capital letter</div>
                     @enderror
 
-                    <li>Phone number: <input class="custom" name="phone" required class="@error('phone') is-invalid @enderror" value="{{$manager->phone}}"> </li>
+                    <li>Phone number: <input class="custom" name="phone" required class="@error('phone') is-invalid @enderror" value="{{ old('phone', $manager->phone) }}"> </li>
                     @error('phone')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                     <li>Brand:                
                         <select id="dropdown" name="dropdownBrand" class="custom dropdown">
-                            @if(isset($manager->brand))
-                            <option value = "{{ $manager->brand->name }}"> </option>
+                        @if(isset($manager->brand))
+                            <option value = ""> </option>
+                            @foreach ($brands as $idx => $brand)
+                            <option value="{{ old('dropdownBrand', $brand->id ) }}"{{ ($brand->id  == $manager->brand->id) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                        @endforeach
                         @else
-                        <option value = "none"> </option>
+                        <option value = ""> </option>
+                            @foreach ($brands as $idx => $brand)
+                                <option value="{{ old('dropdownBrand', $brand->id ) }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                            @endforeach
                         @endif
 
-                        @foreach ($brands as $idx => $brand)
-                            <option value="{{ $brand->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $brand->name }}</option>
-                        @endforeach
                     </select>
                     </li> 
 
                     <li>Establishment:                
                         <select id="dropdown" name="dropdownEstablishment" class="custom dropdown">
                             @if(isset($manager->establishment))
-                            <option value = "{{ $manager->establishment->name }}"> </option>
+                                <option value = "" > </option>
+                                @foreach ($establishments as $idx => $establishment)
+                                    <option value="{{ old('dropdownEstablishment', $establishment->id ) }}"  {{ ($establishment->id == $manager->establishment->id) ? 'selected' : '' }}>{{ $establishment->name }}</option>
+                                @endforeach
                             @else
-                            <option value = "none"> </option>
+                            <option value = ""> </option>
+                                @foreach ($establishments as $idx => $establishment)
+                                    <option value="{{ old('dropdownEstablishment', $establishment->id ) }}"  {{ ($idx == -1) ? 'selected' : '' }}>{{ $establishment->name }}</option>
+                                @endforeach
                             @endif
-
-                        @foreach ($establishments as $idx => $establishment)
-                            <option value="{{ $establishment->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $establishment->name }}</option>
-                        @endforeach
                     </select>
                     </li> 
                 </ul>
