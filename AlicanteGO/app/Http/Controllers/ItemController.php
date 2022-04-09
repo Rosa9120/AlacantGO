@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Brand;
 use App\Models\Establishment;
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemRequest;
 
 class ItemController extends Controller
 {
@@ -24,9 +25,10 @@ class ItemController extends Controller
         return view('items.item', ["success" => true, "item" => $item]);
     }
 
-    public function search() {
-        $search = \Request::get('search');
-        $orderBy = \Request::get('orderBy');
+    public function search(Request $request) {
+        $search = trim($request->search);
+        $orderBy = $request->orderBy;
+        $maxPrice = $request->maxPrice;
 
         if ($search != null) {
             $items = \DB::table('items')->where('name', 'like', '%' . $search . '%');
@@ -35,9 +37,11 @@ class ItemController extends Controller
             $items = \DB::table('items');
         }
 
-        $search = trim($search);
+        if ($maxPrice != null) {
+            $items = $items->where('price', '<', $maxPrice);
+        }
 
-        $count = \DB::table('items')->where('name', 'like', '%' . $search . '%')->count();
+        $count = $items->count();
 
         switch ($orderBy) {
             // We have to append the query, otherwise it will reset the search parameters each time that we change the page
@@ -55,7 +59,7 @@ class ItemController extends Controller
                 break;
         }
         
-        return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search, "orderBy" => $orderBy]);
+        return view('items.items', ["success" => true, "items" => $items, "count" => $count, "search" => $search, "orderBy" => $orderBy, "maxPrice" => $maxPrice]);
     }
 
     public function edit_view(Item $item) {
@@ -63,9 +67,8 @@ class ItemController extends Controller
         $brands = \DB::table('brands')->get();
         return view('items.item_edit', ["success" => true, "item" => $item, "brands" => $brands, "establishments" => $establishments]);
     }
-
-    public function edit(Item $item) {
-        $request = \Request::all();
+    
+    public function edit(Item $item, ItemRequest $request) {
         $item->name = trim($request["name"]);
         $item->price = $request["price"];
         $item->description = trim($request["description"]);
@@ -91,7 +94,7 @@ class ItemController extends Controller
         return view('items.item_create', ["success" => true, "brands" => $brands, "establishments" =>$establishments]);
     }
 
-    public function create(Request $request) {
+    public function create(ItemRequest $request) {
         $item = new Item;
         $item->name = $request->input('name');
         $item->price = $request->input('price');

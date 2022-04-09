@@ -20,17 +20,32 @@
                     @method('post')
                     <ul>
                         <li>Name: 
-                            <input class="editable" required name="name" type="text" placeholder="Tarta de Oreo..."/>
+                            <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', null) }}" placeholder="Tarta de Oreo..."/>
                         </li>
+                        @error('name')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("name")) }}</div>
+                            </li>
+                        @enderror
                         <li>Price: 
-                            <input class="editable" required name="price" type="number" lang="en" step="0.01" placeholder="3,99..."/>
+                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" value="{{ old("price", null) }}" lang="en" placeholder="3,99..."/>
                         </li>
+                        @error('price')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("price")) }}</div>
+                            </li>
+                        @enderror
                         <li>Description: 
-                            <input class="editable" name="description" type="text" placeholder="La mejor tarta de Oreo..."/>
+                            <input class="editable" name="description" type="text" value="{{ old("description", null) }}" placeholder="La mejor tarta de Oreo..."/>
                         </li>
                         <li>Type: 
-                            <input class="editable" name="type" type="text" placeholder="postre..."/>
+                            <input class="editable @error('type') is-invalid @enderror" name="type" type="text" value="{{ old("type", null) }}" placeholder="postre..."/>
                         </li>
+                        @error('type')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("type")) }}</div>
+                            </li>
+                        @enderror
                         <li class="belongs">
                             <div>
                                 <div class="form-check">
@@ -47,9 +62,11 @@
                                 </div>
                             </div>
 
-                            <select id="dropdownItem" name="dropdownItem" class="form-control editable dropdown">
+                            <select id="dropdownItem" name="dropdownItem" class="form-control editable dropdown"> <!-- Ask about changing error with javascript -->
                                 @foreach ($brands as $idx => $brand)
-                                    <option value="{{ $brand->id }}" {{ ($idx == 0) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                                    <option value="{{ $brand->id }}" {{ ($idx == 0) ? 'selected' : '' }}>
+                                        {{ $brand->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </li>
@@ -182,6 +199,19 @@
         margin-bottom: 20px;
         overflow-y: auto;
         padding: 20px;
+    }
+
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
     }
 
     .belongs {

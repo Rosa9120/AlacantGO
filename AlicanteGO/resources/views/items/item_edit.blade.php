@@ -21,32 +21,58 @@
                     @method('patch')
                     <ul>
                         <li>Name: 
-                            <input class="editable" name="name" type="text" value="{{ $item->name }}" />
+                            <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', $item->name) }}" />
                         </li>
+                        @error('name')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("name")) }}</div>
+                            </li>
+                        @enderror
                         <li>Price: 
-                            <input class="editable" name="price" type="number" lang="en" step="0.01" value="{{ $item->price }}" /></li>
+                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" lang="en" step="0.01" value="{{ old('price', $item->price) }}"/>
+                        </li>
+                        @error('price')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("price")) }}</div>
+                            </li>
+                        @enderror
                         <li>Description: 
-                            <input class="editable" name="description" type="text" value="{{ $item->description }}" />
+                            <input class="editable" name="description" type="text" value="{{ old("description", $item->description) }}" />
                         </li>
                         <li>Type: 
-                            <input class="editable" name="type" type="text" value="{{ $item->type }}" />
+                            <input class="editable @error('type') is-invalid @enderror" name="type" type="text" value="{{ old("type", $item->type) }}" />
                         </li>
+                        @error('type')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("type")) }}</div>
+                            </li>
+                        @enderror
                         @if($item->establishment == null)
                             <li>Brand: 
-                                <select name="brand" class="form-control editable dropdown">
+                                <select name="brand" class="form-control editable dropdown @error('brand') is-invalid @enderror">
                                     @foreach ($brands as $brand)
-                                    <option value="{{ $brand->id }}" {{ ($brand->id == $item->brand->id) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                                    <option value="{{ $brand->id }}" {{ ($brand->id == old("brand", $item->brand->id)) ? 'selected' : '' }}>{{ $brand->name }}</option>
                                     @endforeach
                                 </select>
                             </li>
+                            @error('brand')
+                                <li class="error-container">
+                                    <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("brand")) }}</div>
+                                </li>
+                            @enderror
                         @else
                             <li>Establishment: 
-                                <select name="establishment" class="form-control editable dropdown">
+                                <select name="establishment" class="form-control editable dropdown @error('establishment') is-invalid @enderror">
                                     @foreach ($establishments as $establishment)
-                                    <option value="{{ $establishment->id }}" {{ ($establishment->id == $item->establishment->id) ? 'selected' : '' }}>{{ $establishment->name }}</option>
+                                    <option value="{{ $establishment->id }}" {{ ($establishment->id == old("establishment", $item->establishment->id)) ? 'selected' : '' }}>{{ $establishment->name }}</option>
                                     @endforeach
                                 </select>
                             </li>
+                            @error('establishment')
+                                <li class="error-container">
+                                    <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("establishment")) }}</div>
+                                </li>
+                            @enderror
                         @endif
                     </ul>
                 
@@ -119,6 +145,19 @@
         max-height: 100%;
         border-radius: 15px;
         border: 1px solid grey;
+    }
+
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
     }
 
     .information {
