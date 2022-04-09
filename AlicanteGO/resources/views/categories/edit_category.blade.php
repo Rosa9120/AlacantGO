@@ -16,7 +16,7 @@
                     @method('patch')
                     <ul>
                         <li>Name: 
-                            <input class="editable" name="name" type="text" value="{{ $category->name }}" />
+                            <input class="editable" required name="name" type="text" value="{{ $category->name }}" />
                         </li>
                     </ul>
                 
