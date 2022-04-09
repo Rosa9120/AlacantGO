@@ -50,8 +50,7 @@ class ManagerController extends Controller
             'DNI' => 'required|regex:/^\d{8}[A-Z]$/',
             'phone' => 'required|numeric|digits:9',
             ]);
-
-        
+            
         $name = $request->input('name');
         $DNI = $request->input('DNI');
         $phone = $request->input('phone');
