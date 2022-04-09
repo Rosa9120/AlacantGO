@@ -27,6 +27,10 @@
                     <li>Postal Code: 
                         <input class="editable" name="type" type="text" value="{{ $establishment->postal_code }}" />
                     </li>
+                    <li>Latitude: 
+                        <input class="editable" name="latitude" type="text" value="{{ $establishment->latitude }}" />
+                    <li>Longitude: 
+                        <input class="editable" name="longitude" type="text" value="{{ $establishment->longitude }}" />
                     <li>Brand: 
                         <select name="brand" class="form-control editable dropdown">
                             <option> </option>

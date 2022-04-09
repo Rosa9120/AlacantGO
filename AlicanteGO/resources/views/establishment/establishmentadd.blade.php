@@ -27,6 +27,28 @@
                     <li>Postal Code: 
                         <input class="editable" requiered name="postal_code" type="text" value="{{ old('postal_code') }}" class="form-control" placeholder="Enter postal code" id="postal_code">
                     </li>
+                    <li>Latitude: 
+                        <input class="editable" requiered name="latitude" type="text" value="{{ old('latitude') }}" class="form-control" placeholder="Enter latitude" id="latitude">
+                    </li>
+                    <li>Longitude: 
+                        <input class="editable" requiered name="longitude" type="text" value="{{ old('longitude') }}" class="form-control" placeholder="Enter longitude" id="longitude">
+                    </li>
+                    <li>Brand: 
+                        <select name="brand" class="form-control editable dropdown">
+                            <option> </option>
+                            @foreach ($brands as $idxB => $brand)
+                            <option value="{{ $brand->id }}" {{ ($idxB == 0) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                    </li>
+                    <li>Category: 
+                        <select name="category" class="form-control editable dropdown">
+                            <option> </option>
+                            @foreach ($categories as $idxC => $category)
+                            <option value="{{ $category->id }}" {{ ($idxC == 0) ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </li>
                 </ul>           
                 <div class="submit">
                     <button type="submit" class="btn btn-success">Create</button>
@@ -130,6 +152,10 @@
         border: none;
         padding: 3px;
         padding-left: 5px;
+    }
+
+    .dropdown {
+        line-height: 20px;
     }
 
     .submit {
