@@ -28,7 +28,7 @@
                             </li>
                         @enderror
                         <li>Price: 
-                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" value="{{ old("price", null) }}" lang="en" placeholder="3,99..."/>
+                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" value="{{ old("price", null) }}" step="0.01" lang="en" placeholder="3,99..."/>
                         </li>
                         @error('price')
                             <li class="error-container">
