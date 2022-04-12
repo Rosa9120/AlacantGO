@@ -25,7 +25,7 @@
                         <input class="editable" name="address" type="text" value="{{ $establishment->address }}" />
                     </li>
                     <li>Postal Code: 
-                        <input class="editable" name="type" type="text" value="{{ $establishment->postal_code }}" />
+                        <input class="editable" name="postal_code" type="text" value="{{ $establishment->postal_code }}" />
                     </li>
                     <li>Latitude: 
                         <input class="editable" name="latitude" type="text" value="{{ $establishment->latitude }}" />

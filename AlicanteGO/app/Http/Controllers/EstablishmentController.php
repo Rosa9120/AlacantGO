@@ -134,11 +134,13 @@ class EstablishmentController extends Controller
     function update_establishment_process(Request $req, $id) {
         $establishment = Establishment::findOrFail($id);
 
-        $req->validate(['name' => 'required',
-                        'address' => 'required',
-                        'postal_code' => 'required',
-                        'latitude' => 'required',
-                        'longitude' => 'required']);
+        $req->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'postal_code' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
+        ]);
 
         $establishment->name = $req->input('name');
         $establishment->phone_number = $req->input('phone_number');
@@ -146,11 +148,11 @@ class EstablishmentController extends Controller
         $establishment->postal_code = $req->input('postal_code');
         $establishment->latitude = $req->input('latitude');
         $establishment->longitude = $req->input('longitude');
-        if ($req->has("brand")) {
-            $brand = Brand::whereId($req["brand"])->first();
+        if ($req->input("brand") !== null) {
+            $brand = Brand::whereId($req->input("brand"))->first();
             $establishment->brand()->associate($brand);
         }
-        if ($req->has("category")) {
+        if ($req->input("category") !== null) {
             $category = Brand::whereId($req["category"])->first();
             $establishment->category()->associate($category);
         }
