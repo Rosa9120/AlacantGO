@@ -86,3 +86,7 @@ Route::get('/categories/search', [App\Http\Controllers\CategoryController::class
 
 Route::get('/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit']);
 Route::patch('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'edit_category']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
