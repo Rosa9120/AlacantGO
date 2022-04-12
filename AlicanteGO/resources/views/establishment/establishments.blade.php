@@ -60,7 +60,7 @@
             <a class="btn btn-primary" onclick="showEstablishment({{ $establishment->id }})">Show</a>
             <a class="btn btn-warning" onclick="editEstablishment({{ $establishment->id }})">Edit</a>
 
-            <form action="{{ url('/establishment', ['id' => $establishment->id]) }}" method="POST">
+            <form action="{{ url('/establishment', ["id" => $establishment->id]) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" class="btn btn-danger" value="Delete"/>

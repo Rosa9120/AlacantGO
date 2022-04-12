@@ -103,7 +103,6 @@ class EstablishmentController extends Controller
      */
     function create_establishment_process(Request $req) {
         $req->validate(['name' => 'required',
-                        'phone_number' => 'required',
                         'address' => 'required',
                         'postal_code' => 'required',
                         'latitude' => 'required',
@@ -126,7 +125,7 @@ class EstablishmentController extends Controller
         }
         $establishment->save();
 
-        return redirect('/establishments')->with('success','Establishment added successfully');
+        return redirect('/establishment/' . $establishment->id);
     }
 
     /**
@@ -136,7 +135,6 @@ class EstablishmentController extends Controller
         $establishment = Establishment::findOrFail($id);
 
         $req->validate(['name' => 'required',
-                        'phone_number' => 'required',
                         'address' => 'required',
                         'postal_code' => 'required',
                         'latitude' => 'required',
@@ -158,6 +156,6 @@ class EstablishmentController extends Controller
         }
         $establishment->save();
 
-        return redirect('/establishments')->with('success','Establishment updated successfully');
+        return redirect('/establishment/' . $establishment->id);
     }
 }

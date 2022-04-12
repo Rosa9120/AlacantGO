@@ -19,7 +19,7 @@
                         <input class="editable" required name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter name" id="name">
                     </li>
                     <li>Phone Number: 
-                        <input class="editable" required name="phone_number" type="text" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
+                        <input class="editable" name="phone_number" type="text" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
                     </li>
                     <li>Address: 
                         <input class="editable"requiered name="address" type="text" value="{{ old('address') }}" class="form-control" placeholder="Enter address" id="address">

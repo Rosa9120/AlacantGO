@@ -47,12 +47,12 @@ Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::cla
 // ESTABLISHMENTS' ROUTES
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
 Route::get('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
-Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
-Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
 Route::post('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
-Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
-Route::post('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
 Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
+Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
+Route::patch('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
+Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
+Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
 
 /**
  * BRAND ROUTES
