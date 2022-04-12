@@ -11,9 +11,9 @@
     <div class="establishment">
         <div class="information">
             <span>ID #: {{ $establishment->id }}</span>
-            <form action="{{ url('/establishments', ["id" => $establishment->id]) }}" method="POST">
+            <form action="{{ url('/establishment/edit', ["id" => $establishment->id]) }}" method="POST">
                 @csrf
-                @method('patch')
+                @method('PATCH')
                 <ul>
                     <li>Name: 
                         <input class="editable" name="name" type="text" value="{{ $establishment->name }}" />
