@@ -25,7 +25,7 @@ class ItemRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|max:255',
-            'price' => 'required|gte:0',
+            'price' => 'required|gte:0|lte:1000000',
             'type' => 'required|max:255'
         ];
 
@@ -43,7 +43,8 @@ class ItemRequest extends FormRequest
         return [
             'required' => ':attribute is required',
             'max' => 'Max length for :attribute is 255',
-            'price.gte' => 'Price cannot be negative'
+            'price.gte' => 'Price cannot be negative',
+            'price.lte' => 'Price too large'
         ];
     }
 }

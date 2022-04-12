@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->float('price', 5, 2);
+            $table->double('price', 12, 2)->default(0.0);
             $table->string('picture')->nullable();
             $table->string('description')->nullable();
             $table->string('type')->nullable();
