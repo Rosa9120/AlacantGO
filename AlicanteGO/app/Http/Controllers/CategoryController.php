@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function get_category(Request $request) 
     {
-        if( Category::find($request->input('category_id')) ) //SI EL ID PERTENECE A UNA BRAND EXISTENTE
+        if( Category::find($request->input('category_id')) )
         {
             $category = Category::find($request->input('category_id'));
 
@@ -24,7 +24,7 @@ class CategoryController extends Controller
         }
 
         else
-            return view('categories.exceptions.notFoundById', ['wrong_id' => $request->input('categories_id')]); //DEBERÍA ESTAR EN UNA CARPETA LLAMADA EXCEPTION???  
+            return view('categories.exceptions.notFoundById', ['wrong_id' => $request->input('categories_id')]);
     }
 
 
@@ -62,11 +62,17 @@ class CategoryController extends Controller
         return view('categories.edit_category', ["success" => true, "category" => $category]);
     }
 
-    public function edit_category(Category $category) 
+    public function edit_category(Category $category, Request $request) 
     {
-        $request = \Request::all();
-        $category->name = trim($request["name"]);
 
+        //$request = \Request::all();
+        $request->validate([
+            'name' => 'required',
+            ]);
+
+
+        //$category->name = trim($request["name"]);
+        $category->name = $request->input('name');
         $category->save();
 
         return redirect('/categories');
