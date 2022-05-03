@@ -33,11 +33,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @auth
+                        @if (Auth::user()->rol == 'admin')
+                            <li class="nav_item">
+                                <a class="nav-link" href="{{ route('admin') }}" > Admin </a>
+                            </li>
+                        @endif
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
