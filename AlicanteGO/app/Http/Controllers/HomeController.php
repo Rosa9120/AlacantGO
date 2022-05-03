@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Establishment;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $establishments = Establishment::all();
+        $latitude = 38.34517;
+        $longitude = -0.48149;
+        return view('home')->with(["establishments" => $establishments, "latitude" => $latitude, "longitude" => $longitude]);
     }
 }

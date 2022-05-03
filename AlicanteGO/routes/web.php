@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin', function () {
     return view('admin');
@@ -49,7 +47,7 @@ Route::get('/establishments', [App\Http\Controllers\EstablishmentController::cla
 Route::get('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
 Route::post('/establishment/new', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
 Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
-Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment']);
+Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');
 Route::patch('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
 Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
 Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
