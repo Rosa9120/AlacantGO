@@ -11,19 +11,24 @@ use App\Http\Requests\ItemRequest;
 class ItemController extends Controller
 {
     public function index () {
-        dd(app());
         $count = Item::all()->count();
         $items = Item::paginate(7);
         return view('items.items', ["success" => true, "items" => $items, "count" => $count]);
     }
 
     public function delete(Item $item) {
-        $item->delete();
-        return redirect()->back();
+        return view('items.delete', ["success" => true, "item" => $item]);
     }
 
     public function show(Item $item) {
         return view('items.item', ["success" => true, "item" => $item]);
+    }
+
+    public function destroy($id) 
+    {
+        $item = Item::Find($id);
+        $item->delete();
+        return redirect('/items');
     }
 
     public function search(Request $request) {

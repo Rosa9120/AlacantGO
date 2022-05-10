@@ -27,7 +27,8 @@ Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search
 Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
 Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
 Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
-Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+Route::get('/items/delete/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+Route::get('/items/remove/{id}', [App\Http\Controllers\ItemController::class, 'destroy']);
 
 /**
  * MANAGER ROUTES
