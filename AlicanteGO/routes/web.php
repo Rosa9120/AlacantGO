@@ -27,13 +27,15 @@ Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search
 Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
 Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
 Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
-Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+Route::get('/items/delete/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+Route::get('/items/remove/{id}', [App\Http\Controllers\ItemController::class, 'destroy']);
 
 /**
  * MANAGER ROUTES
  */
 Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
-Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/managers/delete/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/managers/remove/{manager}', [App\Http\Controllers\ManagerController::class, 'destroy']);
 Route::get('/managers/search', [App\Http\Controllers\ManagerController::class, 'search']);
 Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
 Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'create_view']);
@@ -50,7 +52,8 @@ Route::get('/establishments/search', [App\Http\Controllers\EstablishmentControll
 Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');
 Route::patch('/establishments/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
 Route::get('/establishments/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
-Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::get('/establishments/delete/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::get('/establishments/remove/{id}', [App\Http\Controllers\EstablishmentController::class, 'destroy']);
 
 /**
  * BRAND ROUTES
@@ -65,7 +68,8 @@ Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'up
 
 Route::get('/brands/create', function () {return view('brand.brand_create');});
 Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
-Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
+Route::get('/brands/remove/{id}', [App\Http\Controllers\BrandController::class, 'destroy']);
+Route::get('/brands/delete/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
 Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
 
 Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);

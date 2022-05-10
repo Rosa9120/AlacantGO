@@ -70,8 +70,13 @@ class BrandController extends Controller
 
     public function delete_brand(Brand $brand) 
     {
+        return view('brand.delete', ["success" => true, "brand" => $brand]);
+    }
+    public function destroy($id) 
+    {
+        $brand = Brand::Find($id);
         $brand->delete();
-        return redirect()->back();
+        return redirect('/brands');
     }
 
     public function create_brand(Request $request) 

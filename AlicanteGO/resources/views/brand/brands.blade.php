@@ -40,9 +40,9 @@
         <td>
             <a class="btn btn-warning" href="{{ url("/brands/" . $brand->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/brands', ['id' => $brand->id]) }}" method="POST">
+            <form action="{{ url('/brands/delete', ['id' => $brand->id]) }}" method="POST">
                 @csrf
-                @method('delete')
+                @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>
             </form>
         </td>

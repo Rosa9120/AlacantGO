@@ -75,9 +75,9 @@
             <a class="btn btn-primary" href="{{ url("/managers/show/" .$manager->id) }}">Show</a>
             <a class="btn btn-warning" href="{{ url("/managers/edit/" . $manager->id) }}">Edit</a>
  
-            <form action="{{ url('/managers', ['id' => $manager->id]) }}" method="POST">
+            <form action="{{ url('/managers/delete', ['id' => $manager->id]) }}" method="POST">
                 @csrf
-                @method('delete')
+                @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>
             </form>
         </td>
