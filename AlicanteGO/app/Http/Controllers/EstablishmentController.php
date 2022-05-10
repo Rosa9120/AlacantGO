@@ -125,7 +125,7 @@ class EstablishmentController extends Controller
         }
         $establishment->save();
 
-        return redirect('/establishment/' . $establishment->id);
+        return redirect('/establishments/' . $establishment->id);
     }
 
     /**
@@ -158,6 +158,6 @@ class EstablishmentController extends Controller
         }
         $establishment->save();
 
-        return redirect('/establishment/' . $establishment->id);
+        return redirect('/establishments/' . $establishment->id);
     }
 }

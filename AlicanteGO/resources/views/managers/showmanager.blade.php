@@ -23,7 +23,7 @@
                     <li>  Brand: none  </li>    
                     @endif
                     @if(isset($manager->establishment))
-                        <li>Establishment: <a href="{{ url("/establishment/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
+                        <li>Establishment: <a href="{{ url("/establishments/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
                     @else
                     <li> Establishment: none </li>  
                     @endif

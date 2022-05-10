@@ -74,15 +74,15 @@
 
 <script>
     function showEstablishment(id) {
-        window.location.href = `{{url('/establishment/')}}/${id}`;
+        window.location.href = `{{url('/establishments/')}}/${id}`;
     }
 
     function createEstablishment() {
-        window.location.href = '/establishment/new';
+        window.location.href = '/addestablishments';
     }
 
     function editEstablishment(id) {
-        window.location.href = `{{url('/establishment/edit/')}}/${id}`;
+        window.location.href = `{{url('/establishments/edit/')}}/${id}`;
     }
 </script>
 
