@@ -42,10 +42,16 @@ class CategoryController extends Controller
         return view('categories.categories', ["success" => true, "categories" => $categories, "count" => $count, "search" => $search]);
     }
 
-    public function delete_category(Category $category) 
+    public function delete_category($id) 
     {
+        $category = Category::Find($id);
+        return view('categories.delete', ["success" => true, "category" => $category]);
+    }
+    public function destroy($id) 
+    {
+        $category = Category::Find($id);
         $category->delete();
-        return redirect()->back();
+        return redirect('/categories');
     }
 
     public function create_category(Request $request) 
