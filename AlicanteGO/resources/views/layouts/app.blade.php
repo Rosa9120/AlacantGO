@@ -21,63 +21,141 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <div class="head">
+
+            {{-- <div class="input-group">
+                <div class="form-outline">
+                    <input type="text" class="form-control" establishmentholder="Search" aria-label="Search" aria-describedby="addon-wrapping">
+                </div>
+                <button type="button" class="btn btn-primary" style="height:38px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+                </button>
+   
+            </div>
+            <a href="/admin" style="display:inline-block;width:100px;">Admin view</a>
+            <button type="button" class="login">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </button> --}}
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    @guest
+                    <div class="auth" style="display: flex;">
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/register">Register</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
+                    </div>
+                    @else
+                    <div>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="#">{{ Auth::user()->name }}</a>
+                    </div>
+                    @endguest
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
 
-        <main class="py-4">
+        <main class="py-0">
             @yield('content')
         </main>
+        <footer>
+            <div class="main-footer-content">
+                AlicanteGO 2022 Copyright
+            </div>
+        </footer>
     </div>
 </body>
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    /* .head{
+        height: 70px;
+        background-color: #b7d8f3;
+        display:flex;
+    } */
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .head{
+        height: 70px;
+        display:flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid black;
+        font-family: "Montserrat", sans-serif;
+        background-color: #5c5c5c;
+    }
+
+    .auth-nav {
+        width:100%;
+        display: flex;
+        box-sizing: border-box;
+        margin-right: 20px;
+    }
+
+    .input-group{
+        padding-top: 14px;
+        padding-left: 28%;
+    }
+    .form-control{
+        width: 500px;
+    }
+
+    .login{
+        margin: 5px 5px 0 0;
+        background-color: grey;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+
+    #map-container {
+        position:relative;
+        height: 600px;
+    }
+
+    #app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    footer {
+        justify-self: flex-end;
+        width: 100%;
+    }
+
+    .main-footer-content {
+        width: 100%;
+        background-color: red;
+    }
+
+    /* .map {
+        
+        background-image: url('assets/images/maps.png');
+        background-repeat: no-repeat;
+        position:fixed;
+        top:70px;
+        left:0;
+        background-size: cover;
+        min-height:100%;
+        min-width:100%;
+        background-color:blue;
+    } */
+    
+
+</style>
+@yield('style')
+@yield('scripts')
 </html>
