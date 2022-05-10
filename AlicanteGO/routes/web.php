@@ -65,7 +65,8 @@ Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'up
 
 Route::get('/brands/create', function () {return view('brand.brand_create');});
 Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
-Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
+Route::get('/brands/remove/{id}', [App\Http\Controllers\BrandController::class, 'destroy']);
+Route::get('/brands/delete/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
 Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
 
 Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);
