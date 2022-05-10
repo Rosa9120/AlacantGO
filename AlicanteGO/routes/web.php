@@ -79,7 +79,8 @@ Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'inde
 Route::get('/categories/create', function () {return view('categories.category_create');});
 Route::post('/categories/create', [App\Http\Controllers\CategoryController::class, 'create_category']);
 
-Route::delete('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'delete_category']);
+Route::get('/categories/delete/{id}', [App\Http\Controllers\CategoryController::class, 'delete_category']);
+Route::get('/categories/remove/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
 Route::get('/categories/search', [App\Http\Controllers\CategoryController::class, 'search_category']);
 
 Route::get('/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit']);
