@@ -46,6 +46,11 @@ class EstablishmentController extends Controller
      */
     function delete_establishment($id) {
         $establishment = Establishment::findOrFail($id);
+        return view('establishment.delete', ["success" => true, "establishment" => $establishment]);
+    }
+    public function destroy($id) 
+    {
+        $establishment = Establishment::findOrFail($id);
         $establishment->delete();
         return redirect('/establishments');
     }

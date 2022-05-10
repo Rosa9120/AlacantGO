@@ -50,7 +50,8 @@ Route::get('/establishments/search', [App\Http\Controllers\EstablishmentControll
 Route::get('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');
 Route::patch('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
 Route::get('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
-Route::delete('/establishment/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::get('/establishment/delete/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::get('/establishment/remove/{id}', [App\Http\Controllers\EstablishmentController::class, 'destroy']);
 
 /**
  * BRAND ROUTES
