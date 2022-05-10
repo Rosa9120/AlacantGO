@@ -9,7 +9,7 @@
 
         <div class="manager">
             <div class="img-container">
-                <img src="/assets/images/placeholder.png" alt="image">
+                <img src="/assets/images/user.png" alt="image">
             </div>
 
             <div class="information">
@@ -17,12 +17,16 @@
                     <li>ID #: {{ $manager->id }}</li>
                     <li>Full name: {{ $manager->name }}</li>
                     <li>DNI: {{ $manager->DNI }}</li>
-                    <li>Phone number: {{$manager->phone}}</li>
-                    {{-- @if($manager->establishment == null)
-                        <li>Brand: <a href="{{ url("/brand/get") }}">{{ $item->brand->name }}</a></li>
+                    @if(isset($manager->brand))
+                    <li>Brand: <a href="{{ url("/brands") }}"> {{ $manager->brand->name }}</a></li>    
                     @else
-                        {{-- <li>Establishment: <a href="{{ url("/establishment/" . $manager->establishment->id) }}">{{ $manager->establishment->name }}</a></li> --}}
-                    {{-- @endif --}} 
+                    <li>  Brand: none  </li>    
+                    @endif
+                    @if(isset($manager->establishment))
+                        <li>Establishment: <a href="{{ url("/establishments/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
+                    @else
+                    <li> Establishment: none </li>  
+                    @endif
                 </ul>
             </div>
         </div>
@@ -37,7 +41,7 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 50%;
+        width: 70%;
         height: auto;
         max-height: 100%;
         background-color: rgba(109, 109, 109, 0.2);
@@ -62,7 +66,6 @@
     }
 
     #back:hover {
-        font-size: 21px;
         color: white;
     }
 
@@ -88,15 +91,20 @@
         border-radius: 15px;
         border: 1px solid grey;
     }
-
-    .information {
+    .information{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border: 1px solid grey;
         border-radius: 10px;
         font-size: 22px;
-        max-width: 50%;
+        min-width: 60%
+        max-width: 70%;
         max-height: 80%;
-        margin: auto;
+        flex-grow: 1;
         margin-top: 0;
+        margin-left: 20px;
+        margin-right: 10px;
         margin-bottom: 20px;
         overflow-y: auto;
         padding: 20px;

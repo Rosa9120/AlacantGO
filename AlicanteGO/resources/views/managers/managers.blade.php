@@ -14,12 +14,31 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/managers/search') }}" method="POST">
+    <form class="search-form" action="{{ url('/managers/search') }}" method="GET">
         @csrf
-        @method('post')
+        @method('get')
         @if(empty($search))
             {{$search = null}}
         @endif
+        <div class="dropdown-container">
+            <select name="orderBy" class="form-control dropdown">
+                <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
+                    selected
+                @endif>
+                    Order by
+                </option>
+                <option value="1" @if (!empty($orderBy) and $orderBy == 1)
+                    selected
+                @endif>
+                    Alphabetical order: A to Z
+                </option>
+                <option value="2" @if (!empty($orderBy) and $orderBy == 2)
+                    selected
+                @endif>
+                Alphabetical order: Z to A
+                </option>
+            </select>
+        </div>
         <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search by name...">
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
@@ -66,26 +85,43 @@
     @endforeach
 </table>
 
-{{-- {{ $managers->links() }} --}}
-<style>
+{{$managers->links() }}
+@endsection
+
+@section('style')
+
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-        .pagination {
-            justify-content: center;    
-        }
+    .pagination {
+        justify-content: center;    
+    }
 
-        .search-form {
-            display: flex;
-        }
+    .search-form {
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-        .search {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+    .search {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-        form {
-            display: inline-block;
-        }
-</style>
+    form {
+        display: inline-block;
+    }
+
+    .dropdown-container {
+        margin-right: 0.6em;
+        border-right: 1px solid #a6a6a6;
+        padding-right: 0.6em;        
+    }
+
+    .dropdown {
+        line-height: 20px;
+        width: auto;
+        padding: 0.6em;
+    }
+
+    
 @endsection

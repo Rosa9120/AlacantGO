@@ -202,8 +202,8 @@ class ItemSeeder extends Seeder
 		$ID = \DB::table('establishments')->where('name', 'TGB Luceros')->first()->id;
 		\DB::table('items')->insert([
 			'name' => 'Hot dog',
-			'price' => '1.50',
-			'description' => 'Patatas paja, ali oli y bacon',
+			'price' => '2.50',
+			'description' => 'Patatas paja, allioli y bacon',
 			'type' => 'principal',
 			'establishment_id' => $ID
 		]);
@@ -211,46 +211,46 @@ class ItemSeeder extends Seeder
 
 		$ID = \DB::table('brands')->where('name', 'McDonald\'s')->first()->id;
 		\DB::table('items')->insert([
-			'name' => 'Whopper',
-			'price' => '4.10',
+			'name' => 'McWhopper',
+			'price' => '5.10',
 			'type' => 'principal',
 			'brand_id' => $ID
 		]);
 
 		\DB::table('items')->insert([
-			'name' => 'Doble cheese bacon XXL',
-			'price' => '5.95',
+			'name' => 'Single cheese bacon XXL',
+			'price' => '4.95',
 			'type' => 'principal',
 			'brand_id' => $ID
 		]);
 
 		\DB::table('items')->insert([
-			'name' => 'Patatas clásicas',
-			'price' => '2.40',
+			'name' => 'Patatas fritas',
+			'price' => '2.35',
 			'type' => 'principal',
 			'brand_id' => $ID
 		]);
 
-		$ID = \DB::table('establishments')->where('name', 'Burger King Paseo')->first()->id;
+		$ID = \DB::table('establishments')->where('name', 'McDonald\'s Esplanada')->first()->id;
 		\DB::table('items')->insert([
-			'name' => 'Gofre caliente con sirope',
+			'name' => 'Gofre caliente con mermelada',
 			'price' => '2.80',
 			'type' => 'postre',
 			'establishment_id' => $ID
 		]);
 
-		$ID = \DB::table('establishments')->where('name', 'Burger King Renfe')->first()->id;
+		$ID = \DB::table('establishments')->where('name', 'McDonald\'s Avenida de Dénia')->first()->id;
 		\DB::table('items')->insert([
-			'name' => 'BK muffin',
+			'name' => 'McMuffin',
 			'price' => '1.50',
 			'type' => 'postre',
 			'establishment_id' => $ID
 		]);
 
-		$ID = \DB::table('establishments')->where('name', 'Burger King Calle Colombia')->first()->id;
+		$ID = \DB::table('establishments')->where('name', 'McDonald\'s Calle Ciudad Real')->first()->id;
 		\DB::table('items')->insert([
 			'name' => 'Alitas',
-			'price' => '2.20',
+			'price' => '2.25',
 			'type' => 'entrante',
 			'establishment_id' => $ID
 		]);
