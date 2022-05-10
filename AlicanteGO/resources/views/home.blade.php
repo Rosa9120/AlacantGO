@@ -38,6 +38,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+                    <div class="about-us">
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/aboutus">About us</a>
+                    </div>
+
                     <div class="auth" style="display: flex;">
                         <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/register">Register</a>
                         <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
@@ -108,6 +113,11 @@
             background-color:blue;
         } */
         
+        .about-us
+        {
+            position: relative;
+            left: -1500px;
+        }
 
     </style>
 
