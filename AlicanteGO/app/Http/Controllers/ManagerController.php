@@ -15,6 +15,10 @@ class ManagerController extends Controller
 
     public function delete($manager){
         $manager = Manager::findOrFail($manager);
+        return view('managers.delete', ["success" => true, "manager" => $manager]);
+    }
+    public function destroy($manager){
+        $manager = Manager::findOrFail($manager);
         $manager->delete();
         return redirect('/managers');
     }

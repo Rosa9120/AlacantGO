@@ -33,7 +33,8 @@ Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'del
  * MANAGER ROUTES
  */
 Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
-Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/managers/delete/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/managers/remove/{manager}', [App\Http\Controllers\ManagerController::class, 'destroy']);
 Route::get('/managers/search', [App\Http\Controllers\ManagerController::class, 'search']);
 Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
 Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'create_view']);
