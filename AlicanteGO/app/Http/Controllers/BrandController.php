@@ -28,26 +28,16 @@ class BrandController extends Controller
             return view('brand.exceptions.notFoundById', ['wrong_id' => $request->input('brand_id')]); //DEBERÍA ESTAR EN UNA CARPETA LLAMADA EXCEPTION???  
     }
 
-    public function update_brand(Request $request) 
+    public function update_brand(Request $request) //EL PROBLEMA ESTÁ EN <option value="{{ $brand }} de updateForm
     {
+            $brand = Brand::where ('name', '=', $request->input('brand'))->first(); //ONLY THE ID IS NEEDED TO LINK
 
-        if(Establishment::where ('name', '=', $request->input('establishment_name'))->get()->count() == 0) //SI EL ESTABLISHMENT NO EXISTE
-            return view('establishment.exceptions.establishmentNotFound', ['inexistent_name' => $request->input('establishment_name')]);
-        
-        else if(Brand::where ('name', '=', $request->input('brand_name'))->get()->count() == 0) //SI LA BRAND NO EXISTE
-            return view('brand.exceptions.brandNotFound', ['inexistent_name' => $request->input('brand_name')]);
-
-        else
-        {
-            $brand = Brand::where ('name', '=', $request->input('brand_name'))->first(); //ONLY THE ID IS NEEDED TO LINK
-
-            $establish_wanted = Establishment::where ('name', '=', $request->input('establishment_name'));
+            $establish_wanted = Establishment::where ('name', '=', $request->input('establishment'));
 
             $establish_wanted->update(array('brand_id' => $brand->id));
 
             return view('brand.updateDone', 
-            ['e_name' => $request->input('establishment_name'), 'b_name' => $request->input('brand_name')]);
-        }
+            ['e_name' => $request->input('establishment'), 'b_name' => $request->input('brand')]);
     }
 
     public function search_brand() {
@@ -89,6 +79,12 @@ class BrandController extends Controller
     public function edit(Brand $brand)
     {
         return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
+    }
+
+    function set_brand() {
+        $establishments = Establishment::get();
+        $brands = Brand::get();
+        return view('brand.updateForm', ['establishments' => $establishments, 'brands' => $brands]);
     }
 
     public function edit_brand(Brand $brand) 

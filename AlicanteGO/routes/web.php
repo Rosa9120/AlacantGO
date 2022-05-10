@@ -57,19 +57,20 @@ Route::post('/establishment/edit/{id}', [App\Http\Controllers\EstablishmentContr
  */
 
 Route::get('/brands', [App\Http\Controllers\BrandController::class, 'index']);
-Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
-Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
-
-Route::get('/brands/update', function () {return view('brand.updateForm');});
-Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']);
-
 Route::get('/brands/create', function () {return view('brand.brand_create');});
 Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
 Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
 Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
-
 Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);
 Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
+
+//MÉTODOS
+
+Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
+Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
+
+Route::get('/brands/set', [App\Http\Controllers\BrandController::class, 'set_brand']);
+Route::put('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']);
 
 /**
  * CATEGORY ROUTES

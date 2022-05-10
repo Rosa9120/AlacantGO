@@ -9,14 +9,25 @@
 
     <form action="{{url('/brands/update')}}" method="POST">
         @csrf
-        @method('patch')
+        @method('put')
+        <li>Establishment: 
+                <select name="establishment" class="form-control editable dropdown">
+                    @foreach ($establishments as $establishment)
+                    <option value="{{ $establishment }}" >{{ $establishment->name }}</option>
+                    @endforeach
+                </select>
+            </li>
 
-        <label>Establishment: </label><input type="text" name="establishment_name">
         <div>
+        <li>Brand: 
+            <select name="brand" class="form-control editable dropdown">
+                @foreach ($brands as $brand)
+                <option value="{{ $brand }}" >{{ $brand->name }}</option>
+                @endforeach
+            </select>
+        </li>
 
-        <label>Brand: </label> <input type="text" name="brand_name">
         <div>
-            
         <button type="submit">Send</button>
     </form>
     </div>
