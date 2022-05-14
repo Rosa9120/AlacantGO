@@ -1,35 +1,36 @@
 @extends('admin')
 
-@section('title', 'Item Info')
+@section('title', 'Edit Category')
 
 @section('content')
 
     <div class="container">
-        <div class="back">
-            <a href="/items" id="back">Go Back</a>
-        </div>
-
-        <div class="item">
-            <div class="img-container">
-                <img src="/assets/images/placeholder.png" alt="image">
+            <div class="back">
+                <a href="/categories" id="back">Go Back</a>
             </div>
 
-            <div class="information">
-                <ul>
-                    <li>ID #: {{ $item->id }}</li>
-                    <li>Name: {{ $item->name }}</li>
-                    <li>Price: {{ $item->price }}€</li>
-                    <li>Description: {{$item->description}}</li>
-                    <li>Type: {{ $item->type }}</li>
-                    @if($item->establishment == null)
-                        <li>Brand: <a href="{{ url("/brand/get") }}">{{ $item->brand->name }}</a></li>
-                    @else
-                        <li>Establishment: <a href="{{ url("/establishments/" . $item->establishment->id) }}">{{ $item->establishment->name }}</a></li>
-                    @endif
-                </ul>
-            </div>
+                <div class="information">
+                    <span>ID #: {{ $category->id }}</span>
+
+                    <form action="{{ url('/categories/remove', ["id" => $category->id]) }}" method="delete">
+                        <div class="modal-body">
+                            @csrf
+                            @method('delete')
+                            <h5 class="text-center">Are you sure you want to delete {{ $category->name }} ?</h5>
+                        </div>
+                        <a class="btn btn-secondary" href="{{ url('/categories/') }}">Cancel</a>
+                        <form action="{{ url('/categories/remove', ['id' => $category->id]) }}" method="DELETE">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" class="btn btn-danger" value="Yes, Delete"/>
+                        </form>
+                    </form>
+
+                </div>
         </div>
     </div>
+
+
 
 @endsection
 
@@ -71,12 +72,6 @@
         color: white;
     }
 
-    .img-container {
-        width: 30%;
-        height: 70%;
-        align-self: center;
-    }
-
     .item {
         display: flex;
         flex-direcion: row;
@@ -86,19 +81,11 @@
         justify-content: space-between;
     }
 
-    img {
-        display: block;
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 15px;
-        border: 1px solid grey;
-    }
-
     .information {
         border: 1px solid grey;
         border-radius: 10px;
         font-size: 22px;
-        max-width: 50%;
+        max-width: 70%;
         max-height: 80%;
         margin: auto;
         margin-top: 0;

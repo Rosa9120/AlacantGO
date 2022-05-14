@@ -28,9 +28,13 @@ class BrandController extends Controller
             return view('brand.exceptions.notFoundById', ['wrong_id' => $request->input('brand_id')]); //DEBERÍA ESTAR EN UNA CARPETA LLAMADA EXCEPTION???  
     }
 
-    public function update_brand(Request $request) 
+    public function update_brand(Request $request) //EL PROBLEMA ESTÁ EN <option value="{{ $brand }} de updateForm
     {
+            $brand = Brand::where ('name', '=', $request->input('brand'))->first(); //ONLY THE ID IS NEEDED TO LINK
 
+<<<<<<< HEAD
+            $establish_wanted = Establishment::where ('name', '=', $request->input('establishment'));
+=======
         $request->validate([
             'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
         ]);
@@ -46,12 +50,12 @@ class BrandController extends Controller
             $brand = Brand::where ('name', '=', $request->input('brand_name'))->first(); //ONLY THE ID IS NEEDED TO LINK
 
             $establish_wanted = Establishment::where ('name', '=', $request->input('establishment_name'));
+>>>>>>> 394b9ea3739e734888eb05374e65eafef04d25dd
 
             $establish_wanted->update(array('brand_id' => $brand->id));
 
             return view('brand.updateDone', 
-            ['e_name' => $request->input('establishment_name'), 'b_name' => $request->input('brand_name')]);
-        }
+            ['e_name' => $request->input('establishment'), 'b_name' => $request->input('brand')]);
     }
 
     public function search_brand() {
@@ -99,7 +103,17 @@ class BrandController extends Controller
         return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
     }
 
+<<<<<<< HEAD
+    function set_brand() {
+        $establishments = Establishment::get();
+        $brands = Brand::get();
+        return view('brand.updateForm', ['establishments' => $establishments, 'brands' => $brands]);
+    }
+
+    public function edit_brand(Brand $brand) 
+=======
     public function edit_brand(Request $request, Brand $brand) 
+>>>>>>> 394b9ea3739e734888eb05374e65eafef04d25dd
     {
 
         $request->validate([
