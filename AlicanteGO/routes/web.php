@@ -6,7 +6,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin', function () {
     return view('admin');
-})->middleware('admin');;
+});
 
 
 

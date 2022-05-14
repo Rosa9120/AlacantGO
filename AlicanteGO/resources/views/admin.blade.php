@@ -13,8 +13,6 @@
     <body>
         <div class="head">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="navbar-brand" style="position:absolute;color:rgb(221, 221, 221);" href="/admin">Administrator</a>
-                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,7 +42,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
         html, body {
-            background-color: #f5f1f1;
+            background-color: #z;
             height: 100%;
         }
 
