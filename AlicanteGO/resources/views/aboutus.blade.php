@@ -57,10 +57,9 @@
         <div class="our-team">
             <div class="column">
                 <div class="card">
-                    <img src="/img/profile.png" alt="Jane" style="width:100%">
                     <div class="container">
+                        <p class="puesto">Senior Programmer</p>
                         <h2>Vicente José Moreno Rebollo</h2>
-                        <p class="title">Puesto</p>
                         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                         <p>vjmr1@gcloud.ua.es</p>
                         <p><button class="button">Contact</button></p>
@@ -69,52 +68,48 @@
             </div>
             
             <div class="column">
-                <div class="card">
-                    <img src="/img/profile.png" alt="Jane" style="width:100%">
+            <div class="card">
                     <div class="container">
-                        <h2>Vicente José Moreno Rebollo</h2>
-                        <p class="title">Puesto</p>
+                        <p class="puesto">Senior Programmer</p>
+                        <h2>Ilya Slyusarchuk Dimitriouchkina</h2>
                         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>vjmr1@gcloud.ua.es</p>
+                        <p>isd11@gcloud.ua.es</p>
                         <p><button class="button">Contact</button></p>
                     </div>
                 </div>
             </div>
 
             <div class="column">
-                <div class="card">
-                    <img src="/img/profile.png" alt="Jane" style="width:100%">
+            <div class="card">
                     <div class="container">
-                        <h2>Vicente José Moreno Rebollo</h2>
-                        <p class="title">Puesto</p>
+                        <p class="puesto">Restaurant Data Research</p>
+                        <h2>Natasha Tsuranava</h2>
                         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>vjmr1@gcloud.ua.es</p>
+                        <p>nt33@gcloud.ua.es</p>
                         <p><button class="button">Contact</button></p>
                     </div>
                 </div>
             </div>
 
             <div class="column2">
-                <div class="card">
-                    <img src="/img/profile.png" alt="Jane" style="width:100%">
+            <div class="card">
                     <div class="container">
-                        <h2>Vicente José Moreno Rebollo</h2>
-                        <p class="title">Puesto</p>
+                        <p class="puesto">Marketing leader</p>
+                        <h2>Rosa María Rodríguez Lledó</h2>
                         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>vjmr1@gcloud.ua.es</p>
+                        <p>rmrl3@gcloud.ua.es</p>
                         <p><button class="button">Contact</button></p>
                     </div>
                 </div>
             </div>
 
             <div class="column2">
-                <div class="card">
-                    <img src="/img/profile.png" alt="Jane" style="width:100%">
+            <div class="card">
                     <div class="container">
-                        <h2>Vicente José Moreno Rebollo</h2>
-                        <p class="title">Puesto</p>
+                        <p class="puesto">Data and Information Analist </p>
+                        <h2>Alberto Rius Poveda</h2>
                         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>vjmr1@gcloud.ua.es</p>
+                        <p>arp99@gcloud.ua.es</p>
                         <p><button class="button">Contact</button></p>
                     </div>
                 </div>
@@ -122,18 +117,24 @@
         </div>
         
         <div class="description">
-                <p> THIS IS A TEST SENTENCE. THIS IS A TEST SENTENCE. THIS IS A TEST SENTENCE. THIS IS A TEST SENTENCE. 
-                    THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE. THIS IS A TEST SENTENCE. 
-                    THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE. THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.
-                    THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.
-                    THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE.THIS IS A TEST SENTENCE. 
+                <p> 
+                    The goal of this project is to develop an application dedicated to show the location of several restaurants around the city and more detailed description of them, such as its menus, photos of the location, opinions, etc. And all of that using a simple user interface. It will consist of an API of Google Maps and extra data we’ll gather ourselves, its main objective is to be as simple as possible, therefore being handy. 
+            </p>  
+            <p>  
+                The name of this app is Alacant Go, as it is now restricted to the city of Alacant. 
+                In our experience, browsing the web to find menus of specific restaurants can be daunting. Most restaurants do not share their menus in their websites - others do not even have websites. 
+            </p>
+                Our goal is to unify the information that is provided from restaurants to potential customers in order to ease the process of choosing where to eat.
+                We will develop a web application with a database that stores all the restaurants and the information regarding their menus, prices, etc. Additionally, we plan for google reviews to be displayed alongside the restaurant’s information.
+
                 </p>
         </div>
 
         <div class="social-networks">
-                <p style="color:rgb(221, 221, 221);"> 
-                    THE SOCIAL NETWORKS GO HERE, LIKE TWITTER, ETC
-                </p>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <a href="https://es-es.facebook.com/" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
+                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
         </div>
 
         </div>
@@ -185,9 +186,11 @@
         .description
         {
             background: white;
-            height: 250px;
+            overflow: auto;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             margin: 16px;
+            font-size: 150%;
+            padding-left: 10px;
         }
 
         .title
@@ -197,11 +200,17 @@
             mix-blend-mode: difference;
         }
 
+        .puesto
+        {
+            font-size: 250%;
+        }
+
+
         .about-section
         {
             text-align: center;
             font-size: 150%;
-            padding: 300px;
+            padding: 310px;
             color: #fff;
             mix-blend-mode: difference;
         }
@@ -220,7 +229,7 @@
         body {
             background: linear-gradient(70deg, black, white);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradient 30s ease infinite;
         }
 
         @keyframes gradient {
@@ -235,11 +244,12 @@
             }
         }
 
-        .column {
-        float: left;
-        width: 33.3%;
-        margin-bottom: 16px;
-        padding: 0 8px;
+        .column 
+        {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
         }
 
         .column2 {
@@ -249,10 +259,42 @@
         }
 
         .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        margin: 8px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
         }
 
+        .container
+        {
+            text-align: center
+        }
+
+        .fa {
+            padding: 20px;
+            font-size: 30px;
+            width: 75px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .fa:hover {
+        opacity: 0.7;
+        }
+
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+            margin-left: 750px;
+        }
+
+        .fa-twitter {
+            background: #55ACEE;
+            color: white;
+        }
+
+        .fa-instagram {
+            background: #ea4c89;
+            color: white;
+        }
 
     </style>
 
