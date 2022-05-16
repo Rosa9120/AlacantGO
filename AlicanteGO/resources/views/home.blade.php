@@ -166,12 +166,12 @@
         .filters{
             flex-grow: 1;
             margin: 15px;
-            width: 30%;
+            width: 400px;
             display:flex;
             height:auto;
             flex-flow: column nowrap;
             justify-content: space-around;
-            align-items:flex-start;
+            align-items:center;
             padding: 40px 80px 40px 80px;
             height: 500px;
             position:sticky;
@@ -205,8 +205,7 @@
             display:flex;
             flex-direction: row;
             align-content: center;
-            /* max-width: 1200px; */
-            gap: 8px 2%;
+            gap: 25px 25px;
             flex-wrap: wrap;
             justify-content: flex-start ;
             margin-left: 10%;
@@ -236,6 +235,7 @@
 
         .card:hover .overlay {
             opacity: 0.7;
+            border-radius: 25px 25px 0 0;
         }
 
         .fade{
@@ -244,13 +244,13 @@
             -ms-transform: translate(-50%, -50%); 
             transform: translate(-50%, -50%);
             opacity: 1;
+            
         }
 
         .btn{
             align-self: center;
             z-index: 999;
             opacity: 1;
-            border-radius: 9px;
         }
 
         .dropdown-toggle {
@@ -269,7 +269,7 @@
 
             .filters{
                 position:relative;
-                width:100%;
+                /* width:100%; */
             }
         }
 
