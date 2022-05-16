@@ -64,16 +64,73 @@
         <main class="py-0">
             @yield('content')
         </main>
-        <footer>
-            <div class="main-footer-content">
-                AlicanteGO 2022 Copyright
-            </div>
-        </footer>
+        <div class="footer-basic">
+            <footer>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Home</a></li>
+                    <li class="list-inline-item"><a href="#">Restaurants</a></li>
+                    <li class="list-inline-item"><a href="#">About Us</a></li>
+                    <li class="list-inline-item"><a href="#">Register</a></li>
+                </ul>
+                <p class="copyright">AlicanteGO © 2022</p>
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     </div>
 </body>
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .footer-basic {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 30px 0;
+        background-color: #5c5c5c;
+        color: rgb(205, 205, 205);
+    }
+
+    .footer-basic ul {
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    .footer-basic li {
+        padding: 0 10px;
+    }
+
+    .footer-basic ul a {
+        color: inherit;
+        text-decoration: none;
+        opacity: 0.8;
+    }
+
+    .footer-basic ul a:hover {
+        opacity: 1;
+    }
+
+    .footer-basic .copyright {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #aaa;
+        margin-bottom: 0;
+    }
 
     /* .head{
         height: 70px;
