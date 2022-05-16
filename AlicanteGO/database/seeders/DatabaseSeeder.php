@@ -19,8 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ManagerSeeders::class);
         $this->call(ItemSeeder::class);
         $this->call(CategoriesTableSeeder::class);
-        
-   
+        $this->call(UsersSeeders::class);
         
     }
 }

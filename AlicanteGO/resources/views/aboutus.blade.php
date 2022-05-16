@@ -156,7 +156,7 @@
         .social-networks{
             height: 70px;
             display:flex;
-            justify-content: flex-start;
+            justify-content: center;
             border-bottom: 1px solid black;
             font-family: "Montserrat", sans-serif;
             background-color: #5c5c5c;
@@ -283,7 +283,7 @@
         .fa-facebook {
             background: #3B5998;
             color: white;
-            margin-left: 750px;
+            /* margin-left: 750px; */
         }
 
         .fa-twitter {
