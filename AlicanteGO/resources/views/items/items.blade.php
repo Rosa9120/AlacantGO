@@ -20,6 +20,9 @@
         @if(empty($search))
             {{ $search = null }}
         @endif
+        @if(empty($maxPrice))
+            {{ $maxPrice = null }}
+        @endif
         <div class="dropdown-container">
             <select name="orderBy" class="form-control dropdown">
                 <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
@@ -39,7 +42,8 @@
                 </option>
             </select>
         </div>
-        <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search by name...">
+        <input type="number" style="margin-right: 5px; max-width: 100px; padding-right: 0;" name="maxPrice" step="0.01" value="{{ $maxPrice }}" class="form-control" placeholder="Max price...">
+        <input type="text" name="search" value="{{ $search }}" class="form-control" placeholder="Search by name">
         <input type="submit" class="btn btn-primary" value="Search"/>
     </form>
 </div>

@@ -53,7 +53,7 @@ class EstablishmentSeeder extends Seeder
 
 		\DB::table('establishments')->insert([
 			'name' => 'Burger King Paseo',
-			'address' => 'Paseo, Passeig Esplanada d\'Espanya, 4',
+			'address' => 'Passeig Esplanada d\'Espanya, 4',
 			'postal_code' => '03002',
 			'latitude' => '38.3444660895255',
 			'longitude' => '-0.4817486229803378',

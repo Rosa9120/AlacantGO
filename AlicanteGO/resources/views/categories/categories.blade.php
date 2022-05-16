@@ -38,9 +38,9 @@
         <td>
             <a class="btn btn-warning" href="{{ url("/categories/" . $category->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/categories', ['id' => $category->id]) }}" method="POST">
+            <form action="{{ url('/categories/delete', ['id' => $category->id]) }}" method="POST">
                 @csrf
-                @method('delete')
+                @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>
             </form>
         </td>

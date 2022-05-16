@@ -60,7 +60,7 @@
             <a class="btn btn-primary" onclick="showEstablishment({{ $establishment->id }})">Show</a>
             <a class="btn btn-warning" onclick="editEstablishment({{ $establishment->id }})">Edit</a>
 
-            <form action="{{ url('/establishment', ['id' => $establishment->id]) }}" method="POST">
+            <form action="{{ url('/establishments', ["id" => $establishment->id]) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" class="btn btn-danger" value="Delete"/>
@@ -74,15 +74,15 @@
 
 <script>
     function showEstablishment(id) {
-        window.location.href = `{{url('/establishment/')}}/${id}`;
+        window.location.href = `{{url('/establishments/')}}/${id}`;
     }
 
     function createEstablishment() {
-        window.location.href = '/establishment/new';
+        window.location.href = '/addestablishments';
     }
 
     function editEstablishment(id) {
-        window.location.href = `{{url('/establishment/edit/')}}/${id}`;
+        window.location.href = `{{url('/establishments/edit/')}}/${id}`;
     }
 </script>
 

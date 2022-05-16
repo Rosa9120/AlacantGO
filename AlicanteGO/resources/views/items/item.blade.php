@@ -24,7 +24,7 @@
                     @if($item->establishment == null)
                         <li>Brand: <a href="{{ url("/brand/get") }}">{{ $item->brand->name }}</a></li>
                     @else
-                        <li>Establishment: <a href="{{ url("/establishment/" . $item->establishment->id) }}">{{ $item->establishment->name }}</a></li>
+                        <li>Establishment: <a href="{{ url("/establishments/" . $item->establishment->id) }}">{{ $item->establishment->name }}</a></li>
                     @endif
                 </ul>
             </div>

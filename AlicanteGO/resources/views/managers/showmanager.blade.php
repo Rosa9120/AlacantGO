@@ -18,14 +18,14 @@
                     <li>Full name: {{ $manager->name }}</li>
                     <li>DNI: {{ $manager->DNI }}</li>
                     @if(isset($manager->brand))
-                    <li>Brand: {{ $manager->brand->name }}</li>    
+                    <li>Brand: <a href="{{ url("/brands") }}"> {{ $manager->brand->name }}</a></li>    
                     @else
-                    <li> Brand: none </p> </li>    
+                    <li>  Brand: none  </li>    
                     @endif
                     @if(isset($manager->establishment))
-                        <li>Establishment: {{ $manager->establishment->name }}</li>
+                        <li>Establishment: <a href="{{ url("/establishments/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
                     @else
-                    <li> Establishment: none </p> </li>  
+                    <li> Establishment: none </li>  
                     @endif
                 </ul>
             </div>
