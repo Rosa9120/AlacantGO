@@ -45,24 +45,32 @@
                 <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+        
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    @guest
                     <div class="auth" style="display: flex;">
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/register">Register</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
+                        @auth
+                        @if (Auth::user()->rol == 'admin')
+                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin </a>
+                        @endif
+                        @endauth
+                        @guest
+                            <div class="auth" style="display: flex;">
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/register">Register</a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
+                            </div>
+                        @else
+                            <div>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="#">{{ Auth::user()->name }}</a>
+                            </div>
+                        @endguest
                     </div>
-                    @else
-                    <div>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="#">{{ Auth::user()->name }}</a>
-                    </div>
-                    @endguest
                 </div>
             </nav>
         </div>
 
-        <main class="py-0">
+        <main class="py-0 content-section">
             @yield('content')
+            <div class="separator"></div>
         </main>
         <div class="footer-basic">
             <footer>
@@ -83,8 +91,8 @@
 
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-    html, body {
-        height: 100%;
+    * {
+        box-sizing: border-box;
     }
 
     body {
@@ -92,9 +100,11 @@
         min-height: 100vh;
     }
 
+    .content-section {
+        background-color: #e5e3df;
+    }
+
     .footer-basic {
-        position: absolute;
-        bottom: 0;
         width: 100%;
         padding: 30px 0;
         background-color: #5c5c5c;
@@ -118,6 +128,11 @@
         color: inherit;
         text-decoration: none;
         opacity: 0.8;
+    }
+
+    .separator {
+        height: 3em;
+        background-color: #e5e3df;
     }
 
     .footer-basic ul a:hover {

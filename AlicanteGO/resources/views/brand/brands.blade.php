@@ -9,6 +9,7 @@
         <h3>Total brands: {{ $count }}</h3>
     </div>
     <div>
+        <a class="btn btn-success" href="{{ url('/brands/set') }}"> Set Brand</a>
         <a class="btn btn-success" href="{{ url('/brands/create') }}"> Create New Brand</a>
     </div>
 </div>

@@ -11,7 +11,7 @@
 
     <div class="establishment">
         <div class="information">
-            <form action="{{ url('/establishment/new') }}" method="POST">
+            <form action="{{ url('/addestablishments/create') }}" method="POST">
                 @csrf
                 @method('post')
                 <ul>
