@@ -8,7 +8,9 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
-
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
 
 // ITEMS' ROUTES
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
