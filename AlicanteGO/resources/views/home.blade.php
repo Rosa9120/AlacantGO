@@ -55,7 +55,7 @@
 
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary more-info-btn" class="fade"> More information </a>
+                    <a href="{{ url("/establishments/" . $est->id) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
                     <div class="card-body">
                         <h5 class="card-title"> {{ $est->name }}</h5>
                         <p class="card-text"> {{ $est->address }} </p>
@@ -266,7 +266,6 @@
         position: relative;
         border-radius:25px;
     }
-
 
     .overlay-container {
         position: absolute;

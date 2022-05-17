@@ -98,21 +98,24 @@
     body {
         position: relative;
         min-height: 100vh;
+        height:auto;
     }
 
-    .content-section {
+    /* .content-section {
         background-color: #e5e3df;
-    }
+    } */
 
     .footer-basic {
         width: 100%;
         padding: 30px 0;
         background-color: #5c5c5c;
         color: rgb(205, 205, 205);
+        margin-bottom: 0;
     }
 
     .footer-basic ul {
         padding: 0;
+        /* position:absolute; */
         list-style: none;
         text-align: center;
         font-size: 18px;
@@ -153,11 +156,12 @@
         display:flex;
     } */
     html {
-        height: 100%;
+        min-height: 100vh;      
     }
 
+    /* HABRIA QUE RESTAR EL FOOTER Y EL NAVBAR AL 100VH */
     body {
-        height: 100%;
+        min-height: 100vh;
     }
 
     .head{
@@ -182,14 +186,6 @@
     }
     .form-control{
         width: 500px;
-    }
-
-    .login{
-        margin: 5px 5px 0 0;
-        background-color: grey;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
     }
 
     #map-container {
