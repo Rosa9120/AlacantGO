@@ -1,301 +1,338 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+@extends('layouts.app')
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+@section('content')
 
-    </head>
+<section id="section01" class="demo">
+    <div class="about-section">
+        <h1 class="title">We are AlacantGo</h1>
+    </div>
+    <div class="about-section2">
+    <h2>You are lucky to have found us</h2>
+    </div>
+    <a href="#section02"><span></span>Scroll</a>
+</section>
 
-    <body>
-        <div class="head">
+<section id="section02">
 
-            {{-- <div class="input-group">
-                <div class="form-outline">
-                    <input type="text" class="form-control" establishmentholder="Search" aria-label="Search" aria-describedby="addon-wrapping">
-                </div>
-                <button type="button" class="btn btn-primary" style="height:38px">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                      </svg>
-                </button>
-   
-            </div>
-            <a href="/admin" style="display:inline-block;width:100px;">Admin view</a>
-            <button type="button" class="login">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                </svg>
-            </button> --}}
-            <nav class="navbar navbar-expand-lg navbar-light ">
-                <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <h3>Our Team</h3>
 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-                    <div class="return">
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/home">Return</a>
-                    </div>
-
-                </div>
-            </nav>
+    <div class="cards">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title puesto"> Vicente José Moreno Rebollo </h5>
+            <p class="card-name"> Junior Programmer </p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>vjmr1@gcloud.ua.es</p>
+            <a href="mailto:vjmr1@gcloud.ua.es" class="btn btn-secondary btn-sm"> Contact </a>
         </div>
+    </div>
 
-            <div class="about-section">
-                <h1 class="title">We are AlacantGo</h1>
-                <p>You are lucky to have found us, let us help you find a nice place!</p>
-            </div>
-
-            <h2 class="team" style="text-align:center">Our Team</h2>
-
-        <div class="our-team">
-            <div class="column">
-                <div class="card">
-                    <div class="container">
-                        <p class="puesto">Senior Programmer</p>
-                        <h2>Vicente José Moreno Rebollo</h2>
-                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>vjmr1@gcloud.ua.es</p>
-                        <p><button class="button">Contact</button></p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="column">
-            <div class="card">
-                    <div class="container">
-                        <p class="puesto">Senior Programmer</p>
-                        <h2>Ilya Slyusarchuk Dimitriouchkina</h2>
-                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>isd11@gcloud.ua.es</p>
-                        <p><button class="button">Contact</button></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="column">
-            <div class="card">
-                    <div class="container">
-                        <p class="puesto">Restaurant Data Research</p>
-                        <h2>Natasha Tsuranava</h2>
-                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>nt33@gcloud.ua.es</p>
-                        <p><button class="button">Contact</button></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="column2">
-            <div class="card">
-                    <div class="container">
-                        <p class="puesto">Marketing leader</p>
-                        <h2>Rosa María Rodríguez Lledó</h2>
-                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>rmrl3@gcloud.ua.es</p>
-                        <p><button class="button">Contact</button></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="column2">
-            <div class="card">
-                    <div class="container">
-                        <p class="puesto">Data and Information Analist </p>
-                        <h2>Alberto Rius Poveda</h2>
-                        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p>arp99@gcloud.ua.es</p>
-                        <p><button class="button">Contact</button></p>
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title puesto"> Ilya Slyusarchuk Dimitriouchkina </h5>
+            <p class="card-name"> Senior Programmer </p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>isd11@gcloud.ua.es</p>
+            <a href="mailto:isd11@gcloud.ua.es" class="btn btn-secondary btn-sm"> Contact </a>
         </div>
-        
-        <div class="description">
-                <p> 
-                    The goal of this project is to develop an application dedicated to show the location of several restaurants around the city and more detailed description of them, such as its menus, photos of the location, opinions, etc. And all of that using a simple user interface. It will consist of an API of Google Maps and extra data we’ll gather ourselves, its main objective is to be as simple as possible, therefore being handy. 
-            </p>  
-            <p>  
-                The name of this app is Alacant Go, as it is now restricted to the city of Alacant. 
-                In our experience, browsing the web to find menus of specific restaurants can be daunting. Most restaurants do not share their menus in their websites - others do not even have websites. 
-            </p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title puesto"> Natallia Tsuranava </h5>
+            <p class="card-name"> Restaurant Data Research </p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>nt33@gcloud.ua.es</p>
+            <a href="mailto:nt33@gcloud.ua.es" class="btn btn-secondary btn-sm"> Contact </a>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title puesto"> Rosa María Rodríguez Lledó </h5>
+            <p class="card-name"> Marketing leader </p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>rmrl3@gcloud.ua.es</p>
+            <a href="mailto:rmrl3@gcloud.ua.es" class="btn btn-secondary btn-sm"> Contact </a>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title puesto"> Alberto Rius Poveda </h5>
+            <p class="card-name"> Data and Information Analist </p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>arp99@gcloud.ua.es</p>
+            <a href="mailto:arp99@gcloud.ua.es" class="btn btn-secondary btn-sm"> Contact </a>
+
+        </div>
+    </div>
+
+    </div>
+
+    <div class="bottom-container">
+        <div class="card-mission">
+            <div class="card-body">
+                <h5 class="card-title puesto"> Our mission </h5>
+                <p> The goal of this project is to develop an application dedicated to show the location of several restaurants around the city and more detailed description of them, such as its menus, photos of the location, opinions, etc. And all of that using a simple user interface. It will consist of an API of Google Maps and extra data we’ll gather ourselves, its main objective is to be as simple as possible, therefore being handy. </p>
+                <p> The name of this app is Alacant Go, as it is now restricted to the city of Alacant. 
+                    In our experience, browsing the web to find menus of specific restaurants can be daunting. Most restaurants do not share their menus in their websites - others do not even have websites. 
+                </p>
                 Our goal is to unify the information that is provided from restaurants to potential customers in order to ease the process of choosing where to eat.
                 We will develop a web application with a database that stores all the restaurants and the information regarding their menus, prices, etc. Additionally, we plan for google reviews to be displayed alongside the restaurant’s information.
-
                 </p>
+            </div>
         </div>
+    </div>
 
-        <div class="social-networks">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                <a href="https://es-es.facebook.com/" class="fa fa-facebook"></a>
-                <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
-                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
-        </div>
 
-        </div>
-    </body>
+</section>
 
+@endsection
+
+@section("style")
     <style>
 
         @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-        .head{
-            height: 70px;
-            display:flex;
-            justify-content: flex-end;
-            border-bottom: 1px solid black;
-            font-family: "Montserrat", sans-serif;
-            background-color: #5c5c5c;
-        }
-
-        .social-networks{
-            height: 70px;
-            display:flex;
-            justify-content: center;
-            border-bottom: 1px solid black;
-            font-family: "Montserrat", sans-serif;
-            background-color: #5c5c5c;
-        }
-
-        .auth-nav {
-            width:100%;
-            display: flex;
-            box-sizing: border-box;
-            margin-right: 20px;
-        }
-    
-        .input-group{
-            padding-top: 14px;
-            padding-left: 28%;
-        }
-        .form-control{
-            width: 500px;
-        }
-
-        .return
-        {
-            position: relative;
-            left: -1750px;
-        }
-
-        .description
-        {
-            background: white;
-            overflow: auto;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 16px;
-            font-size: 150%;
-            padding-left: 10px;
-        }
-
-        .title
-        {
-            font-size: 500%;
-            color: #fff;
-            mix-blend-mode: difference;
-        }
-
-        .puesto
-        {
-            font-size: 250%;
-        }
+        @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,400);
 
 
-        .about-section
-        {
-            text-align: center;
-            font-size: 150%;
-            padding: 310px;
-            color: #fff;
-            mix-blend-mode: difference;
-        }
+    section {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow-x:hidden;
+    }
+            
+    section::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 80%;
+        background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+        background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+   }
 
-        .team{
-            color: #fff;
-            mix-blend-mode: difference;
-        }
+    section h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font : normal 300 64px/1 'Josefin Sans', sans-serif;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    section h2{
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        z-index: 2;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font : normal 300 32px/1 'Josefin Sans', sans-serif;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    section h3{
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        z-index: 2;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font : normal 300 32px/1 'Josefin Sans', sans-serif;
+        text-align: center;
+        white-space: nowrap;
+    }
 
 
-        html, body {
+    #section01 { 
+        background: linear-gradient(70deg, black, white);
+        animation: gradient 30s ease infinite;
+        /* height:calc(100vh - 57px); */
+        height:100vh;
+    }
+
+    #section02 { 
+        background: linear-gradient(70deg, black, white);
+        animation: gradient 30s ease infinite;
+        /* height:calc(100vh - 57px); */
+        height:auto;
+        min-height: 100vh;
+        overflow:hidden;
+    }
+
+    #section01 a {
+        padding-top: 60px;
+    }
+
+    #section01 a span {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        margin-left: -12px;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        /* box-sizing: border-box; */
+    }
+
+    .demo a {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        z-index: 2;
+        display: inline-block;
+        -webkit-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        color: #fff;
+        font : normal 400 20px/1 'Josefin Sans', sans-serif;
+        letter-spacing: .1em;
+        text-decoration: none;
+        transition: opacity .3s;
+    }
+
+    .card-name{
+        font-size: 20px;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .mission{
+        color: #fff;
+        font : normal 300 32px/1 'Josefin Sans', sans-serif;
+    }
+    .demo a:hover {
+        opacity: .5;
+    }
+   
+    .input-group{
+        padding-top: 14px;
+        padding-left: 28%;
+    }
+
+    .form-control{
+        width: 500px;
+    }
+
+    .description
+    {
+        background: white;
+        overflow: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 16px;
+        font-size: 150%;
+        padding-left: 10px;
+    }
+
+    .title
+    {
+        font-size: 500%;
+        color: #fff;
+        mix-blend-mode: difference;
+    }
+
+    .puesto
+    {
+        font-size: 250%;
+    }
+
+    .team{
+        color: #fff;
+        mix-blend-mode: difference;
+    }
+
+
+    html, body {
         width: 100%;
         height:100%;
+    }
+
+    body {
+        background: linear-gradient(70deg, black, white);
+        animation: gradient 30s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
         }
 
-        body {
-            background: linear-gradient(70deg, black, white);
-            background-size: 400% 400%;
-            animation: gradient 30s ease infinite;
-        }
+    .cards{
+        display:flex;
+        padding-top: 5%;
+        flex-direction: row;
+        align-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        justify-content: center ;
+        max-height: 1000px; 
+    }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+    .bottom-container{
+        display:flex;
+        padding-top: 5%;
+        flex-direction: row;
+        align-content: center;
+        flex-wrap: nowrap;
+        justify-content: center ;
+    }
 
-        .column 
-        {
-            float: left;
-            width: 33.3%;
-            margin-bottom: 16px;
-            padding: 0 8px;
-        }
+    .card {
+        width: 400px;
+        position: relative;
+        border-radius:25px;
+        background-color:whitesmoke;
+        z-index: 999;
+        opacity:0.9;
+    }
 
-        .column2 {
-            width: 33.3%;
-            display: inline-block;
-            margin-left: 200px;
-        }
+    .card-body
+    {
+        text-align: center;
+    }
 
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            margin: 8px;
-        }
+    .card-mission {
+        width: 700px;
+        position: relative;
+        border-radius:25px;
+        background-color:whitesmoke;
+        z-index: 999;
+        opacity:0.9;
+    }
 
-        .container
-        {
-            text-align: center
-        }
+    .card-name{
 
-        .fa {
-            padding: 20px;
-            font-size: 30px;
-            width: 75px;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        .fa:hover {
-        opacity: 0.7;
-        }
-
-        .fa-facebook {
-            background: #3B5998;
-            color: white;
-            /* margin-left: 750px; */
-        }
-
-        .fa-twitter {
-            background: #55ACEE;
-            color: white;
-        }
-
-        .fa-instagram {
-            background: #ea4c89;
-            color: white;
-        }
+    }
 
     </style>
+@endsection
 
-</html>
+<script>
+    $(function() {
+    $('a[href*=#section02]').on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: $($(this).attr('#section02')).offset().top}, 500, 'linear');
+    });
+    });
+</script>
