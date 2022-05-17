@@ -108,22 +108,9 @@ class EstablishmentController extends Controller
                         'latitude' => 'required',
                         'longitude' => 'required']);
 
-        $establishment = new Establishment();
-        $establishment->name = $req->input('name');
-        $establishment->phone_number = $req->input('phone_number');
-        $establishment->address = $req->input('address');
-        $establishment->postal_code = $req->input('postal_code');
-        $establishment->latitude = $req->input('latitude');
-        $establishment->longitude = $req->input('longitude');
-        if ($req->has("brand")) {
-            $brand = Brand::whereId($req["brand"])->first();
-            $establishment->brand()->associate($brand);
-        }
-        if ($req->has("category")) {
-            $category = Brand::whereId($req["category"])->first();
-            $establishment->category()->associate($category);
-        }
-        $establishment->save();
+        $establishment = Establishment::create($req->input('name'),
+        $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
+        Brand::whereId($req["brand"])->first(), $category = Brand::whereId($req["category"])->first());
 
         return redirect('/establishments/' . $establishment->id);
     }
