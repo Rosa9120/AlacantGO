@@ -11,7 +11,6 @@ use App\Http\Requests\ItemRequest;
 class ItemController extends Controller
 {
     public function index () {
-        dd(app());
         $count = Item::all()->count();
         $items = Item::paginate(7);
         return view('items.items', ["success" => true, "items" => $items, "count" => $count]);
