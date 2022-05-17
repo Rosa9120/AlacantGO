@@ -50,9 +50,12 @@
             @foreach ($establishments as $est)
                 <div class="card">
                     <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src="storage/default.jpg">
-                    <div class="overlay">
-                        <a href="#" class="btn btn-primary" class="fade"> More information </a>
+                    <div class="overlay-container">
+                        <div class="overlay">
+
+                        </div>
                     </div>
+                    <a href="#" class="btn btn-primary more-info-btn" class="fade"> More information </a>
                     <div class="card-body">
                         <h5 class="card-title"> {{ $est->name }}</h5>
                         <p class="card-text"> {{ $est->address }} </p>
@@ -265,24 +268,40 @@
     }
 
 
-    .overlay {
+    .overlay-container {
         position: absolute;
         margin: 0;
         height: 80%;
         width: 100%;
+        z-index:999;
+        border-radius: 25px 25px 0 0;
+        transition: .5s ease;
+    }
+
+    .overlay {
         opacity: 0;
-        z-index:50;
+        height: 100%;
+        width: 100%;
         border-radius: 25px 25px 0 0;
         transition: .5s ease;
         background-color: whitesmoke;
-        display:flex;
-        justify-content: center;
-        align-content: center;
     }
 
+    .more-info-btn {
+        display: none;
+        opacity: 0;
+        transition: .5s ease;
+        position: absolute;
+        top: 40%;
+    }
 
     .card:hover .overlay {
         opacity: 0.7;
+    }
+
+    .card:hover .more-info-btn {
+        opacity: 1;
+        display: inline-block;
     }
 
     .fade{
