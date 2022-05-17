@@ -95,6 +95,12 @@ class BrandController extends Controller
         return redirect('/brands');
     }
 
+    function set_brand() {
+        $establishments = Establishment::get();
+        $brands = Brand::get();
+        return view('brand.updateForm', ['establishments' => $establishments, 'brands' => $brands]);
+    }
+
     public function edit(Brand $brand)
     {
         return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
