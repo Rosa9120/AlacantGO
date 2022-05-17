@@ -19,10 +19,10 @@ class Establishment extends Model
         $establishment->latitude = $lat;
         $establishment->longitude = $long;
 
-        if ($brand == NULL) {
+        if ($brand != NULL) {
             $establishment->brand()->associate($brand);
         }
-        if ($category == NULL) {
+        if ($category != NULL) {
             $establishment->category()->associate($category);
         }
 
@@ -32,6 +32,30 @@ class Establishment extends Model
 
     }
 
+    static public function edit($id, $name, $phone, $address, $pcod, $lat, $long, $brand, $category)
+    {
+        $establishment = Establishment::findOrFail($id);
+
+        $establishment->name = $name;
+        $establishment->phone_number = $phone;
+        $establishment->address = $address;
+        $establishment->postal_code = $pcod;
+        $establishment->latitude = $lat;
+        $establishment->longitude = $long;
+
+        if ($brand != NULL) {
+            $establishment->brand()->associate($brand);
+        }
+        if ($category != NULL) {
+            $establishment->category()->associate($category);
+        }
+
+        $establishment->save();
+
+        return $establishment;
+
+    }
+    
     public function brand() {
         return $this->belongsTo(Brand::class)->withDefault(['name' => 'None',]);
     }

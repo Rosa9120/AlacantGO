@@ -12,7 +12,7 @@
 
     <div class="information">
 
-        <span> <h1> Introduce the name of a valid establishment and the brand to which it belongs </h1> <span>
+        <span> <h1> Select an establishment and the brand to which it belongs </h1> <span>
 
         <br>
 
@@ -22,16 +22,18 @@
             @method('put')
             <li>Establishment: 
                     <select name="establishment" class="form-control editable dropdown">
+                    <option> </option>
                         @foreach ($establishments as $establishment)
-                        <option value="{{ $establishment }}" >{{ $establishment->name }}</option>
+                        <option value="{{ $establishment->id }}" >{{ $establishment->name }}</option>
                         @endforeach
                     </select>
                 </li>
 
             <li>Brand: 
                 <select name="brand" class="form-control editable dropdown">
+                <option> </option>
                     @foreach ($brands as $brand)
-                    <option value="{{ $brand }}" >{{ $brand->name }}</option>
+                    <option value="{{ $brand->id }}" >{{ $brand->name }}</option>
                     @endforeach
                 </select>
             </li>
