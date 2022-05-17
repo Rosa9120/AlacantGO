@@ -12,4 +12,20 @@ class Category extends Model
     public function establishments(){
     	return $this->hasMany('App\Model\Establishment');
     }
+
+    static public function create($name)
+    {
+        $category = new Category;
+        $category->name = $name;
+
+        $category->save();
+
+    }
+
+    static public function edit($category, $name)
+    {
+        $category->name = $name;
+        $category->save();
+
+    }
 }
