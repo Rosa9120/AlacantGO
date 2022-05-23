@@ -64,7 +64,7 @@
         <div class="cards">
             @foreach ($establishments as $est)
                 <div class="card">
-                    <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src="storage/default.jpg">
+                    <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src= "{{ asset($est->img_url) }}">
                     <div class="overlay-container">
                         <div class="overlay">
 
@@ -289,13 +289,14 @@
     }
 
     .card-img-top{
-        height: 79%;
+        height: 380px;
+        object-fit: cover;
     }
 
     .overlay-container {
         position: absolute;
         margin: 0;
-        height: 79%;
+        height: 380px;
         width: 100%;
         z-index:999;
         border-radius: 25px 25px 0 0;
@@ -351,7 +352,11 @@
         width:250px;
     }
 
-
+    .card-title{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        font-weight: 550;
+    }
 
     @media(max-width:1150px){
         .container-down{

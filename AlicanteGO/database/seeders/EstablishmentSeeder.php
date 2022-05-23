@@ -24,7 +24,8 @@ class EstablishmentSeeder extends Seeder
 			'address' => 'C. Álvarez Sereix, 10',
 			'postal_code' => '03001',
 			'latitude' => '38.34598563809095',
-			'longitude' => '-0.48890237064772996'
+			'longitude' => '-0.48890237064772996',
+			'img_url' => '/storage/lalacanti.jpg',
 		]);
 
 		\DB::table('establishments')->insert([
@@ -32,6 +33,7 @@ class EstablishmentSeeder extends Seeder
 			'address' => 'Plaça de l\'Ajuntament, 7',
 			'postal_code' => '03002',
 			'latitude' => '38.34660685077837',
+			'img_url' => '/storage/soho.jpg',
 			'longitude' => '-0.4807297838516754'
 		]);
 
@@ -40,6 +42,7 @@ class EstablishmentSeeder extends Seeder
 			'address' => 'C. José Gutiérrez Petén, 10',
 			'postal_code' => '03004',
 			'latitude' => '38.34938516538533',
+			'img_url' => '/storage/lacocina.jpg',
 			'longitude' => '-0.4871595194473304'
 		]);
 
@@ -48,7 +51,8 @@ class EstablishmentSeeder extends Seeder
 			'address' => 'C. San Nicolás, nº4, Bajo',
 			'postal_code' => '03002',
 			'latitude' => '38.34558581212322',
-			'longitude' => '-0.4819446993979722'
+			'longitude' => '-0.4819446993979722',
+			'img_url' => '/storage/madnesscoffee.jpg'
 		]);
 
 		\DB::table('establishments')->insert([
@@ -57,6 +61,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03002',
 			'latitude' => '38.3444660895255',
 			'longitude' => '-0.4817486229803378',
+			'img_url' => '/storage/burguerpaseo.jpg',
 			'brand_id' => $BK
 		]);
 
@@ -66,6 +71,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03006',
 			'latitude' => '38.3437087611985',
 			'longitude' => '-0.4941248148288982',
+			'img_url' => '/storage/burguerrenfe.jpg',
 			'brand_id' => $BK
 		]);
 
@@ -75,6 +81,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03010',
 			'latitude' => '38.36625512805321',
 			'longitude' => '-0.4857488602153263',
+			'img_url' => 'storage/burguercolombia.jpg',
 			'brand_id' => $BK
 		]);
 
@@ -84,6 +91,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03002',
 			'latitude' => '38.34402912331139',
 			'longitude' => '-0.4825133277066535',
+			'img_url' => 'storage/mcexplanada.jpg',
 			'brand_id' => $MD
 		]);
 
@@ -93,6 +101,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03016',
 			'latitude' => '38.35564281200154',
 			'longitude' => '-0.4720150441895938',
+			'img_url' => '/storage/mcdenia.jpg',
 			'brand_id' => $MD
 		]);
 
@@ -102,6 +111,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03005',
 			'latitude' => '38.354847040776704',
 			'longitude' => '-0.4983531711735167',
+			'img_url' => 'storage/mcciudadreal.jpg',
 			'brand_id' => $MD
 		]);
 
@@ -111,6 +121,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03003',
 			'latitude' => '38.344249509605945',
 			'longitude' => '-0.4837816507142489',
+			'img_url' => 'storage/tgbelche.jpg',
 			'brand_id' => $TGB
 		]);
 
@@ -120,6 +131,7 @@ class EstablishmentSeeder extends Seeder
 			'postal_code' => '03003',
 			'latitude' => '38.345574014748976',
 			'longitude' => '-0.4908615970320252',
+			'img_url' => 'storage/tgbluceros.jpg',
 			'brand_id' => $TGB
 		]);
 	}
