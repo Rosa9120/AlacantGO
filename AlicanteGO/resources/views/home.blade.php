@@ -6,12 +6,12 @@
 </div>
 
 <div class="container-down">
-    <div class="filters" style="min-width: 23%; max-width: 23%;">
-        <form action="{{ url('/establishments/filter') }}" id="filter" method="GET" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+    <div class="filters" >
+        <form action="{{ url('/establishments/filter') }}" id="filter" method="GET" style="height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
             @csrf
             @method('get')
             <div class="filter-element">
-                <select name="category" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                <select name="category" class="form-control dropdown" style="width: 100%; cursor:pointer; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
                     <option value="-1">
                         Category
                     </option>
@@ -25,7 +25,7 @@
                 </select>
             </div>
             <div class="filter-element">
-                <select name="brand" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                <select name="brand" class="form-control dropdown" style="width: 100%; cursor:pointer; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
                     <option value="-1">
                         Brand
                     </option>
@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="filter-element">
-                <select name="orderBy" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                <select name="orderBy" class="form-control dropdown" style="width: 100%; height: 3em; cursor:pointer; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
                     <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
                         selected
                     @endif>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="filter-element"> 
-                <input name="open" class="form-check-input" type="checkbox" style="padding: 9px; margin-right: 5px;" value="" id="flexCheckDefault">
+                <input name="open" class="form-check-input" type="checkbox" style="padding: 9px; cursor:pointer; margin-right: 5px;" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                     Search restaurants that are open now 
                 </label>
@@ -78,7 +78,7 @@
         <div class="cards">
             @foreach ($establishments as $est)
                 <div class="card">
-                    <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src= "{{ asset($est->img_url) }}">
+                    <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src= "{{ asset($est['img_url']) }}">
                     <div class="overlay-container">
                         <div class="overlay">
 
@@ -243,9 +243,8 @@
     }
 
     .filters{
-        flex-grow: 1;
+        /* flex-grow: 1; */
         margin: 15px;
-        width: 400px;
         display:flex;
         height:auto;
         flex-flow: column nowrap;
@@ -259,6 +258,7 @@
         opacity: 0.7;
         background-color:whitesmoke;
         border-radius: 25px;
+        min-width: 400px !important;
     }
 
     .filter-element{
@@ -269,7 +269,7 @@
     }
 
     .container-right{
-        flex-grow: 3;
+        /* flex-grow: 3; */
         justify-content: center;
     }
 
@@ -357,9 +357,6 @@
         width: 250px;
     }
 
-    .dropdown-item{
-        width:250px;
-    }
 
     .card-title{
         font-family: Arial, Helvetica, sans-serif;

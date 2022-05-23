@@ -21,8 +21,8 @@
                 <th>Description</th>
                 <th>Price</th>
                 @auth
-                    @if (Auth::user()->rol == 'manager')
-                    <th width="280px">Action</th>
+                    @if (Auth::user()->rol == 'admin')
+                    <th width="180px">Action</th>
                     @endif
                 @endauth
             </tr>
@@ -45,11 +45,9 @@
                 <td width="10%">{{ $item->price }}€</td>
 
                 @auth
-                    @if (Auth::user()->rol == 'manager')
-                    <td>
-                        <a class="btn btn-primary" href="{{ url("/items/" . $item->id) }}">Show</a>
+                    @if (Auth::user()->rol == 'admin')
+                    <td class="action-buttons">
                         <a class="btn btn-warning" href="{{ url("/items/" . $item->id . "/edit") }}">Edit</a>
-            
                         <form action="{{ url('/items', ['id' => $item->id]) }}" method="POST">
                             @csrf
                             @method('delete')
@@ -61,6 +59,9 @@
             </tr>
             @endforeach
         </table>
+    </div>
+    <div style="display:flex; margin-top: 30px; justify-content:center;">
+        <a class="btn btn-success"> Create New Establishment</a>
     </div>
 </section>
    
@@ -144,6 +145,17 @@
 
     .card-body{
         background-color:#F5F5F5
+    }
+
+    .action-buttons{
+        display:flex;
+        flex-direction:row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    
+    .action-buttons .btn{
+        height:40px;
     }
 
     @media (max-width: 1500px){
