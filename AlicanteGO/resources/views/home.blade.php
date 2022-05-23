@@ -25,6 +25,20 @@
                 </select>
             </div>
             <div class="filter-element">
+                <select name="brand" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                    <option value="-1">
+                        Brand
+                    </option>
+                    @foreach ($brands as $brand_opt)
+                        <option value="{{ $brand_opt->id }}" @if (!empty($brand) and $brand == $brand_opt->id)
+                            selected
+                        @endif>
+                            {{ $brand_opt->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="filter-element">
                 <select name="orderBy" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
                     <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
                         selected

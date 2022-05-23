@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Establishment;
@@ -27,8 +28,10 @@ class HomeController extends Controller
     {
         $establishments = Establishment::all();
         $categories = Category::all();
+        $brands = Brand::all();
         $orderBy = -1;
+        $brand = -1;
         $category = -1;
-        return view('home')->with(["establishments" => $establishments, "categories" => $categories, "orderBy" => $orderBy, "category" => $category]);
+        return view('home')->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "orderBy" => $orderBy, "category" => $category, "brand" => $brand]);
     }
 }
