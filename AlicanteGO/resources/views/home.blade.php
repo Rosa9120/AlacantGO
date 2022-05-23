@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<section>
 <div class="map-container" id="map-container" style="height: 540px;">
     
 </div>
@@ -20,7 +21,20 @@
             </div>
         </div>
 
-        <div class="filter-element">
+        <div class="filter-element" style="display:flex; flex-direction:row;">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="dropdownMenuButton3" data-toggle="dropdown2" aria-haspopup="true" data-bs-toggle="dropdown2"  aria-expanded="false">
+                  Search by brand
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-element" style="display:flex; flex-direction:row;">
             <div class="dropdown2">
                 <button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="dropdownMenuButton2" data-toggle="dropdown2" aria-haspopup="true" data-bs-toggle="dropdown2"  aria-expanded="false">
                   Order
@@ -32,6 +46,7 @@
                 </div>
             </div>
         </div>
+
         <div class="filter-element"> 
             <input class="form-check-input" type="checkbox" style="padding: 9px;" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
@@ -55,7 +70,7 @@
 
                         </div>
                     </div>
-                    <a href="{{ url("/establishments/" . $est->id) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
+                    <a href="{{ url("/establishment/" . $est->id) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
                     <div class="card-body">
                         <h5 class="card-title"> {{ $est->name }}</h5>
                         <p class="card-text"> {{ $est->address }} </p>
@@ -65,6 +80,7 @@
         </div>
     </div>
 </div>
+</section>
 @endsection
 
 @section('scripts')
@@ -173,6 +189,11 @@
         display:flex;
     } */
 
+    section{
+        height: (100vh - 70px);
+    }
+
+
     .head{
         height: 70px;
         display:flex;
@@ -267,10 +288,14 @@
         border-radius:25px;
     }
 
+    .card-img-top{
+        height: 79%;
+    }
+
     .overlay-container {
         position: absolute;
         margin: 0;
-        height: 80%;
+        height: 79%;
         width: 100%;
         z-index:999;
         border-radius: 25px 25px 0 0;
@@ -325,6 +350,8 @@
     .dropdown-item{
         width:250px;
     }
+
+
 
     @media(max-width:1150px){
         .container-down{

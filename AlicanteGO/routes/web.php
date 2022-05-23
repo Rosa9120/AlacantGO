@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Establishment;
+use App\Models\Item;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -8,8 +10,14 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
+//MAIN PAGE ROUTES
 Route::get('/aboutus', function () {
     return view('aboutus');
+});
+
+Route::get('/establishment/{establishment}', function($establishment){
+    $establishment = Establishment::whereId($establishment)->first();
+    return view('establishment')->with("establishment", $establishment);
 });
 
 // ITEMS' ROUTES
