@@ -84,7 +84,7 @@
 
                         </div>
                     </div>
-                    <a href="{{ url("/establishments/" . $est['id']) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
+                    <a href="{{ url("/establishment/" . $est['id']) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
                     <div class="card-body">
                         <h5 class="card-title"> {{ $est['name'] }}</h5>
                         <p class="card-text"> {{ $est['address'] }} </p>
@@ -170,7 +170,7 @@
                         <div class="geodir_post_meta  geodir-field-post_title"><span class="geodir_post_meta_icon geodir-i-text">
                             <i class="fas fa-minus" aria-hidden="true"></i>
                             <span class="geodir_post_meta_title"> </span>
-                            <div src="storage/default.jpg" style="height:170px; width:170px;">   </div>     
+                            <img src=`+establishment.img_url+` height="170px" width="170px"> 
                         </div> 
                         <br>
                         <div style="font-weight:bold; font-size: 1rem; font-family: sans-serif, Monospace, Helvetica;"  class="geodir_post_meta  geodir-field-post_title"><span class="geodir_post_meta_icon geodir-i-text">
