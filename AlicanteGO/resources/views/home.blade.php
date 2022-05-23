@@ -7,7 +7,7 @@
 
 <div class="container-down">
     <div class="filters" style="min-width: 23%; max-width: 23%;">
-        <form action="{{ url('/establishments/filter') }}" method="GET" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+        <form action="{{ url('/establishments/filter') }}" id="filter" method="GET" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
             @csrf
             @method('get')
             <div class="filter-element">
@@ -66,13 +66,14 @@
             </div> 
 
             <input type="submit" value="Apply filters" class="btn btn-primary" />
+            <a href="/" class="btn btn-danger">Clear filters</a>
         </form> 
 
     </div>
     <div class="container-right"> 
         <div class="searcher"> 
-            <input type="text" name="search" value="" class="form-control" style="width: 50%; font-size: 1.2rem;" placeholder="Search by name...">
-            <input type="submit" value="Go" style="font-size: 1.2rem;" class="btn btn-primary" />
+            <input type="text" form="filter" name="search" class="form-control" style="width: 50%; font-size: 1.2rem;" placeholder="Search by name or address..." value={{ $search }}>
+            <input type="submit" form="filter" value="Go" style="font-size: 1.2rem;" class="btn btn-primary" />
         </div>
         <div class="cards">
             @foreach ($establishments as $est)

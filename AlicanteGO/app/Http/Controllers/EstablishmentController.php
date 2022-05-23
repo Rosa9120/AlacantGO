@@ -117,14 +117,19 @@ class EstablishmentController extends Controller
     function filter_establishments(Request $request) {
         $establishments = null;
 
-        if ($request->input("category") == -1) {
-            $establishments = Establishment::all();
-        } else {
+        $search = $request->input("search") == null ? "" : trim($request->input("search"));
+
+        $establishments = Establishment::where('name', 'like', '%' . $search . '%')->orWhere('address', 'like', '%' . $search . '%')->get();
+
+        if ($request->input("category") > 0) {
             $establishments = Establishment::whereCategoryId($request->input("category"))->get();
+            $establishments = array_filter($establishments->toArray(), function($item) use ($request) {
+                return $item["category_id"] == $request->input("category");
+            });
         }
 
         if ($request->input("brand") > 0) {
-            $establishments = array_filter($establishments->toArray(), function($item) use ($request) {
+            $establishments = array_filter(gettype($establishments) != "array" ? $establishments->toArray() : $establishments, function($item) use ($request) {
                 return $item["brand_id"] == $request->input("brand");
             });
         }
@@ -149,7 +154,7 @@ class EstablishmentController extends Controller
 
         $categories = Category::all();
         $brands = Brand::all();
-        return view("home")->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "brand" => $request->input("brand"), "category" => $request->input("category"), "orderBy" => $request->input("orderBy")]);
+        return view("home")->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "brand" => $request->input("brand"), "category" => $request->input("category"), "orderBy" => $request->input("orderBy"), "search" => $search]);
     }
 
     /**

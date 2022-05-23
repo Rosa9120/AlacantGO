@@ -32,6 +32,6 @@ class HomeController extends Controller
         $orderBy = -1;
         $brand = -1;
         $category = -1;
-        return view('home')->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "orderBy" => $orderBy, "category" => $category, "brand" => $brand]);
+        return view('home')->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "orderBy" => $orderBy, "category" => $category, "brand" => $brand, "search" => ""]);
     }
 }

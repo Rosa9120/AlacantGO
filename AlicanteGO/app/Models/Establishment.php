@@ -14,13 +14,14 @@ class Establishment extends Model
     ];
 
     public function getPriceAttribute() { // Get the average price of all the items at a particular restaurant to order them
+        $items_count = $this->items()->count();
         $items = $this->items()->get();
 
-        if (count($items) == 0) {
+        if ($items_count == 0) {
             return 0;
         }
 
-        $price = array_sum(array_column($items->toArray(), "price")) / count($items);
+        $price = array_sum(array_column($items->toArray(), "price")) / $items_count;
 
         return $price;
     }
