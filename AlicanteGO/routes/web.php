@@ -6,14 +6,14 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin', function () {
     return view('admin');
-});
+})->middleware("admin");
 
 Route::get('/aboutus', function () {
     return view('aboutus');
 });
 
 // ITEMS' ROUTES
-Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->middleware("admin");
 Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
 Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
 Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
