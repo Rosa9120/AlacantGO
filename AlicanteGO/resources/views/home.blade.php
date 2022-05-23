@@ -133,7 +133,8 @@
 	google.maps.event.addDomListener(window, 'load', initialize);
 
     function generateContent(establishment)
-    {
+    {   
+
         var content = `
             <div class="gd-bubble" style="">
                 <div class="gd-bubble-inside">
@@ -156,8 +157,8 @@
                         <div class="geodir_post_meta  geodir-field-post_title"><span class="geodir_post_meta_icon geodir-i-text">
                             <i class="fas fa-minus" aria-hidden="true"></i>
                             <span class="geodir_post_meta_title"> </span>
-                            <img src="storage/default.jpg" height="170px" width="170px">
-                        </div>
+                            <div src="storage/default.jpg" style="height:170px; width:170px;">   </div>     
+                        </div> 
                         <br>
                         <div style="font-weight:bold; font-size: 1rem; font-family: sans-serif, Monospace, Helvetica;"  class="geodir_post_meta  geodir-field-post_title"><span class="geodir_post_meta_icon geodir-i-text">
                             <i class="fas fa-minus" aria-hidden="true"></i>
