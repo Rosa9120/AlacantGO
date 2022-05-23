@@ -62,7 +62,7 @@ class CategoryController extends Controller
     }
 
     public function edit(Category $category) {
-        return view('categories.edit_category', ["success" => true, "category" => $category]);
+        return view('categories.category_edit', ["success" => true, "category" => $category]);
     }
 
     public function edit_category(Category $category, Request $request) 

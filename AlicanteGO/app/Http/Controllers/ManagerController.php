@@ -55,13 +55,13 @@ class ManagerController extends Controller
 
     public function show(Manager $manager) {
        // $manager = Manager::findOrFail($manager);
-        return view('managers.showmanager', ["success" => true, "manager" => $manager]);
+        return view('managers.manager', ["success" => true, "manager" => $manager]);
     }
 
     public function create_view(){
         $establishments = \DB::table('establishments')->get();
         $brands = \DB::table('brands')->get();
-        return view('managers.addmanagers', ["success" => true, "brands" => $brands, "establishments" => $establishments]);     
+        return view('managers.manager_create', ["success" => true, "brands" => $brands, "establishments" => $establishments]);     
     }
 
     public function create(Request $request) {
@@ -80,7 +80,7 @@ class ManagerController extends Controller
     public function edit_view(Manager $manager){
         $brands = \DB::table('brands')->get();
         $establishments = \DB::table('establishments')->get();
-        return view('managers.editmanagers', ["success" => true, "manager" => $manager, "brands" => $brands, "establishments" => $establishments]);     
+        return view('managers.manager_edit', ["success" => true, "manager" => $manager, "brands" => $brands, "establishments" => $establishments]);     
     }
 
     public function edit(Manager $manager, Request $request){

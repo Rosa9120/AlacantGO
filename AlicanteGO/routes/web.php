@@ -26,24 +26,23 @@ Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'del
  * MANAGER ROUTES
  */
 Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
-Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+Route::get('/managers/create', [App\Http\Controllers\ManagerController::class, 'create_view']);
+Route::post('/managers', [App\Http\Controllers\ManagerController::class, 'create']);
 Route::get('/managers/search', [App\Http\Controllers\ManagerController::class, 'search']);
 Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
-Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'create_view']);
-Route::post('/addmanagers/create', [App\Http\Controllers\ManagerController::class, 'create']);
-Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
-Route::get('/managers/edit/{manager}', [App\Http\Controllers\ManagerController::class, 'edit_view']);
+Route::get('/managers/{manager}/edit', [App\Http\Controllers\ManagerController::class, 'edit_view']);
 Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'edit']);
+Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
 
 // ESTABLISHMENTS' ROUTES
-Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
-Route::get('/addestablishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
-Route::post('/addestablishments/create', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
-Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
-Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');
-Route::patch('/establishments/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
-Route::get('/establishments/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
-Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
+Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'index']);
+Route::get('/establishments/create', [App\Http\Controllers\EstablishmentController::class, 'create_view']);
+Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create']);
+Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search']);
+Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'show'])->name('establishment');
+Route::get('/establishments/{id}/edit', [App\Http\Controllers\EstablishmentController::class, 'edit_view']);
+Route::patch('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'edit']);
+Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete']);
 
 /**
  * BRAND ROUTES

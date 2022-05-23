@@ -21,7 +21,7 @@ class BrandController extends Controller
         {
             $brand = Brand::find($request->input('brand_id'));
 
-            return view('brand.get_brand', ['name' => $brand->name]);
+            return view('brand.brand', ['name' => $brand->name]);
         }
 
         else
@@ -81,7 +81,7 @@ class BrandController extends Controller
 
     public function edit(Brand $brand)
     {
-        return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
+        return view('brand.brand_edit', ["success" => true, "brand" => $brand]);
     }
 
     public function edit_brand(Request $request, Brand $brand) 

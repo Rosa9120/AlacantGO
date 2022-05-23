@@ -11,7 +11,7 @@
 
     <div class="manager">
         <div class="information">
-            <form action="{{ url('/addmanagers/create') }}" method="POST" class="form-group">
+            <form action="{{ url('/managers') }}" method="POST" class="form-group">
                 @csrf
                 <ul>
                     <li> Full name 

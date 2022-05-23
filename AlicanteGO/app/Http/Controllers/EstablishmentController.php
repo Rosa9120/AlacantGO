@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class EstablishmentController extends Controller
 {
-    function get_all() {
+    function index() {
         $count = Establishment::all()->count();
         $establishments = Establishment::paginate(5);
         return view('establishment/establishments', ["establishments" => $establishments, "count" => $count]);
@@ -18,33 +18,33 @@ class EstablishmentController extends Controller
     /**
      * Returns the form to add a new establishment
      */
-    function create_establishment() {
+    function create_view() {
         $brands = Brand::get();
         $categories = Category::get();
-        return view('establishment/establishmentadd', ['brands' => $brands, 'categories' => $categories]);
+        return view('establishment/establishment_create', ['brands' => $brands, 'categories' => $categories]);
     }
 
     /**
      * Returns the data of one establishment 
      */
-    function get_establishment($id) {
+    function show($id) {
         return view('establishment/establishment')->with('establishment', Establishment::findOrFail($id));
     }
 
     /**
      * Returns the establishment update form
      */
-    function update_establishment($id) {
+    function edit_view($id) {
         $establishment = Establishment::findOrFail($id);
         $brands = Brand::get();
         $categories = Category::get();
-        return view('establishment/establishmentedit', ['establishment' => $establishment, 'brands' => $brands, 'categories' => $categories]);
+        return view('establishment/establishment_edit', ['establishment' => $establishment, 'brands' => $brands, 'categories' => $categories]);
     }
 
     /**
      * Deletes an establishment
      */
-    function delete_establishment(Establishment $establishment) {
+    function delete(Establishment $establishment) {
         $establishment->delete();
         return redirect()->back();
     }
@@ -52,7 +52,7 @@ class EstablishmentController extends Controller
     /**
      * Search establishments
      */
-    function search_establishment(Request $req) {
+    function search(Request $req) {
         $search = $req->get('search');
         $orderBy = $req->get('orderBy');
 
@@ -100,7 +100,7 @@ class EstablishmentController extends Controller
      /**
      * Processes to form to add a new establishment
      */
-    function create_establishment_process(Request $req) {
+    function create(Request $req) {
         $req->validate(['name' => 'required',
                         'address' => 'required',
                         'postal_code' => 'required',
@@ -117,7 +117,7 @@ class EstablishmentController extends Controller
     /**
      * Processes to form to edit an establishment
      */
-    function update_establishment_process(Request $req, $id) {
+    function edit(Request $req, $id) {
 
         $req->validate([
             'name' => 'required',
