@@ -46,6 +46,7 @@ Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::cla
 // ESTABLISHMENTS' ROUTES
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
 Route::get('/addestablishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
+Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
 Route::post('/addestablishments/create', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
 Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
 Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');

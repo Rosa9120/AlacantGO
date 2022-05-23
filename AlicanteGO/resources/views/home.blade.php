@@ -1,65 +1,79 @@
 @extends('layouts.app')
 
 @section('content')
-<section>
 <div class="map-container" id="map-container" style="height: 540px;">
     
 </div>
 
 <div class="container-down">
-    <div class="filters"> 
-        <div class="filter-element" style="display:flex; flex-direction:row;">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" data-bs-toggle="dropdown"  aria-expanded="false">
-                  Category
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+    <div class="filters" style="min-width: 23%; max-width: 23%;">
+        <form action="{{ url('/establishments/filter') }}" id="filter" method="GET" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+            @csrf
+            @method('get')
+            <div class="filter-element">
+                <select name="category" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                    <option value="-1">
+                        Category
+                    </option>
+                    @foreach ($categories as $category_opt)
+                        <option value="{{ $category_opt->id }}" @if (!empty($category) and $category == $category_opt->id)
+                            selected
+                        @endif>
+                            {{ $category_opt->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
-        </div>
-
-        <div class="filter-element" style="display:flex; flex-direction:row;">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="dropdownMenuButton3" data-toggle="dropdown2" aria-haspopup="true" data-bs-toggle="dropdown2"  aria-expanded="false">
-                  Search by brand
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <div class="filter-element">
+                <select name="brand" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                    <option value="-1">
+                        Brand
+                    </option>
+                    @foreach ($brands as $brand_opt)
+                        <option value="{{ $brand_opt->id }}" @if (!empty($brand) and $brand == $brand_opt->id)
+                            selected
+                        @endif>
+                            {{ $brand_opt->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
-        </div>
-
-        <div class="filter-element" style="display:flex; flex-direction:row;">
-            <div class="dropdown2">
-                <button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="dropdownMenuButton2" data-toggle="dropdown2" aria-haspopup="true" data-bs-toggle="dropdown2"  aria-expanded="false">
-                  Order
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <div class="filter-element">
+                <select name="orderBy" class="form-control dropdown" style="width: 100%; height: 3em; font-size: 0.75em; text-align: center; background-color: #686868; color: white;">
+                    <option value="-1" @if (!empty($orderBy) and $orderBy == -1)
+                        selected
+                    @endif>
+                        Order by
+                    </option>
+                    <option value="1" @if (!empty($orderBy) and $orderBy == 1)
+                        selected
+                    @endif>
+                        Price: High to Low
+                    </option>
+                    <option value="2" @if (!empty($orderBy) and $orderBy == 2)
+                        selected
+                    @endif>
+                        Price: Low to High
+                    </option>
+                </select>
             </div>
-        </div>
 
-        <div class="filter-element"> 
-            <input class="form-check-input" type="checkbox" style="padding: 9px;" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Search restaurants that are open now </label>
-        </div> 
+            <div class="filter-element"> 
+                <input name="open" class="form-check-input" type="checkbox" style="padding: 9px; margin-right: 5px;" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Search restaurants that are open now 
+                </label>
+            </div> 
 
-        <input type="submit" value="Apply filters" class="btn btn-primary" />
+            <input type="submit" value="Apply filters" class="btn btn-primary" />
+            <a href="/" class="btn btn-danger">Clear filters</a>
+        </form> 
 
     </div>
     <div class="container-right"> 
         <div class="searcher"> 
-            <input type="text" name="search" value="" class="form-control" style="width: 50%; font-size: 1.2rem;" placeholder="Search by name...">
-            <input type="submit" value="Go" style="font-size: 1.2rem;" class="btn btn-primary" />
+            <input type="text" form="filter" name="search" class="form-control" style="width: 50%; font-size: 1.2rem;" placeholder="Search by name or address..." value={{ $search }}>
+            <input type="submit" form="filter" value="Go" style="font-size: 1.2rem;" class="btn btn-primary" />
         </div>
         <div class="cards">
             @foreach ($establishments as $est)
@@ -70,17 +84,16 @@
 
                         </div>
                     </div>
-                    <a href="{{ url("/establishment/" . $est->id) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
+                    <a href="{{ url("/establishments/" . $est['id']) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
                     <div class="card-body">
-                        <h5 class="card-title"> {{ $est->name }}</h5>
-                        <p class="card-text"> {{ $est->address }} </p>
+                        <h5 class="card-title"> {{ $est['name'] }}</h5>
+                        <p class="card-text"> {{ $est['address'] }} </p>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
 </div>
-</section>
 @endsection
 
 @section('scripts')
@@ -95,7 +108,7 @@
 			zoomControlOptions: {
   				style:google.maps.ZoomControlStyle.DEFAULT
 			},
-			center: new google.maps.LatLng({{ $latitude }}, {{ $longitude }}),
+			center: new google.maps.LatLng({{ 38.34517 }}, {{ -0.48149 }}),
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			scrollwheel: true,
 			panControl:false,
@@ -105,7 +118,7 @@
 			rotateControl:false
 	  	}
 		var map = new google.maps.Map(document.getElementById('map-container'), mapOptions);
-        var image = new google.maps.MarkerImage("assets/images/pin.png", null, null, null, new google.maps.Size(28,36));
+        var image = new google.maps.MarkerImage("/assets/images/pin.png", null, null, null, new google.maps.Size(28,36));
         console.log(image);
         var establishments = @json($establishments);
 
@@ -189,11 +202,6 @@
         background-color: #b7d8f3;
         display:flex;
     } */
-
-    section{
-        height: (100vh - 70px);
-    }
-
 
     .head{
         height: 70px;
