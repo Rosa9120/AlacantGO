@@ -10,7 +10,7 @@
                 <h1> {{ $establishment->name}} </h1>
                 <h2> {{ $establishment->address}} </h2>
             </div>
-            <img class="custom-img" src="/storage/header.jpg">
+            <img class="custom-img" src="{{ asset($establishment->img_url) }}">
 
         </div>
 
