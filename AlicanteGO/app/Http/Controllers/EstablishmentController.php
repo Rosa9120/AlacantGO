@@ -114,6 +114,36 @@ class EstablishmentController extends Controller
         return redirect('/establishments/' . $establishment->id);
     }
 
+    function filter_establishments(Request $request) {
+        $establishments = null;
+
+        if ($request->input("category") == -1) {
+            $establishments = Establishment::all();
+        } else {
+            $establishments = Establishment::whereCategoryId($request->input("category"))->get();
+        }
+
+        $establishments = $establishments->toArray();
+
+        switch($request->input("orderBy")) {
+            case 1:
+                usort($establishments, function($a, $b) {
+                    return $a["price"] < $b["price"] ? 1 : -1;
+                });
+                break;
+            case 2:
+                usort($establishments, function($a, $b) {
+                    return $a["price"] > $b["price"] ? 1 : -1;
+                });
+                break;
+            default:
+                break;
+        }
+
+        $categories = Category::all();
+        return view("home")->with(["establishments" => $establishments, "categories" => $categories, "category" => $request->input("category"), "orderBy" => $request->input("orderBy")]);
+    }
+
     /**
      * Processes to form to edit an establishment
      */

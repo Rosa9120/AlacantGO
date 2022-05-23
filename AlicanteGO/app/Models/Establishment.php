@@ -9,6 +9,22 @@ class Establishment extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        "price"
+    ];
+
+    public function getPriceAttribute() { // Get the average price of all the items at a particular restaurant to order them
+        $items = $this->items()->get();
+
+        if (count($items) == 0) {
+            return 0;
+        }
+
+        $price = array_sum(array_column($items->toArray(), "price")) / count($items);
+
+        return $price;
+    }
+
     static public function create($name, $phone, $address, $pcod, $lat, $long, $brand, $category)
     {
         $establishment = new Establishment();
