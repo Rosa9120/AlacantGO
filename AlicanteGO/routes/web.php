@@ -8,7 +8,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin', function () {
     return view('admin');
-});
+})->middleware("admin");
 
 //MAIN PAGE ROUTES
 Route::get('/aboutus', function () {
@@ -21,7 +21,7 @@ Route::get('/establishment/{establishment}', function($establishment){
 });
 
 // ITEMS' ROUTES
-Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->middleware("admin");
 Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
 Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
 Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
@@ -62,6 +62,7 @@ Route::get('/brands/create', function () {return view('brand.brand_create');});
 Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
 Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
 Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
+
 Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);
 Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
 
@@ -71,7 +72,7 @@ Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDE
 Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
 
 Route::get('/brands/set', [App\Http\Controllers\BrandController::class, 'set_brand']);
-Route::put('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']);
+Route::put('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']); //THIS IS FOR THE SET BRAND
 
 /**
  * CATEGORY ROUTES

@@ -21,7 +21,7 @@
                     </ul>
                 
                     <div class="submit">
-                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        <button type="submit" class="btn btn-success">Confirm</button>
                     </div>
                 </form>
             </div>
@@ -39,7 +39,7 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 50%;
+        width: 70%;
         height: auto;
         max-height: 100%;
         background-color: rgba(109, 109, 109, 0.2);
@@ -68,7 +68,7 @@
         color: white;
     }
 
-    .item {
+    .manager {
         display: flex;
         flex-direcion: row;
         flex-grow: 0;
@@ -78,16 +78,59 @@
     }
 
     .information {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border: 1px solid grey;
         border-radius: 10px;
         font-size: 22px;
+        min-width: 60%
         max-width: 70%;
         max-height: 80%;
-        margin: auto;
+        flex-grow: 1;
         margin-top: 0;
+        margin-left: 20px;
+        margin-right: 10px;
         margin-bottom: 20px;
         overflow-y: auto;
         padding: 20px;
+    }
+
+    ::-webkit-input-placeholder {
+        font-style: italic;
+     }
+     :-moz-placeholder {
+        font-style: italic;  
+     }
+     ::-moz-placeholder {
+        font-style: italic;  
+     }
+     :-ms-input-placeholder {  
+        font-style: italic; 
+     }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .editable {
+        line-height: 14px;
+        margin-bottom: 8px;
+        width: 40%;
+        border-radius: 5px;
+        border: none;
+        padding: 3px;
+        padding-left: 5px;
+    }
+
+    .dropdown {
+        line-height: 20px;
+    }
+
+    .submit {
+        display: flex;
+        justify-content: flex-end;
     }
 
 @endsection

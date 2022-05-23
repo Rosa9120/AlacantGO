@@ -16,7 +16,9 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $next($request);
-        // abort(403,'Unauthorized');
+        if (Auth::check() && Auth::user()->rol == "admin") {
+            return $next($request);
+        }
+        abort(403,'Unauthorized');
     }
 }

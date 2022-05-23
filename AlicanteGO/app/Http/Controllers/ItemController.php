@@ -11,7 +11,6 @@ use App\Http\Requests\ItemRequest;
 class ItemController extends Controller
 {
     public function index () {
-        dd(app());
         $count = Item::all()->count();
         $items = Item::paginate(7);
         return view('items.items', ["success" => true, "items" => $items, "count" => $count]);
@@ -70,20 +69,9 @@ class ItemController extends Controller
     }
     
     public function edit(Item $item, ItemRequest $request) {
-        $item->name = trim($request["name"]);
-        $item->price = $request["price"];
-        $item->description = trim($request["description"]);
-        $item->type = trim($request["type"]);
-        if (\Request::has("brand")) {
-            $brand = Brand::whereId($request["brand"])->first();
-            $item->brand()->associate($brand);
-        }
-        else {
-            $establishment = Establishment::whereId($request["establishment"])->first();
-            $item->establishment()->associate($establishment);
-        }
 
-        $item->save();
+        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
+        Brand::whereId($request["brand"])->first(), Establishment::whereId($request["establishment"])->first());
 
         return redirect('/items/' . $item->id);
     }
@@ -96,19 +84,9 @@ class ItemController extends Controller
     }
 
     public function create(ItemRequest $request) {
-        $item = new Item;
-        $item->name = $request->input('name');
-        $item->price = $request->input('price');
-        $item->description = $request->input('description');
-        $item->type = $request->input('type');
-
-        if ($request->input('radioItem') == 'brand') {
-            $item->brand()->associate(Brand::whereId($request->input('dropdownItem'))->first());
-        } else {
-            $item->establishment()->associate(Establishment::whereId($request->input('dropdownItem'))->first());
-        }
-
-        $item->save();
+        
+        $item = Item::create(trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
+        Brand::whereId($request->input('dropdownItem'))->first(), Establishment::whereId($request->input('dropdownItem'))->first());
 
         return redirect('/items/' . $item->id);
     }

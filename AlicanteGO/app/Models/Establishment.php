@@ -9,6 +9,53 @@ class Establishment extends Model
 {
     use HasFactory;
 
+    static public function create($name, $phone, $address, $pcod, $lat, $long, $brand, $category)
+    {
+        $establishment = new Establishment();
+        $establishment->name = $name;
+        $establishment->phone_number = $phone;
+        $establishment->address = $address;
+        $establishment->postal_code = $pcod;
+        $establishment->latitude = $lat;
+        $establishment->longitude = $long;
+
+        if ($brand != NULL) {
+            $establishment->brand()->associate($brand);
+        }
+        if ($category != NULL) {
+            $establishment->category()->associate($category);
+        }
+
+        $establishment->save();
+
+        return $establishment;
+
+    }
+
+    static public function edit($id, $name, $phone, $address, $pcod, $lat, $long, $brand, $category)
+    {
+        $establishment = Establishment::findOrFail($id);
+
+        $establishment->name = $name;
+        $establishment->phone_number = $phone;
+        $establishment->address = $address;
+        $establishment->postal_code = $pcod;
+        $establishment->latitude = $lat;
+        $establishment->longitude = $long;
+
+        if ($brand != NULL) {
+            $establishment->brand()->associate($brand);
+        }
+        if ($category != NULL) {
+            $establishment->category()->associate($category);
+        }
+
+        $establishment->save();
+
+        return $establishment;
+
+    }
+    
     public function brand() {
         return $this->belongsTo(Brand::class)->withDefault(['name' => 'None',]);
     }
