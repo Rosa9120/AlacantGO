@@ -1,10 +1,17 @@
 @extends('admin')
 
+@section('title', 'Show Manager')
+
 @section('content')
+
 
     <div class="container">
         <div class="back">
             <a href="/managers" id="back">Go Back</a>
+        </div>
+
+        <div class="title">
+            <h1> Manager Info </h1>
         </div>
 
         <div class="manager">
@@ -67,6 +74,7 @@
 
     #back:hover {
         color: white;
+        transform: scale(1.1);
     }
 
     .img-container {
@@ -109,6 +117,7 @@
         overflow-y: auto;
         padding: 20px;
     }
+    
     </style>
 
 @endsection

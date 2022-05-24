@@ -20,17 +20,23 @@
 
                     <li> DNI 
                         <input class="editable" required name="DNI" type="text" value="{{ old('DNI') }}" class="form-control" class="@error('DNI') is-invalid @enderror" placeholder="Enter DNI" id="DNI">
-                    @error('DNI')
-                        <div class="alert alert-danger"> DNI must have 8 numbers and one capital letter</div>
-                    @enderror
                     </li>
+                    @error('DNI')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> DNI must have 8 numbers and one capital letter</div>
+                    </li>
+                    @enderror
+                    
 
                     <li> Phone Number 
                         <input class="editable" required name="phone" type="text" value="{{ old('phone') }}" class="form-control" class="@error('phone') is-invalid @enderror" placeholder="Enter phone number" id="phone_number">
-                    @error('phone')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
                     </li>
+                    @error('phone')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg">{{ $message }}</div>
+                    </li>
+                    @enderror
+                    
 
                     <li> Establishment 
                     
@@ -64,6 +70,19 @@
 @endsection
 
 @section('style')
+
+.error-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+li > .error-msg {
+    min-width: 40%;
+    padding: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #842029;
+}
 
     .container {
         font-family: "Montserrat", sans-serif;

@@ -42,16 +42,16 @@
                 </svg>
             </button> --}}
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler mr-2" style="color: #e5e3df;" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
         
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="auth" style="display: flex;">
                         @auth
-                        @if (Auth::user()->rol == 'admin')
-                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin </a>
-                        @endif
+                            @if (Auth::user()->rol == 'admin')
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin Panel </a>
+                            @endif
                         @endauth
                         @guest
                             <div class="auth" style="display: flex;">
@@ -59,9 +59,23 @@
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
                             </div>
                         @else
-                            <div>
+                            {{-- <div>
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="#">{{ Auth::user()->name }}</a>
+                            </div> --}}
+                            <div class="dropdown" style="padding: 0; display: inline-block;">
+                                <button class="btn dropdown-toggle" style="background-color: transparent; color:rgb(221, 221, 221);" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" style="padding: 0;"><button class="btn">Profile</button></a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" style="padding: 0;"><button type="submit" class="btn" form="logout-form">Logout</button></a>
+                                </div>
                             </div>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                                @csrf
+                                @method('post')
+                            </form>
                         @endguest
                     </div>
                 </div>
@@ -75,10 +89,10 @@
         <div class="footer-basic">
             <footer>
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#">Home</a></li>
-                    <li class="list-inline-item"><a href="#">Restaurants</a></li>
-                    <li class="list-inline-item"><a href="#">About Us</a></li>
-                    <li class="list-inline-item"><a href="#">Register</a></li>
+                    <li class="list-inline-item"><a href="/">Home</a></li>
+                    <li class="list-inline-item"><a href="/aboutus">About Us</a></li>
+                    <li class="list-inline-item"><a href="/register">Register</a></li>
+                    <li class="list-inline-item"><a href="/profile">Your profile</a></li>
                 </ul>
                 <p class="copyright">AlicanteGO © 2022</p>
             </footer>

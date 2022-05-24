@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'About us')
+
 @section('content')
 
 <section id="section01" class="demo">
@@ -51,7 +53,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title puesto"> Rosa María Rodríguez Lledó </h5>
-            <p class="card-name"> Marketing leader </p>
+            <p class="card-name"> Frontend developer </p>
             <p>Some text that describes me lorem ipsum ipsum lorem.</p>
             <p>rmrl3@gcloud.ua.es</p>
             <a href="mailto:rmrl3@gcloud.ua.es" class="btn btn-secondary btn-sm"> Contact </a>
@@ -319,10 +321,17 @@
         background-color:whitesmoke;
         z-index: 999;
         opacity:0.9;
+        margin-bottom: 80px;
+
     }
 
     .card-name{
 
+    }
+
+    .separator {
+        height: 0;
+        background-color: #e5e3df;
     }
 
     </style>

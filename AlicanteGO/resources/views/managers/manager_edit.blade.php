@@ -1,10 +1,16 @@
 @extends('admin')
 
+@section('title', 'Edit Manager')
+
 @section('content')
 
     <div class="container">
         <div class="back">
             <a href="/managers" id="back">Go Back</a>
+        </div>
+
+        <div class="title">
+            <h1> Edit Manager </h1>
         </div>
 
         <div class="manager">
@@ -21,13 +27,17 @@
                     <li>Full name: <input class="custom" name="name" required value="{{ old('name', $manager->name) }}"> </li>
                     <li>DNI: <input class="custom" name="DNI" required value = "{{ old('DNI',$manager->DNI) }}"class="@error('DNI') is-invalid @enderror"  > </li>
                     @error('DNI')
-                    <div class="alert alert-danger"> DNI must have 8 numbers and one capital letter</div>
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> DNI must have 8 numbers and one capital letter</div>
+                    </li>
                     @enderror
 
                     <li>Phone number: <input class="custom" name="phone" required class="@error('phone') is-invalid @enderror" value="{{ old('phone', $manager->phone) }}"> </li>
                     @error('phone')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg">{{ $message }}</div>
+                    </li>
+                    @enderror
                     <li>Brand:                
                         <select id="dropdown" name="dropdownBrand" class="custom dropdown">
                         @if(isset($manager->brand))
@@ -73,8 +83,21 @@
 
     <style>
 
-.container {
-    font-family: "Montserrat", sans-serif;
+    .error-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        li > .error-msg {
+            min-width: 40%;
+            padding: 0;
+            padding-left: 6px;
+            padding-right: 6px;
+            color: #842029;
+        }
+
+    .container {
+        font-family: "Montserrat", sans-serif;
         margin-top: 100px;
         padding: 15px;
         -webkit-box-sizing: border-box;
@@ -106,6 +129,7 @@
 
     #back:hover {
         color: white;
+        transform: scale(1.1);
     }
 
     .img-container {

@@ -9,6 +9,10 @@
         <a href="/establishments" id="back">Go Back</a>
     </div>
 
+    <div class="title">
+            <h1> Establishment Info</h1>
+    </div>
+
     <div class="establishment">
         <div class="information">
             <ul>
@@ -60,7 +64,7 @@
     }
 
     #back:hover {
-        font-size: 21px;
+        transform: scale(1.1);
         color: white;
     }
 

@@ -1,3 +1,5 @@
+@section('title', 'Admin view')
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -32,6 +34,19 @@
         <div class="content">
             @yield('content')
         </div>
+
+        <div class="footer-basic">
+            <footer>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="/">Home</a></li>
+                    <li class="list-inline-item"><a href="/aboutus">About Us</a></li>
+                    <li class="list-inline-item"><a href="/register">Register</a></li>
+                    <li class="list-inline-item"><a href="/profile">Your profile</a></li>
+                </ul>
+                <p class="copyright">AlicanteGO © 2022</p>
+            </footer>
+        </div>
+
     </body>
 
     <script>
@@ -78,6 +93,58 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
+        }
+
+        .footer-basic {
+        width: 100%;
+        padding: 30px 0;
+        background-color: #5c5c5c;
+        color: rgb(205, 205, 205);
+        margin-bottom: 0;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            /* position:absolute; */
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .separator {
+            height: 3em;
+            background-color: #e5e3df;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+        }
+
+        .footer-basic .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 0;
+        }
+
+        .title
+        {
+            color: #fff;
+            mix-blend-mode: difference;
+            align-self: center;
         }
 
         @yield('style')

@@ -68,7 +68,7 @@ class BrandController extends Controller
             'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
         ]);
 
-        Brand::create($request->input('name'), $request->input('name'));
+        Brand::create($request->input('name'), $request->input('isin'));
 
         return redirect('/brands');
     }

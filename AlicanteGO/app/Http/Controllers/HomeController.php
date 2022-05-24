@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Establishment;
 
@@ -25,8 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         $establishments = Establishment::all();
-        $latitude = 38.34517;
-        $longitude = -0.48149;
-        return view('home')->with(["establishments" => $establishments, "latitude" => $latitude, "longitude" => $longitude]);
+        $categories = Category::all();
+        $brands = Brand::all();
+        $orderBy = -1;
+        $brand = -1;
+        $category = -1;
+        return view('home')->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "orderBy" => $orderBy, "category" => $category, "brand" => $brand, "search" => ""]);
     }
 }

@@ -27,11 +27,7 @@ class Brand extends Model
         $brand = new Brand;
         $brand->name = $name;
 
-        if($isin == NULL)
-            $brand->isin = NULL;
-
-        else
-            $brand->isin = $isin;
+        $brand->isin = $isin;
 
         $brand->save();
     }
