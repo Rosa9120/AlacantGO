@@ -17,11 +17,11 @@
                     <ul>
 
                         <li>Name: 
-                            <input class="editable" value="{{ old('name') }}"  required name="name" type="text" class="form-control" placeholder="Brand Name"/>
+                            <input class="editable" required name="name" type="text" class="form-control" placeholder="Brand Name"/>
                         </li>
 
                         <li>Isin: 
-                            <input class="editable" value="{{ old('isin') }}" required name="isin"  class="@error('isin') is-invalid @enderror"  type="text" lang="en" placeholder="ES111111111"/>
+                            <input class="editable" required name="isin"  class="@error('isin') is-invalid @enderror"  type="text" lang="en" placeholder="ES111111111"/>
                         </li>
 
                         @error('isin')
