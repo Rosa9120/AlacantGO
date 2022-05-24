@@ -100,7 +100,7 @@ class EstablishmentController extends Controller
             }
         }
         
-        return view('establishment/establishments', ['establishments' => $establishments, 'count' => $count, "search" => $search, "orderBy" => $orderBy]);                                                                              
+        return view('establishment.establishments', ['establishments' => $establishments, 'count' => $count, "search" => $search, "orderBy" => $orderBy]);                                                                              
     }
 
      /**
