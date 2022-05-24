@@ -21,14 +21,16 @@ Route::get('/establishment/{establishment}', function($establishment){
 });
 
 // ITEMS' ROUTES
-Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->middleware("admin");
-Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
-Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
-Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
-Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
-Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
-Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
-Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+Route::group(['middleware' => 'admin'], function() {
+    Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+    Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
+    Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
+    Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
+    Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
+    Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
+    Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
+    Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+});
 
 /**
  * MANAGER ROUTES

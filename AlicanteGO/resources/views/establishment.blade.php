@@ -51,7 +51,7 @@
                         <form action="{{ url('/items', ['id' => $item->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                            <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
                         </form>
                     </td>
                     @endif 
