@@ -56,10 +56,7 @@ class CategoryController extends Controller
 
     public function create_category(Request $request) 
     {
-        $category = new Category;
-        $category->name = $request->input('name');
-
-        $category->save();
+        Category::create($request->input('name'));
 
         return redirect('/categories');
     }
@@ -78,8 +75,7 @@ class CategoryController extends Controller
 
 
         //$category->name = trim($request["name"]);
-        $category->name = $request->input('name');
-        $category->save();
+        Category::edit($request->input('name'));
 
         return redirect('/categories');
     }

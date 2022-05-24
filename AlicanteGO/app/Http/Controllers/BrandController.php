@@ -30,28 +30,16 @@ class BrandController extends Controller
 
     public function update_brand(Request $request) 
     {
+            $brand = Brand::whereId($request["brand"])->first();
+            $establish_wanted = Establishment::findOrFail($request["establishment"]);
 
-        $request->validate([
-            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
-        ]);
+            Brand::update_brand($brand, $establish_wanted);
 
-        if(Establishment::where ('name', '=', $request->input('establishment_name'))->get()->count() == 0) //SI EL ESTABLISHMENT NO EXISTE
-            return view('establishment.exceptions.establishmentNotFound', ['inexistent_name' => $request->input('establishment_name')]);
-        
-        else if(Brand::where ('name', '=', $request->input('brand_name'))->get()->count() == 0) //SI LA BRAND NO EXISTE
-            return view('brand.exceptions.brandNotFound', ['inexistent_name' => $request->input('brand_name')]);
+            if($brand != NULL)
+                return view('brand.updateDone', ['e_name' => $establish_wanted->name, 'b_name' => $brand->name]);
 
-        else
-        {
-            $brand = Brand::where ('name', '=', $request->input('brand_name'))->first(); //ONLY THE ID IS NEEDED TO LINK
-
-            $establish_wanted = Establishment::where ('name', '=', $request->input('establishment_name'));
-
-            $establish_wanted->update(array('brand_id' => $brand->id));
-
-            return view('brand.updateDone', 
-            ['e_name' => $request->input('establishment_name'), 'b_name' => $request->input('brand_name')]);
-        }
+            else
+                return view('brand.updateDone', ['e_name' => $establish_wanted->name, 'b_name' => "no brand"]);
     }
 
     public function search_brand() {
@@ -85,18 +73,15 @@ class BrandController extends Controller
             'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
         ]);
 
-        $brand = new Brand;
-        $brand->name = $request->input('name');
-
-        if($request->input('isin') == NULL)
-            $brand->isin = NULL;
-
-        else
-            $brand->isin =$request->input('isin');
-
-        $brand->save();
+        Brand::create($request->input('name'), $request->input('name'));
 
         return redirect('/brands');
+    }
+
+    function set_brand() {
+        $establishments = Establishment::get();
+        $brands = Brand::get();
+        return view('brand.updateForm', ['establishments' => $establishments, 'brands' => $brands]);
     }
 
     public function edit(Brand $brand)
@@ -111,10 +96,7 @@ class BrandController extends Controller
             'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
         ]);
 
-        $brand->name = $request["name"];
-        $brand->isin = $request["isin"];
-
-        $brand->save();
+        Brand::edit($brand, $request->input('name'), $request->input('isin'));
 
         return redirect('/brands');
     }

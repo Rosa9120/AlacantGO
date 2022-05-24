@@ -68,8 +68,8 @@
  
             <form action="{{ url('/items/delete', ['id' => $item->id]) }}" method="POST">
                 @csrf
-                @method('get')
-                <input type="submit" class="btn btn-danger" value="Delete"/>
+                @method('delete')
+                <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
             </form>
         </td>
     </tr>

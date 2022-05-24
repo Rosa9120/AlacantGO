@@ -21,4 +21,39 @@ class Brand extends Model
         return $this->hasOne(Manager::class);
     }
 
+    static public function create($name, $isin)
+    {
+        
+        $brand = new Brand;
+        $brand->name = $name;
+
+        if($isin == NULL)
+            $brand->isin = NULL;
+
+        else
+            $brand->isin = $isin;
+
+        $brand->save();
+    }
+
+    static public function edit($brand, $name, $isin)
+    {
+
+        $brand->name = $name;
+
+        $brand->isin = $isin;
+
+        $brand->save();
+    }
+
+    static public function update_brand($brand, $establishment)
+    {
+        if($brand == NULL)
+            $establishment->brand_id = NULL;
+
+        else
+            $establishment->brand_id = $brand->id;
+
+        $establishment->save();
+    }
 }

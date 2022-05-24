@@ -74,15 +74,9 @@ class ManagerController extends Controller
             'DNI' => 'required|regex:/^\d{8}[A-Z]$/',
             'phone' => 'required|numeric|digits:9',
             ]);
-            
-        $name = $request->input('name');
-        $DNI = $request->input('DNI');
-        $phone = $request->input('phone');
-        $establishment_id = $request->input('dropdownEstablishment', null);
-        $brand_id = $request->input('dropdownBrand', null);
 
-        $data=array('name'=>$name,"DNI"=>$DNI,"phone"=>$phone, "establishment_id" => $establishment_id, "brand_id"=>$brand_id);
-        \DB::table('managers')->insert($data);
+        Manager::create($request->input('name'),$request->input('DNI'),$request->input('phone'),
+            $request->input('dropdownEstablishment'),$request->input('dropdownBrand', null));
 
         return redirect('/managers')->with('success','Manager added successfully'); 
     }
@@ -101,13 +95,9 @@ class ManagerController extends Controller
             'phone' => 'required|numeric|digits:9',
             ]);
 
-        $manager->name = $request->input('name');
-        $manager->DNI = $request->input('DNI');
-        $manager->phone = $request->input('phone');
-        $manager->establishment_id = $request->input('dropdownEstablishment', null);
-        $manager->brand_id = $request->input('dropdownBrand', null);
+        Manager::edit($manager,$request->input('name'),$request->input('DNI'),$request->input('phone'),
+            $request->input('dropdownEstablishment'),$request->input('dropdownBrand', null));
 
-        $manager->save();
         return redirect('/managers')->with('success','Manager updated successfully'); 
     }
   

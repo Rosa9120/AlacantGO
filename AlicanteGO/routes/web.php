@@ -1,34 +1,36 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Models\Establishment;
+use App\Models\Item;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/admin', function () {
     return view('admin');
+})->middleware("admin");
+
+//MAIN PAGE ROUTES
+Route::get('/aboutus', function () {
+    return view('aboutus');
+});
+
+Route::get('/establishment/{establishment}', function($establishment){
+    $establishment = Establishment::whereId($establishment)->first();
+    return view('establishment')->with("establishment", $establishment);
 });
 
 // ITEMS' ROUTES
-Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
-Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
-Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
-Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
-Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
-Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
-Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
-Route::get('/items/delete/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
-Route::get('/items/remove/{id}', [App\Http\Controllers\ItemController::class, 'destroy']);
+Route::group(['middleware' => 'admin'], function() {
+    Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+    Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
+    Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
+    Route::get('/items/search', [App\Http\Controllers\ItemController::class, 'search']);
+    Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
+    Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
+    Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
+    Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+});
 
 /**
  * MANAGER ROUTES
@@ -47,6 +49,7 @@ Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::cla
 // ESTABLISHMENTS' ROUTES
 Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
 Route::get('/addestablishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
+Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
 Route::post('/addestablishments/create', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
 Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
 Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');
@@ -60,12 +63,6 @@ Route::get('/establishments/remove/{id}', [App\Http\Controllers\EstablishmentCon
  */
 
 Route::get('/brands', [App\Http\Controllers\BrandController::class, 'index']);
-Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
-Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
-
-Route::get('/brands/update', function () {return view('brand.updateForm');});
-Route::patch('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']);
-
 Route::get('/brands/create', function () {return view('brand.brand_create');});
 Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
 Route::get('/brands/remove/{id}', [App\Http\Controllers\BrandController::class, 'destroy']);
@@ -74,6 +71,14 @@ Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'sear
 
 Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);
 Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
+
+//MÉTODOS
+
+Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
+Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
+
+Route::get('/brands/set', [App\Http\Controllers\BrandController::class, 'set_brand']);
+Route::put('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']); //THIS IS FOR THE SET BRAND
 
 /**
  * CATEGORY ROUTES
@@ -93,3 +98,9 @@ Route::patch('/categories/{category}', [App\Http\Controllers\CategoryController:
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/* NO SE DONDE PONER ESTO */
+
+Route::get('/profile', function () {
+    return view('profile');
+});
