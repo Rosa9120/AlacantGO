@@ -352,12 +352,6 @@
         opacity: 1;
     }
 
-    .dropdown-toggle {
-        white-space: nowrap;
-        width: 250px;
-    }
-
-
     .card-title{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 30px;

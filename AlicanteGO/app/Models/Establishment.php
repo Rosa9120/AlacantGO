@@ -82,7 +82,7 @@ class Establishment extends Model
     }
 
     public function manager() {
-        return $this->hasOne(Managers::class);
+        return $this->hasOne(Manager::class);
     }
 
     public function category() {
