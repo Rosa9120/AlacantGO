@@ -51,7 +51,7 @@
                 @auth
                     @if (Auth::user()->rol == 'admin')
                     <td class="action-buttons">
-                        <a class="btn btn-warning" href="{{ url("/items/" . $item->id . "/edit") }}">Edit</a>
+                        <a class="btn btn-warning" href="{{ url("/ilyan/edit/" . $item->id) }}">Edit</a>
                         <form action="{{ url('/items', ['id' => $item->id]) }}" method="POST">
                             @csrf
                             @method('delete')
@@ -68,7 +68,11 @@
         {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
         @if (Auth::user()->rol == 'admin')      
             <div style="display:flex; margin-top: 30px; justify-content:center;">
-                <a class="btn btn-success"> Insert new item</a>
+                <a class="btn btn-success" href="/ilyan/create/"> Insert new item</a>
+            </div>
+            <div class="manage-buttons"> 
+                <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id) }}"  class="btn btn-primary"> Update information </a>
+                <a class="btn btn-danger"> Delete restaurant </a>
             </div>
         @endif
     @endauth
@@ -97,6 +101,14 @@
 
     html{
         overflow-x:hidden;
+    }
+
+    .manage-buttons{
+        display:flex;
+        /* justify-content: center; */
+        margin-top: 30px;
+        justify-content: center;
+        gap: 15px;
     }
 
     section{

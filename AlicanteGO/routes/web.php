@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Establishment;
 use App\Models\Item;
+use App\Models\Brand;
+use App\Models\Category;
+
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -100,3 +103,25 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', function () {
     return view('profile');
 });
+
+//las rutas anteriores que pertenezcan al admin deben llevar el prefijo admin
+//provisionalmente y para distinguirlas bien, estas rutas se llaman ilyan + lo que sea
+//por favor no toqueis estas rutas
+
+Route::get('/ilyan/edit/{item}', function ($item) {    
+    $item = Item::whereId($item)->first();
+    return view('ilyan_edit_item')->with('item',$item);
+});
+
+
+Route::get('/ilyan/create', function () {    
+    return view('ilyan_create_item');
+});
+
+Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment) {    
+    $establishment = Establishment::whereId($establishment)->first();
+    $brands = Brand::get();
+    $categories = Category::get();
+    return view('ilyan_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
+});
+
