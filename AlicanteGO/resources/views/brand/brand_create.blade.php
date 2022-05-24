@@ -15,7 +15,7 @@
 
         <div class="brand">
             <div class="information">
-                <form action="{{ url('/brands/create') }}" method="POST">
+                <form action="{{ url('/brands') }}" method="POST">
                     @csrf
                     @method('post')
                     <ul>
