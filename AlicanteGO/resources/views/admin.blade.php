@@ -58,11 +58,11 @@
 
         html, body {
             background-color: #z;
-            height: 100%;
         }
 
         .content {
-            height: 100%;
+            height: calc(100vh - 180px);
+            overflow:hidden;
         }
 
         .head{
@@ -83,6 +83,7 @@
             padding-top: 14px;
             padding-left: 28%;
         }
+
         .form-control{
             width: 500px;
         }
@@ -96,11 +97,11 @@
         }
 
         .footer-basic {
-        width: 100%;
-        padding: 30px 0;
-        background-color: #5c5c5c;
-        color: rgb(205, 205, 205);
-        margin-bottom: 0;
+            width: 100%;
+            padding: 30px 0;
+            background-color: #5c5c5c;
+            color: rgb(205, 205, 205);
+            margin-bottom: 0;
         }
 
         .footer-basic ul {
@@ -124,7 +125,7 @@
         }
 
         .separator {
-            height: 3em;
+            
             background-color: #e5e3df;
         }
 
@@ -147,6 +148,12 @@
             align-self: center;
         }
 
+        @media (max-width: 500px){
+
+            .content {
+                overflow:auto;
+            }
+        }
         @yield('style')
         
     </style>
