@@ -9,6 +9,10 @@
             <a href="/brands" id="back">Go Back</a>
         </div>
 
+        <div class="title">
+            <h1> Edit Brand </h1>
+        </div>
+
             <div class="information">
                 <span>ID #: {{ $brand->id }}</span>
                 <form action="{{ url('/brands', ["id" => $brand->id]) }}" method="POST">

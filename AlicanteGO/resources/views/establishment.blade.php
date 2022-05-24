@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Establishment List')
+
 @section('content')
 <section>
 <br>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'About us')
+
 @section('content')
 
 <section id="section01" class="demo">

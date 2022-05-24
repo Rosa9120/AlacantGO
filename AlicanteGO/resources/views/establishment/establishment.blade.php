@@ -9,6 +9,10 @@
         <a href="/establishments" id="back">Go Back</a>
     </div>
 
+    <div class="title">
+            <h1> Establishment Info</h1>
+    </div>
+
     <div class="establishment">
         <div class="information">
             <ul>

@@ -9,6 +9,10 @@
             <a href="/categories" id="back">Go Back</a>
         </div>
 
+        <div class="title">
+            <h1> Edit Category </h1>
+        </div>
+
             <div class="information">
                 <span>ID #: {{ $category->id }}</span>
                 <form action="{{ url('/categories', ["id" => $category->id]) }}" method="POST">

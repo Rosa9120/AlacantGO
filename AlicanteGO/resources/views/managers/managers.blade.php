@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('title', 'Manager List')
+
 @section('content')
 
 <div style="display:flex;justify-content:space-around;margin-top:40px;">

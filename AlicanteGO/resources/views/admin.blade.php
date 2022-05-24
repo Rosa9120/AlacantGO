@@ -1,3 +1,5 @@
+@section('title', 'Admin view')
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -136,6 +138,13 @@
             font-size: 13px;
             color: #aaa;
             margin-bottom: 0;
+        }
+
+        .title
+        {
+            color: #fff;
+            mix-blend-mode: difference;
+            align-self: center;
         }
 
         @yield('style')

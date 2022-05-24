@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
 <div class="map-container" id="map-container" style="height: 540px;">
     
