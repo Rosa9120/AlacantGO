@@ -17,7 +17,7 @@
                 <span>ID #: {{ $brand->id }}</span>
                 <form action="{{ url('/brands', ["id" => $brand->id]) }}" method="POST">
                     @csrf
-                    @method('patch')
+                    @method('PATCH')
                     <ul>
                         <li>Name: 
                             <input class="editable" required name="name" type="text" value="{{ $brand->name }}" />
