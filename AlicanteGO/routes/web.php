@@ -93,3 +93,9 @@ Route::patch('/categories/{category}', [App\Http\Controllers\CategoryController:
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/* NO SE DONDE PONER ESTO */
+
+Route::get('/profile', function () {
+    return view('profile');
+});
