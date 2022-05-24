@@ -49,9 +49,9 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="auth" style="display: flex;">
                         @auth
-                        @if (Auth::user()->rol == 'admin')
-                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin </a>
-                        @endif
+                            @if (Auth::user()->rol == 'admin')
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin Panel </a>
+                            @endif
                         @endauth
                         @guest
                             <div class="auth" style="display: flex;">
@@ -59,9 +59,23 @@
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
                             </div>
                         @else
-                            <div>
+                            {{-- <div>
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="#">{{ Auth::user()->name }}</a>
+                            </div> --}}
+                            <div class="dropdown" style="padding: 0; display: inline-block;">
+                                <button class="btn dropdown-toggle" style="background-color: transparent; color:rgb(221, 221, 221);" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" style="padding: 0;"><button class="btn">Profile</button></a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" style="padding: 0;"><button type="submit" class="btn" form="logout-form">Logout</button></a>
+                                </div>
                             </div>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                                @csrf
+                                @method('post')
+                            </form>
                         @endguest
                     </div>
                 </div>
