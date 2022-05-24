@@ -22,11 +22,14 @@
 
                         <li>Isin: 
                             <input class="editable" value="{{ old('isin') }}" required name="isin"  class="@error('isin') is-invalid @enderror"  type="text" lang="en" placeholder="ES111111111"/>
-                        
-                        @error('isin')
-                            <div class="alert alert-danger"> ISIN must have 2 capital letters and 9 numbers </div>
-                        @enderror
                         </li>
+
+                        @error('isin')
+                        <li class="error-container">
+                            <div class="alert alert-danger error-msg"> ISIN must have 2 capital letters and 9 numbers </div>
+                        </li>
+                        @enderror
+                        
                     </ul>
                 
                     <div class="submit">
@@ -73,7 +76,7 @@
     }
 
     #back:hover {
-        font-size: 21px;
+        transform: scale(1.1);
         color: white;
     }
 
@@ -84,6 +87,19 @@
         flex-basis: 90%;
         margin-left: 20px;
         justify-content: space-between;
+    }
+
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
     }
 
     .information {

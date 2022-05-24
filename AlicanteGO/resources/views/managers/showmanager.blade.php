@@ -67,6 +67,7 @@
 
     #back:hover {
         color: white;
+        transform: scale(1.1);
     }
 
     .img-container {

@@ -3,9 +3,11 @@
 @section('content')
 <section>
 <br>
+    <div class="back">
+        <a href="/" id="back">Go Back</a>
+    </div>
     <div class="restaurant">
         <div class="header">
-
             <div class="img-overlay"> 
                 <h1> {{ $establishment->name}} </h1>
                 <h2> {{ $establishment->address}} </h2>
@@ -60,9 +62,14 @@
             @endforeach
         </table>
     </div>
-    <div style="display:flex; margin-top: 30px; justify-content:center;">
-        <a class="btn btn-success"> Create New Establishment</a>
-    </div>
+    @auth
+        {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
+        @if (Auth::user()->rol == 'admin')      
+            <div style="display:flex; margin-top: 30px; justify-content:center;">
+                <a class="btn btn-success"> Create New Establishment</a>
+            </div>
+        @endif
+    @endauth
 </section>
    
 @endsection
@@ -85,6 +92,11 @@
 </script>
 @section("style")
 <style>
+
+    html{
+        overflow-x:hidden;
+    }
+
     section{
         min-height: calc(100vh - 70px - 123px - 48px);
         background-color: #e5e3df;
@@ -126,16 +138,37 @@
         color: white;
         font : normal 200 1vw/1 'Josefin Sans', sans-serif;
         margin-left: 8px;
+        margin-top: 2px;
+    }
+
+    .back {
+        position: relative;
+        left:20%;
 
     }
 
+    #back {
+        display: inline-block;
+        padding: 5px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #4E4E4E;
+        transition: 0.3s;
+    }
+
+    #back:hover {
+        transform: scale(1.1);
+        /* font-size: 21px; */
+        color: white;
+    }
+
     .restaurant{
-        margin: 25px 20%;
+        margin: 25px 20% 0 20%;
         background-color:whitesmoke;
         position:relative;
         /* padding: 0 2% 2% 2%; */
         border-radius:25px;
-        margin-bottom: 15px;
+        /* margin-bottom: 15px; */
     }
 
     .card{
@@ -150,7 +183,7 @@
     .action-buttons{
         display:flex;
         flex-direction:row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: space-between;
     }
     
