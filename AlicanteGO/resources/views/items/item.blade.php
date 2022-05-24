@@ -67,7 +67,7 @@
     }
 
     #back:hover {
-        font-size: 21px;
+        transform: scale(1.1);
         color: white;
     }
 

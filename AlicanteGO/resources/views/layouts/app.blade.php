@@ -89,10 +89,10 @@
         <div class="footer-basic">
             <footer>
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#">Home</a></li>
-                    <li class="list-inline-item"><a href="#">Restaurants</a></li>
-                    <li class="list-inline-item"><a href="#">About Us</a></li>
-                    <li class="list-inline-item"><a href="#">Register</a></li>
+                    <li class="list-inline-item"><a href="/">Home</a></li>
+                    <li class="list-inline-item"><a href="/aboutus">About Us</a></li>
+                    <li class="list-inline-item"><a href="/register">Register</a></li>
+                    <li class="list-inline-item"><a href="/profile">Your profile</a></li>
                 </ul>
                 <p class="copyright">AlicanteGO © 2022</p>
             </footer>
