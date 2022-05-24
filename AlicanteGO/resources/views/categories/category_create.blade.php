@@ -9,6 +9,10 @@
             <a href="/categories" id="back">Go Back</a>
         </div>
 
+        <div class="title">
+            <h1> Create Category </h1>
+        </div>
+
         <div class="category">
             <div class="information">
                 <form action="{{ url('/categories/create') }}" method="POST">

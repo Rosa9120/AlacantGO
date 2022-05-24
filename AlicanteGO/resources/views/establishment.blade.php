@@ -68,7 +68,7 @@
         {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
         @if (Auth::user()->rol == 'admin')      
             <div style="display:flex; margin-top: 30px; justify-content:center;">
-                <a class="btn btn-success"> Create New Establishment</a>
+                <a class="btn btn-success"> Insert new item</a>
             </div>
         @endif
     @endauth

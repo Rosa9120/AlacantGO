@@ -143,9 +143,9 @@
 
         .title
         {
-            color: #fff;
-            mix-blend-mode: difference;
-            align-self: center;
+            display:flex;
+            color:#4E4E4E;
+            align-self: center;     
         }
 
         @media (max-width: 500px){

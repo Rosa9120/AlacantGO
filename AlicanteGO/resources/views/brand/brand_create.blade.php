@@ -9,6 +9,10 @@
             <a href="/brands" id="back">Go Back</a>
         </div>
 
+        <div class="title">
+            <h1> Create Brand </h1>
+        </div>
+
         <div class="brand">
             <div class="information">
                 <form action="{{ url('/brands/create') }}" method="POST">
