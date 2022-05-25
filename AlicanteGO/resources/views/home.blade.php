@@ -277,6 +277,7 @@
     .container-right{
         /* flex-grow: 3; */
         justify-content: center;
+        width:100%;
     }
 
     .searcher{
