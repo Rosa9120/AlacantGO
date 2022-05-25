@@ -205,6 +205,10 @@
         display:flex;
     } */
 
+    html{
+        overflow-x:hidden;
+    }
+
     .head{
         height: 70px;
         display:flex;
@@ -245,7 +249,6 @@
     }
 
     .filters{
-        /* flex-grow: 1; */
         margin: 15px;
         display:flex;
         height:auto;
@@ -260,7 +263,8 @@
         opacity: 0.7;
         background-color:whitesmoke;
         border-radius: 25px;
-        min-width: 400px !important;
+        min-width: 400px;
+        max-width: 400px;
     }
 
     .filter-element{
@@ -282,11 +286,12 @@
         justify-content: center;
     }
 
+
     .cards{
         display:flex;
         flex-direction: row;
         align-content: center;
-        /* max-width: 1200px; */
+        max-width: 90%;
         gap: 25px;
         flex-wrap: wrap;
         justify-content: flex-start ;
@@ -368,6 +373,7 @@
         .filters{
             position:relative;
             width:100%;
+            max-width: 1000px;
         }
     }
     </style>
