@@ -14,7 +14,7 @@
         <div class="establishment">
             <div class="information">
                 <span>ID #: {{ $establishment->id }}</span>
-                <form action="{{ url('/establishments', ["id" => $establishment->id]) }}" method="POST">
+                <form action="{{ url('/ilyan/establishment/' . $establishment->id . "?url=" . back()->getTargetUrl()) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <ul>

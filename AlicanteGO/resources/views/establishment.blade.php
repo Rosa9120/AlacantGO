@@ -52,7 +52,7 @@
                     @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))
                     <td class="action-buttons">
                         <a class="btn btn-warning" href="{{ url("/ilyan/edit/" . $item->id) }}">Edit</a>
-                        <form action="{{ url('/items', ['id' => $item->id]) }}" method="POST">
+                        <form action="{{ url('/ilyan/' . $item->id . '?url=' . url()->current()) }}" method="POST">
                             @csrf
                             @method('delete')
                             <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
@@ -68,11 +68,15 @@
         {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
         @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))      
             <div style="display:flex; margin-top: 30px; justify-content:center;">
-                <a class="btn btn-success" href="/ilyan/create/"> Insert new item</a>
+                <a class="btn btn-success" href={{ "/ilyan/create/" . $establishment->id }}> Insert new item</a>
             </div>
             <div class="manage-buttons"> 
-                <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id . "?url=" . url()->current()) }}"  class="btn btn-primary"> Update information </a>
-                <a class="btn btn-danger"> Delete restaurant </a>
+                <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id) }}"  class="btn btn-primary"> Update information </a>
+                <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete restaurant </button>
+                <form id="establishment-delete" action="{{ url('/ilyan/establishment/' . $establishment->id) }}" method="POST">
+                    @csrf
+                    @method("delete")
+                </form>
             </div>
         @endif
     @endauth
