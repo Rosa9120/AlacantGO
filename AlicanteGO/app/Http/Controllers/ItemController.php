@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Establishment;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use Auth;
 
 class ItemController extends Controller
 {
@@ -73,9 +74,46 @@ class ItemController extends Controller
         $brands = \DB::table('brands')->get();
         return view('items.item_edit', ["success" => true, "item" => $item, "brands" => $brands, "establishments" => $establishments]);
     }
+
+    // Still needs to check whether is an establishment item or brand item
+    public function manager_edit_item(Item $item, ItemRequest $request) {
+        $establishment = Establishment::whereId($item->establishment_id)->first();
+
+        if ($establishment == null) {
+            abort(404);
+        }
+
+        if (!Auth::check() || (Auth::user()->rol != "manager" && Auth::user()->rol != "admin") || ($establishment->manager()->first()->user()->first()->id != Auth::user()->id && Auth::user()->rol == "manager")) {
+            abort(403);
+        }
+
+        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), $item->type, $item->brand_id, $item->establishment_id);
+
+        return redirect($request["url"]);
+    }
+
+    public function manager_create_item(ItemRequest $request) {
+        $establishment = Establishment::whereId($request->input("establishment"))->first();
+
+        if ($establishment == null) {
+            abort(404);
+        }
+
+        if (!Auth::check() || (Auth::user()->rol != "manager" && Auth::user()->rol != "admin") || ($establishment->manager()->first()->user()->first()->id != Auth::user()->id && Auth::user()->rol == "manager")) {
+            abort(403);
+        }
+
+        Item::create(trim($request["name"]), $request["price"], trim($request["description"]), null, null, $establishment->id); // Needs brand compatibility. No type needed for now
+
+        return redirect($request["url"]);
+    }
+
+    public function manager_delete_item(Item $item, Request $request) {
+        $item->delete();
+        return redirect($request->input("url"));
+    }
     
     public function edit(Item $item, ItemRequest $request) {
-
         Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
         Brand::whereId($request["brand"])->first(), Establishment::whereId($request["establishment"])->first());
 

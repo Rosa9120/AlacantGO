@@ -17,7 +17,11 @@ class Manager extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    static public function create($name, $dni, $phone, $establishment, $brand)
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    static public function create($name, $dni, $phone, $establishment, $brand, $user)
     {
         $manager = new Manager();
         $manager->name = $name;
@@ -26,6 +30,7 @@ class Manager extends Model
 
         $manager->establishment_id = $establishment;
         $manager->brand_id = $brand;
+        $manager->user_id = $user;
 
         $manager->save();
 

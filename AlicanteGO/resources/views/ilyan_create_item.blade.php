@@ -15,7 +15,7 @@
 
         <div class="item">
             <div class="information">
-                <form action="{{ url('/items') }}" method="POST">
+                <form action="{{ url('/ilyan?establishment=' . $establishment->id . "&url=" . $url) }}" method="POST">
                     @csrf
                     @method('post')
                     <ul>

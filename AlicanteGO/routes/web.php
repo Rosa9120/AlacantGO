@@ -112,15 +112,16 @@ Route::get('/profile', function () {
 //provisionalmente y para distinguirlas bien, estas rutas se llaman ilyan + lo que sea
 //por favor no toqueis estas rutas
 
-Route::get('/ilyan/edit/{item}', function ($item) {    
-    $item = Item::whereId($item)->first();
-    return view('ilyan_edit_item')->with('item',$item);
+Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
+    return view('ilyan_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
 });
+Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
+Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
 
-
-Route::get('/ilyan/create', function () {    
-    return view('ilyan_create_item');
+Route::get('/ilyan/create/{establishment}', function (Establishment $establishment) {    
+    return view('ilyan_create_item')->with("establishment", $establishment)->with("url", back()->getTargetUrl());
 });
+Route::post('/ilyan', [App\Http\Controllers\ItemController::class, 'manager_create_item']);
 
 Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment) {    
     $establishment = Establishment::whereId($establishment)->first();
@@ -128,6 +129,8 @@ Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment
     $categories = Category::get();
     return view('ilyan_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
 });
+Route::patch('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_edit_establishment']);
+Route::delete('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_delete_establishment']);
 
 Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
 
