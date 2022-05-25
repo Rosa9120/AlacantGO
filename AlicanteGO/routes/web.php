@@ -61,7 +61,7 @@ Route::get('/establishments/create', [App\Http\Controllers\EstablishmentControll
 Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create']);
 Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
 Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search']);
-Route::get('/establishments/{id}', [App\Http\adminControllers\EstablishmentController::class, 'show'])->name('establishment');
+Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'show'])->name('establishment');
 Route::get('/establishments/{id}/edit', [App\Http\Controllers\EstablishmentController::class, 'edit_view']);
 Route::patch('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'edit']);
 Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete']);
