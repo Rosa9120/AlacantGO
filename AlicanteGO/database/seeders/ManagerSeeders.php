@@ -17,29 +17,12 @@ class ManagerSeeders extends Seeder
         \DB::table('managers')->delete();
 
         Manager::create(
-            'Amancio Ortega',
-			'60484884G',
-			'658321258',
-            '1',
-            '1'
-        );
-
-        Manager::create(
             'Jose Rodriguez',
 			'741952486M',
 			'648221664',
             '4',
-            null
-        );
-
-        Manager::create(
-            'Elena Martínez',
-			'23548312F',
-			'864234944',
             null,
-            '3'
-        );
-	
-
+            '2'
+        );	
     }
 }

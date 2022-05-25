@@ -16,9 +16,10 @@
         <div class="item">
             <div class="information">
                 <span>ID #: {{ $item->id }}</span>
-                <form action="{{ url('/items', ["id" => $item->id]) }}" method="POST">
+                <form action="{{ url('/ilyan', ["id" => $item->id]) }}" method="POST">
                     @csrf
                     @method('patch')
+                    <input name="url" type="text" hidden value="{{ $url }}"/>
                     <ul>
                         <li>Name: 
                             <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', $item->name) }}" />

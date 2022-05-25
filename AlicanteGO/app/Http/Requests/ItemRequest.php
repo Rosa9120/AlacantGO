@@ -26,7 +26,7 @@ class ItemRequest extends FormRequest
         $rules = [
             'name' => 'required|max:255',
             'price' => 'required|gte:0|lte:1000000',
-            'type' => 'required|max:255'
+            'type' => 'max:255'
         ];
 
         // In the frontend is not possible that these values are null but maybe some sneaky guy tries to modify the request with an external tool, so it is better to prevent that

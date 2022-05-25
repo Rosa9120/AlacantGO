@@ -19,26 +19,58 @@
                 @method('PATCH')
                 <ul>
                     <li>Name: 
-                        <input class="editable" name="name" type="text" value="{{ $establishment->name }}" />
+                        <input class="editable" name="name" type="text" requiered value="{{ old('name', $establishment->name) }}" />
                     </li>
+                    @error('name')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Name is required</div>
+                    </li>
+                    @enderror
+
                     <li>Phone Number: 
-                        <input class="editable" name="phone_number" type="number" lang="en" step="0.01" value="{{ $establishment->phone_number }}" />
+                        <input class="editable" name="phone_number" type="number" lang="en" step="0.01" value="{{ old('phone_number', $establishment->phone_number) }}" />
                     </li>
                     <li>Address: 
-                        <input class="editable" name="address" type="text" value="{{ $establishment->address }}" />
+                        <input class="editable" name="address" type="text" requiered value="{{ old('address', $establishment->address) }}" />
                     </li>
+                    @error('address')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Address is required</div>
+                    </li>
+                    @enderror
+
                     <li>Postal Code: 
-                        <input class="editable" name="postal_code" type="text" value="{{ $establishment->postal_code }}" />
+                        <input class="editable" name="postal_code" type="text" requiered value="{{ old('postal_code', $establishment->postal_code) }}" />
                     </li>
+                    @error('postal_code')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Postal code must have 5 numbers</div>
+                    </li>
+                    @enderror
+
                     <li>Latitude: 
-                        <input class="editable" name="latitude" type="text" value="{{ $establishment->latitude }}" />
+                        <input class="editable" name="latitude" type="text" requiered value="{{ old('latitude', $establishment->latitude) }}" />
+                    </li>
+                    @error('latitude')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Latitude must be a number</div>
+                    </li>
+                    @enderror
+
                     <li>Longitude: 
-                        <input class="editable" name="longitude" type="text" value="{{ $establishment->longitude }}" />
+                        <input class="editable" name="longitude" type="text" requiered value="{{ old('longitude', $establishment->longitude) }}" />
+                    </li>
+                    @error('longitude')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Longitude must be a number</div>
+                    </li>
+                    @enderror
+
                     <li>Brand: 
                         <select name="brand" class="form-control editable dropdown">
                             <option> </option>
                             @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}" {{ ($brand->id == $establishment->brand->id) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                            <option value="{{ old('brand', $brand->id) }}" {{ ($brand->id == $establishment->brand->id) ? 'selected' : '' }}>{{ $brand->name }}</option>
                             @endforeach
                         </select>
                     </li>
@@ -46,7 +78,7 @@
                         <select name="category" class="form-control editable dropdown">
                             <option> </option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ ($category->id == $establishment->category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <option value="{{ old('category', $category->id) }}" {{ ($category->id == $establishment->category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </li>
@@ -62,6 +94,19 @@
 @endsection
 
 @section('style')
+
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
+    }
 
     .container {
         font-family: "Montserrat", sans-serif;

@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Establishment;
 use Illuminate\Http\Request;
+use Auth;
 
 class EstablishmentController extends Controller
 {
@@ -108,9 +109,9 @@ class EstablishmentController extends Controller
     function create(Request $req) {
         $req->validate(['name' => 'required',
                         'address' => 'required',
-                        'postal_code' => 'required',
-                        'latitude' => 'required',
-                        'longitude' => 'required']);
+                        'postal_code' => 'required|numeric|digits:5',
+                        'latitude' => 'required|numeric',
+                        'longitude' => 'required|numeric']);
 
         $establishment = Establishment::create($req->input('name'),
         $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
@@ -162,18 +163,33 @@ class EstablishmentController extends Controller
         return view("home")->with(["establishments" => $establishments, "categories" => $categories, "brands" => $brands, "brand" => $request->input("brand"), "category" => $request->input("category"), "orderBy" => $request->input("orderBy"), "search" => $search]);
     }
 
+    public function manager_edit_establishment(Establishment $establishment, Request $request) {
+        if (!Auth::check() || (Auth::user()->rol != "manager" && Auth::user()->rol != "admin") || ($establishment->manager()->first()->user()->first()->id != Auth::user()->id && Auth::user()->rol == "manager")) {
+            abort(403);
+        }
+
+        Establishment::edit($establishment->id, $request->input('name'),
+        $request->input('phone_number'), $request->input('address'), $request->input('postal_code'), $request->input('latitude'), $request->input('longitude'),
+        $establishment->brand_id, null);
+
+        return redirect($request["url"]);
+    }
+
+    public function manager_delete_establishment(Establishment $establishment, Request $request) {
+        $establishment->delete();
+        return redirect("/");
+    }
+
     /**
      * Processes to form to edit an establishment
      */
     function edit(Request $req, $id) {
 
-        $req->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'postal_code' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required'
-        ]);
+        $req->validate(['name' => 'required',
+                        'address' => 'required',
+                        'postal_code' => 'required|numeric|digits:5',
+                        'latitude' => 'required|numeric',
+                        'longitude' => 'required|numeric']);
 
         $establishment = Establishment::edit($id, $req->input('name'),
         $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),

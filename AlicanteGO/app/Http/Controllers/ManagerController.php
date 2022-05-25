@@ -76,7 +76,7 @@ class ManagerController extends Controller
             ]);
 
         Manager::create($request->input('name'),$request->input('DNI'),$request->input('phone'),
-            $request->input('dropdownEstablishment'),$request->input('dropdownBrand', null));
+            $request->input('dropdownEstablishment'),$request->input('dropdownBrand', null), Auth::user()->id);
 
         return redirect('/admin/managers')->with('success','Manager added successfully'); 
     }
