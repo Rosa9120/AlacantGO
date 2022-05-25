@@ -73,6 +73,12 @@ class ItemController extends Controller
         $brands = \DB::table('brands')->get();
         return view('items.item_edit', ["success" => true, "item" => $item, "brands" => $brands, "establishments" => $establishments]);
     }
+
+    public function manager_edit(Item $item, ItemRequest $request) {
+        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), $item->type, $item->brand_id, $item->establishment_id);
+
+        return redirect($request["url"]);
+    }
     
     public function edit(Item $item, ItemRequest $request) {
 

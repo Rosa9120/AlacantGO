@@ -1,15 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Establishment List')
-
 @section('content')
 <section>
 <br>
-    <div class="back">
-        <a href="/" id="back">Go Back</a>
-    </div>
     <div class="restaurant">
         <div class="header">
+
             <div class="img-overlay"> 
                 <h1> {{ $establishment->name}} </h1>
                 <h2> {{ $establishment->address}} </h2>
@@ -25,7 +21,7 @@
                 <th>Description</th>
                 <th>Price</th>
                 @auth
-                    @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))
+                    @if (Auth::user()->rol == 'admin')
                     <th width="180px">Action</th>
                     @endif
                 @endauth
@@ -49,13 +45,13 @@
                 <td width="10%">{{ $item->price }}€</td>
 
                 @auth
-                    @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))
+                    @if (Auth::user()->rol == 'admin')
                     <td class="action-buttons">
-                        <a class="btn btn-warning" href="{{ url("/ilyan/edit/" . $item->id) }}">Edit</a>
+                        <a class="btn btn-warning" href="{{ url("/items/" . $item->id . "/edit") }}">Edit</a>
                         <form action="{{ url('/items', ['id' => $item->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
                         </form>
                     </td>
                     @endif 
@@ -64,18 +60,9 @@
             @endforeach
         </table>
     </div>
-    @auth
-        {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
-        @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))      
-            <div style="display:flex; margin-top: 30px; justify-content:center;">
-                <a class="btn btn-success" href="/ilyan/create/"> Insert new item</a>
-            </div>
-            <div class="manage-buttons"> 
-                <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id . "?url=" . url()->current()) }}"  class="btn btn-primary"> Update information </a>
-                <a class="btn btn-danger"> Delete restaurant </a>
-            </div>
-        @endif
-    @endauth
+    <div style="display:flex; margin-top: 30px; justify-content:center;">
+        <a class="btn btn-success"> Create New Establishment</a>
+    </div>
 </section>
    
 @endsection
@@ -98,19 +85,6 @@
 </script>
 @section("style")
 <style>
-
-    html{
-        overflow-x:hidden;
-    }
-
-    .manage-buttons{
-        display:flex;
-        /* justify-content: center; */
-        margin-top: 30px;
-        justify-content: center;
-        gap: 15px;
-    }
-
     section{
         min-height: calc(100vh - 70px - 123px - 48px);
         background-color: #e5e3df;
@@ -152,37 +126,16 @@
         color: white;
         font : normal 200 1vw/1 'Josefin Sans', sans-serif;
         margin-left: 8px;
-        margin-top: 2px;
-    }
 
-    .back {
-        position: relative;
-        left:20%;
-
-    }
-
-    #back {
-        display: inline-block;
-        padding: 5px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #4E4E4E;
-        transition: 0.3s;
-    }
-
-    #back:hover {
-        transform: scale(1.1);
-        /* font-size: 21px; */
-        color: white;
     }
 
     .restaurant{
-        margin: 25px 20% 0 20%;
+        margin: 25px 20%;
         background-color:whitesmoke;
         position:relative;
         /* padding: 0 2% 2% 2%; */
         border-radius:25px;
-        /* margin-bottom: 15px; */
+        margin-bottom: 15px;
     }
 
     .card{
@@ -197,7 +150,7 @@
     .action-buttons{
         display:flex;
         flex-direction:row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: space-between;
     }
     

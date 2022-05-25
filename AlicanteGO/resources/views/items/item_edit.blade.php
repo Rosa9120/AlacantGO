@@ -6,7 +6,11 @@
 
     <div class="container">
         <div class="back">
-            <a href="/items" id="back">Go Back</a>
+            @if (Auth::check() && Auth::user()->rol == "admin")
+                <a href="/items" id="back">Go Back</a>
+            @else
+                <a href="/" id="back">Go Back</a>
+            @endif
         </div>
 
         <div class="title">

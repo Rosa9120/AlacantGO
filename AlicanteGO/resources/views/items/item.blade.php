@@ -5,9 +5,11 @@
 @section('content')
 
     <div class="container">
-        <div class="back">
+        @if (Auth::check() && Auth::user()->rol == "admin")
             <a href="/items" id="back">Go Back</a>
-        </div>
+        @else
+            <a href="/" id="back">Go Back</a>
+        @endif
 
         <div class="title">
             <h1> Item Info </h1>

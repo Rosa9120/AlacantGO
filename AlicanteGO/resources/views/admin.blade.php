@@ -14,21 +14,23 @@
 
     <body>
         <div class="head">
-            <nav class="navbar navbar-expand-lg navbar-light ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            @if (Auth::check() && Auth::user()->rol == "admin")
+                <nav class="navbar navbar-expand-lg navbar-light ">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav" style="margin-left:50%;transform:translateX(-50%);">
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/managers">Managers</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/establishments">Establishments</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/brands">Brands</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/categories">Categories</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/items">Items</a>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav" style="margin-left:50%;transform:translateX(-50%);">
+                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/managers">Managers</a>
+                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/establishments">Establishments</a>
+                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/brands">Brands</a>
+                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/categories">Categories</a>
+                            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/items">Items</a>
+                        </div>
                     </div>
-                </div>
-            </nav>             
+                </nav>             
+            @endif
         </div>
 
         <div class="content">

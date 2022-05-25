@@ -32,7 +32,7 @@ Route::get('/establishment/{establishment}', function($establishment){
 });
 
 // ITEMS' ROUTES
-Route::group(['middleware' => 'admin'], function() {
+// Route::group(['middleware' => 'admin'], function() {
     Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
     Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create_view']);
     Route::post('/items', [App\Http\Controllers\ItemController::class, 'create']);
@@ -41,7 +41,7 @@ Route::group(['middleware' => 'admin'], function() {
     Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
     Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
     Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
-});
+// });
 
 /**
  * MANAGER ROUTES
@@ -61,7 +61,7 @@ Route::get('/establishments/create', [App\Http\Controllers\EstablishmentControll
 Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create']);
 Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
 Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search']);
-Route::get('/establishments/{id}', [App\Http\adminControllers\EstablishmentController::class, 'show'])->name('establishment');
+Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'show'])->name('establishment');
 Route::get('/establishments/{id}/edit', [App\Http\Controllers\EstablishmentController::class, 'edit_view']);
 Route::patch('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'edit']);
 Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete']);
@@ -110,10 +110,10 @@ Route::get('/profile', function () {
 //provisionalmente y para distinguirlas bien, estas rutas se llaman ilyan + lo que sea
 //por favor no toqueis estas rutas
 
-Route::get('/ilyan/edit/{item}', function ($item) {    
-    $item = Item::whereId($item)->first();
-    return view('ilyan_edit_item')->with('item',$item);
+Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
+    return view('ilyan_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
 });
+Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit']);
 
 
 Route::get('/ilyan/create', function () {    
