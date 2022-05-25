@@ -108,9 +108,9 @@ class EstablishmentController extends Controller
     function create(Request $req) {
         $req->validate(['name' => 'required',
                         'address' => 'required',
-                        'postal_code' => 'required',
-                        'latitude' => 'required',
-                        'longitude' => 'required']);
+                        'postal_code' => 'required|numeric|digits:5',
+                        'latitude' => 'required|numeric',
+                        'longitude' => 'required|numeric']);
 
         $establishment = Establishment::create($req->input('name'),
         $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
@@ -167,13 +167,11 @@ class EstablishmentController extends Controller
      */
     function edit(Request $req, $id) {
 
-        $req->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'postal_code' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required'
-        ]);
+        $req->validate(['name' => 'required',
+                        'address' => 'required',
+                        'postal_code' => 'required|numeric|digits:5',
+                        'latitude' => 'required|numeric',
+                        'longitude' => 'required|numeric']);
 
         $establishment = Establishment::edit($id, $req->input('name'),
         $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
