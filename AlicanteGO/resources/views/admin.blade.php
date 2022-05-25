@@ -21,11 +21,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav" style="margin-left:50%;transform:translateX(-50%);">
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/managers">Managers</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/establishments">Establishments</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/brands">Brands</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/categories">Categories</a>
-                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/items">Items</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/managers">Managers</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/establishments">Establishments</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/brands">Brands</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/categories">Categories</a>
+                        <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/items">Items</a>
                     </div>
                 </div>
             </nav>             

@@ -9,12 +9,12 @@
         <h3>Total categories: {{ $count }}</h3>
     </div>
     <div>
-        <a class="btn btn-success" href="{{ url('/categories/create') }}"> Create New Category</a>
+        <a class="btn btn-success" href="{{ url('/admin/categories/create') }}"> Create New Category</a>
     </div>
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/categories/search') }}" method="GET">
+    <form class="search-form" action="{{ url('/admin/categories/search') }}" method="GET">
         @csrf
         @method('post')
         @if(empty($search))
@@ -36,9 +36,9 @@
         <td>{{ $category->name }}</td>
 
         <td>
-            <a class="btn btn-warning" href="{{ url("/categories/" . $category->id . "/edit") }}">Edit</a>
+            <a class="btn btn-warning" href="{{ url("/admin/categories/" . $category->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/categories/delete', ['id' => $category->id]) }}" method="POST">
+            <form action="{{ url('/admin/categories/delete', ['id' => $category->id]) }}" method="POST">
                 @csrf
                 @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>

@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/establishments/search') }}" method="GET">
+    <form class="search-form" action="{{ url('/admin/establishments/search') }}" method="GET">
         @csrf
         @method('get')
         @if(empty($search))
@@ -32,7 +32,7 @@
             </select>
         </div>
         
-        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name..."></input>
+        <input class="form-control" name="search" type="text" id="search" placeholder="Search by name...">
         <button type="submit" class="btn btn-primary" value="Search">Search</button>
     </form>
 </div>
@@ -60,7 +60,7 @@
             <a class="btn btn-primary" onclick="showEstablishment({{ $establishment->id }})">Show</a>
             <a class="btn btn-warning" onclick="editEstablishment({{ $establishment->id }})">Edit</a>
 
-            <form action="{{ url('/establishments/delete', ["id" => $establishment->id]) }}" method="POST">
+            <form action="{{ url('/admin/establishments/delete', ["id" => $establishment->id]) }}" method="POST">
                 @csrf
                 @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>
@@ -74,15 +74,15 @@
 
 <script>
     function showEstablishment(id) {
-        window.location.href = `{{url('/establishments/')}}/${id}`;
+        window.location.href = `{{url('/admin/establishments/')}}/${id}`;
     }
 
     function createEstablishment() {
-        window.location.href = '/establishments/create';
+        window.location.href = '/admin/establishments/create';
     }
 
     function editEstablishment(id) {
-        window.location.href = '/establishments/' + id + '/edit';
+        window.location.href = '/admin/establishments/' + id + '/edit';
     }
 </script>
 

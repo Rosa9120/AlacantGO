@@ -9,12 +9,12 @@
         <h3>Total items: {{ $count }}</h3>
     </div>
     <div>
-        <a class="btn btn-success" href="{{ url('/items/create') }}"> Create New Product</a>
+        <a class="btn btn-success" href="{{ url('/admin/items/create') }}"> Create New Product</a>
     </div>
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/items/search') }}" method="GET">
+    <form class="search-form" action="{{ url('/admin/items/search') }}" method="GET">
         @csrf
         @method('get')
         @if(empty($search))
@@ -63,10 +63,10 @@
         <td>{{ $item->name }}</td>
         <td>{{ $item->price }}€</td>
         <td>
-            <a class="btn btn-primary" href="{{ url("/items/" . $item->id) }}">Show</a>
-            <a class="btn btn-warning" href="{{ url("/items/" . $item->id . "/edit") }}">Edit</a>
+            <a class="btn btn-primary" href="{{ url("/admin/items/" . $item->id) }}">Show</a>
+            <a class="btn btn-warning" href="{{ url("/admin/items/" . $item->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/items/delete', ['id' => $item->id]) }}" method="POST">
+            <form action="{{ url('/admin/items/delete', ['id' => $item->id]) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>

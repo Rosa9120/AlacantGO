@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="back">
-        <a href="/establishments" id="back">Go Back</a>
+        <a href="/admin/establishments" id="back">Go Back</a>
     </div>
 
     <div class="title">
@@ -15,7 +15,7 @@
 
     <div class="establishment">
         <div class="information">
-            <form action="{{ url('/establishments') }}" method="POST">
+            <form action="{{ url('/admin/establishments') }}" method="POST">
                 @csrf
                 @method('post')
                 <ul>

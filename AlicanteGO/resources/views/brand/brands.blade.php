@@ -9,13 +9,13 @@
         <h3>Total brands: {{ $count }}</h3>
     </div>
     <div>
-        <a class="btn btn-success" href="{{ url('/brands/set') }}"> Set Brand</a>
-        <a class="btn btn-success" href="{{ url('/brands/create') }}"> Create New Brand</a>
+        <a class="btn btn-success" href="{{ url('/admin/brands/set') }}"> Set Brand</a>
+        <a class="btn btn-success" href="{{ url('/admin/brands/create') }}"> Create New Brand</a>
     </div>
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/brands/search') }}" method="get">
+    <form class="search-form" action="{{ url('/admin/brands/search') }}" method="get">
         @csrf
         @method('post')
         @if(empty($search))
@@ -39,9 +39,9 @@
         <td>{{ $brand->isin }}</td>
 
         <td>
-            <a class="btn btn-warning" href="{{ url("/brands/" . $brand->id . "/edit") }}">Edit</a>
+            <a class="btn btn-warning" href="{{ url("/admin/brands/" . $brand->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/brands/delete', ['id' => $brand->id]) }}" method="POST">
+            <form action="{{ url('/admin/brands/delete', ['id' => $brand->id]) }}" method="POST">
                 @csrf
                 @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>

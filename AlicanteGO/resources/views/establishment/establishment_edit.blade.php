@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="back">
-        <a href="/establishments" id="back">Go Back</a>
+        <a href="/admin/establishments" id="back">Go Back</a>
     </div>
     <div class="title">
             <h1> Edit Establishment </h1>
@@ -14,7 +14,7 @@
     <div class="establishment">
         <div class="information">
             <span>ID #: {{ $establishment->id }}</span>
-            <form action="{{ url('/establishments', ["id" => $establishment->id]) }}" method="POST">
+            <form action="{{ url('/admin/establishments', ["id" => $establishment->id]) }}" method="POST">
                 @csrf
                 @method('PATCH')
                 <ul>
