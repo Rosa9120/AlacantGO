@@ -5,6 +5,7 @@ use App\Models\Establishment;
 use App\Models\Item;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Manager;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -102,12 +103,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/* NO SE DONDE PONER ESTO */
-
-Route::get('/profile', function () {
-    return view('profile');
-});
-
 //las rutas anteriores que pertenezcan al admin deben llevar el prefijo admin
 //provisionalmente y para distinguirlas bien, estas rutas se llaman ilyan + lo que sea
 //por favor no toqueis estas rutas
@@ -138,4 +133,16 @@ Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentControll
 Route::get('/establishment/{establishment}', function($establishment){
     $establishment = Establishment::whereId($establishment)->first();
     return view('establishment')->with("establishment", $establishment);
+});
+
+Route::get('/brand/{brand}', function($brand){
+    $establishments = Establishment::where('brand_id','=',$brand)->get();
+    $items = Item::where('brand_id',"=",$brand)->get();
+    $brand = Brand::whereId($brand)->first();
+    return view('brand')->with("brand", $brand)->with("establishments",$establishments)->with("items",$items);
+});
+
+Route::get('/profile', function () {
+    $manager = Manager::where('user_id','=', Auth::user()->id)->first();
+    return view('profile')->with("manager", $manager);
 });

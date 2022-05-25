@@ -18,6 +18,7 @@ class CreateBrandsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('isin');
+            $table->string('img_url');
         });
     }
 

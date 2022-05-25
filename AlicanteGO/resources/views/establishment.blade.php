@@ -8,19 +8,17 @@
     <div class="back">
         <a href="/" id="back">Go Back</a>
     </div>
-    <div class="restaurant">
+    <div class="container">
         <div class="header">
             <div class="img-overlay"> 
                 <h1> {{ $establishment->name}} </h1>
                 <h2> {{ $establishment->address}} </h2>
             </div>
             <img class="custom-img" src="{{ asset($establishment->img_url) }}">
-
         </div>
 
         <table class="table" style="width:85%;margin:auto;">
             <tr>
-                {{-- <th>Image</th> For now we will not have an image--}}
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
@@ -63,8 +61,7 @@
             </tr>
             @endforeach
         </table>
-    </div>
-    @auth
+        @auth
         {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
         @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))      
             <div style="display:flex; margin-top: 30px; justify-content:center;">
@@ -80,6 +77,8 @@
             </div>
         @endif
     @endauth
+    </div>
+
 </section>
    
 @endsection
@@ -103,18 +102,14 @@
 @section("style")
 <style>
 
-    section{
-        height:100vh;
-        margin-bottom:60px;
-        z-index: 999;
-    }
-
     .manage-buttons{
         display:flex;
         /* justify-content: center; */
-        margin-top: 30px;
+        margin-top: 15px;
+        margin-bottom: 30px;
         justify-content: center;
         gap: 15px;
+
     }
 
     .header{
@@ -177,16 +172,24 @@
         color: white;
     }
 
-    .restaurant{
-        margin: 25px 20% 0 20%;
+    .container{
+        font-family: "Montserrat", sans-serif;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 60%;
+        height: auto;
+        max-height: 100%;
         background-color:whitesmoke;
-        position:relative;
-        /* padding: 0 2% 2% 2%; */
-        border-radius:25px;
-        height:auto;
-        /* margin-bottom: 15px; */
-        
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding:0;
+        /* margin: 25px 20% 0 20%;
+        margin: 25px 20% 0 20%; */
     }
+
 
     .card{
         border:none;

@@ -24,5 +24,25 @@ class ManagerSeeders extends Seeder
             null,
             '2'
         );	
+
+        Manager::create(
+            'Ilya Slyusarchuk',
+			'123456789A',
+			'660206515',
+            '8',
+            '3',
+            '3'
+        );	
+
+
+        Manager::create(
+            'Rosa Rodriguez',
+			'50383873G',
+			'686942928',
+            null,
+            null,
+            '4'
+        );	
+
     }
 }

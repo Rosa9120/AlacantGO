@@ -67,7 +67,7 @@
                                     {{ Auth::user()->name }}
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" style="padding: 0;"><button class="btn">Profile</button></a>
+                                  <a class="dropdown-item" href="/profile" style="padding: 0;"><button class="btn">Profile</button></a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" style="padding: 0;"><button type="submit" class="btn" form="logout-form">Logout</button></a>
                                 </div>
@@ -195,6 +195,8 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        width: 100%;
+        overflow:hidden;
     }
 
     footer {
@@ -210,7 +212,7 @@
     #app > main{
         background-color:#e5e3df;
         min-height: calc(100vh - 180px);
-        overflow-x:hidden;
+        overflow:hidden;
     }
 
     .content {
@@ -236,7 +238,18 @@
         color: white;
     }
 
-    
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
+    }
 
 </style>
 @yield('style')

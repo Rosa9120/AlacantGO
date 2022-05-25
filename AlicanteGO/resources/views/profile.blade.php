@@ -3,34 +3,75 @@
 @section('title', 'Profile')
 
 @section('content')
-
+<section>
 
 <div class="container">
-    Profile
-    Establishments you own: 
-    <div class="searcher"> 
-        <input type="text" form="filter" name="search" class="form-control" style="width: 50%; font-size: 1.2rem;" placeholder="Search by name or address..." value={{ $search }}>
-        <input type="submit" form="filter" value="Go" style="font-size: 1.2rem;" class="btn btn-primary" />
-    </div>
-    <div class="cards">
-        @foreach ($establishments as $est)
+    <h1 style="color: #4E4E4E; align-self:center; margin:10px; font : normal 200 3vw/1 'Josefin Sans', sans-serif;"> Profile</h1>
+    <h2> Personal data </h2>
+    <p>
+        <span style="font-weight: bold; font-size: 1vw"> Name:  </span> 
+        <span style="font-size: 1vw"> {{ $manager->name }}  </span>
+    </p>
+    <p>
+        <span style="font-weight: bold; font-size: 1vw"> DNI:  </span> 
+        <span style="font-size: 1vw"> {{ $manager->DNI }}  </span>
+    </p>
+    <p>
+        <span style="font-weight: bold; font-size: 1vw"> Phone number:  </span> 
+        <span style="font-size: 1vw"> {{ $manager->phone }}  </span>
+    </p>
+
+
+    <div class="container-cards">
+       <div class="container1"> 
+        <p style="font-weight: bold; font-size: 1vw"> Establishments you own: </p>
+
+        @if(isset($manager->establishment))
             <div class="card">
-                <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src= "{{ asset($est['img_url']) }}">
+                <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src= "{{ asset($manager->establishment['img_url']) }}">
                 <div class="overlay-container">
                     <div class="overlay">
-
+    
                     </div>
                 </div>
-                <a href="{{ url("/establishment/" . $est['id']) }}" class="btn btn-primary more-info-btn" class="fade"> More information </a>
+                <a href="{{ url("/establishment/" . $manager->establishment_id) }}" class="btn btn-primary more-info-btn" class="fade"> Manage </a>
                 <div class="card-body">
-                    <h5 class="card-title"> {{ $est['name'] }}</h5>
-                    <p class="card-text"> {{ $est['address'] }} </p>
+                    <h5 class="card-title"> {{ $manager->establishment['name'] }}</h5>
+                    <p class="card-text"> {{ $manager->establishment['address'] }} </p>
                 </div>
             </div>
-        @endforeach
-    </div>
-    Brands you own:
+        @else
+        <div style="display:flex; margin-top: 30px; justify-content:center;">
+            <a class="btn btn-success" > Create an establishment </a>
+        </div>
+        @endif
+        </div> 
 
+        <div class="container2"> 
+        
+            <p style="font-weight: bold; font-size: 1vw"> Brands you own: </p>
+        
+            @if(isset($manager->brand))
+                <div class="card">
+                    <img class="card-img-top" style="border-radius: 25px 25px 0 0;" src= "{{ asset($manager->brand['img_url']) }}">
+                    <div class="overlay-container">
+                        <div class="overlay">
+        
+                        </div>
+                    </div>
+                    <a href="{{ url("/brand/" . $manager->brand_id) }}" class="btn btn-primary more-info-btn" class="fade"> Manage </a>
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ $manager->brand['name'] }}</h5>
+                    </div>
+                </div>
+            @else
+            <div style="display:flex; margin: 30px 0 30px 0; justify-content:center;">
+                <a class="btn btn-success" > Create a brand </a>
+            </div>
+            @endif
+        </div>
+    </div>
+    
 </div>
 
 </section>
@@ -40,38 +81,32 @@
 @section("style")
     <style>
 
+    html{
+        width:100%;
+        overflow-x:hidden;
+    }
+
+    section{
+        display:flex;
+        justify-content: center;
+    }
     .container{
         margin: 25px 20% 0 20%;
         background-color:whitesmoke;
         position:relative;
         border-radius:25px;
-    }
-    .form-control{
-        width: 500px;
-    }
-    .searcher{
-        display:flex;
-        padding-bottom: 15px; 
-        margin: 15px;
-        justify-content: center;
-    }
-
-    .cards{
-        display:flex;
-        flex-direction: row;
-        align-content: center;
-        /* max-width: 1200px; */
-        gap: 25px;
-        flex-wrap: wrap;
-        justify-content: flex-start ;
-        margin-left: 10%;
+        display: flex;
+        flex-flow: column wrap;
     }
 
     .card{
         width: 400px;
         position: relative;
         border-radius:25px;
+        align-self: center;
+        margin: 20px 0 20px 0;
     }
+
     .card-img-top{
         height: 380px;
         object-fit: cover;
@@ -95,6 +130,7 @@
         transition: .5s ease;
         background-color: whitesmoke;
     }
+
     .more-info-btn {
         display: none;
         opacity: 0;
@@ -120,11 +156,23 @@
         opacity: 1;
     }
 
-
     .card-title{
         font-family: Arial, Helvetica, sans-serif;
         font-size: 30px;
         font-weight: 550;
+    }
+
+    .container-cards{
+        display:flex;
+        width:100%;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+
+    .btn{
+        align-self: center;
+        z-index: 999;
+        opacity: 1;
     }
 
     </style>
