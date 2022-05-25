@@ -15,6 +15,14 @@ Route::get('/aboutus', function () {
     return view('aboutus');
 });
 
+//ALTERED REGISTER VIEW
+Route::get('/signin', function(){
+    $establishments = \DB::table('establishments')->get();
+    $brands = \DB::table('brands')->get();
+    return view('auth/register', ["success" => true, "brands" => $brands, "establishments" => $establishments]);
+});
+
+
 Route::get('/establishment/{establishment}', function($establishment){
     $establishment = Establishment::whereId($establishment)->first();
     return view('establishment')->with("establishment", $establishment);
@@ -104,3 +112,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', function () {
     return view('profile');
 });
+

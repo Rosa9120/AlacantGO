@@ -55,7 +55,7 @@
                         @endauth
                         @guest
                             <div class="auth" style="display: flex;">
-                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/register">Register</a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/signin">Sign in</a>
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
                             </div>
                         @else

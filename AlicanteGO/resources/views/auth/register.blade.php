@@ -39,6 +39,36 @@
                             </div>
                         </div>
 
+
+                        <div class="row mb-3">
+                            <label for="establishment" class="col-md-4 col-form-label text-md-end">{{ __('Managed establishment') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="dropdown" name="dropdownEstablishment" class="form-control editable dropdown">
+                                    <option value = ""> </option>
+                                    @foreach ($establishments as $idx => $establishment)
+                                        <option value="{{ $establishment->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $establishment->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="brand" class="col-md-4 col-form-label text-md-end">{{ __('Managed brand') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="dropdown" name="dropdownBrand" class="form-control editable dropdown">
+                    
+                                    <option value = ""> </option>
+                                    @foreach ($brands as $idx => $brand)
+                                        <option value="{{ $brand->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $brand->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
