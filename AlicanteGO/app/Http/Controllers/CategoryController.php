@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $search = \Request::get('search');
 
         if ($search == null) {
-            return redirect('/categories');
+            return redirect('/admin/categories');
         }
 
         $search = trim($search);
@@ -51,14 +51,14 @@ class CategoryController extends Controller
     {
         $category = Category::Find($id);
         $category->delete();
-        return redirect('/categories');
+        return redirect('/admin/categories');
     }
 
     public function create_category(Request $request) 
     {
         Category::create($request->input('name'));
 
-        return redirect('/categories');
+        return redirect('/admin/categories');
     }
 
     public function edit(Category $category) {
@@ -77,6 +77,6 @@ class CategoryController extends Controller
         //$category->name = trim($request["name"]);
         Category::edit($request->input('name'));
 
-        return redirect('/categories');
+        return redirect('/admin/categories');
     }
 }

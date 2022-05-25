@@ -7,7 +7,7 @@
 <div class="container">
 
     <div class="back">
-            <a href="/brands" id="back">Go Back</a>
+            <a href="/admin/brands" id="back">Go Back</a>
     </div>
 
     <div class="information">
@@ -17,7 +17,7 @@
         <br>
 
         <ul>
-        <form action="{{url('/brands/update')}}" method="POST">
+        <form action="{{url('/admin/brands/update')}}" method="POST">
             @csrf
             @method('put')
             <li>Establishment: 

@@ -38,7 +38,7 @@ class BrandController extends Controller
         $search = \Request::get('search');
 
         if ($search == null) {
-            return redirect('/brands');
+            return redirect('/admin/brands');
         }
 
         $search = trim($search);
@@ -56,7 +56,7 @@ class BrandController extends Controller
     {
         $brand = Brand::Find($id);
         $brand->delete();
-        return redirect('/brands');
+        return redirect('/admin/brands');
     }
 
     public function create(Request $request) 
@@ -67,7 +67,7 @@ class BrandController extends Controller
 
         Brand::create($request->input('name'), $request->input('isin'));
 
-        return redirect('/brands');
+        return redirect('/admin/brands');
     }
 
     function set_brand() {
@@ -90,6 +90,6 @@ class BrandController extends Controller
 
         Brand::edit($brand, $request->input('name'), $request->input('isin'));
 
-        return redirect('/brands');
+        return redirect('/admin/brands');
     }
 }

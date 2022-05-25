@@ -62,7 +62,7 @@ class EstablishmentController extends Controller
         $orderBy = $req->get('orderBy');
 
         if ($search == null && $orderBy == null) {
-            return redirect('/establishments');
+            return redirect('/admin/establishments');
         }
 
         if ($search != null) {
@@ -116,7 +116,7 @@ class EstablishmentController extends Controller
         $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
         Brand::whereId($req["brand"])->first(), Brand::whereId($req["category"])->first());
 
-        return redirect('/establishments/' . $establishment->id);
+        return redirect('/admin/establishments/' . $establishment->id);
     }
 
     function filter_establishments(Request $request) {
@@ -179,6 +179,6 @@ class EstablishmentController extends Controller
         $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
         Brand::whereId($req["brand"])->first(), Brand::whereId($req["category"])->first());
 
-        return redirect('/establishments/' . $establishment->id);
+        return redirect('/admin/establishments/' . $establishment->id);
     }
 }

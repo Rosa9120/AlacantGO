@@ -28,7 +28,7 @@ class ItemController extends Controller
     {
         $item = Item::Find($id);
         $item->delete();
-        return redirect('/items');
+        return redirect('/admin/items');
     }
 
     public function search(Request $request) {
@@ -79,7 +79,7 @@ class ItemController extends Controller
         Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
         Brand::whereId($request["brand"])->first(), Establishment::whereId($request["establishment"])->first());
 
-        return redirect('/items/' . $item->id);
+        return redirect('/admin/items/' . $item->id);
     }
 
     public function create_view() {
@@ -94,6 +94,6 @@ class ItemController extends Controller
         $item = Item::create(trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
         Brand::whereId($request->input('dropdownItem'))->first(), Establishment::whereId($request->input('dropdownItem'))->first());
 
-        return redirect('/items/' . $item->id);
+        return redirect('/admin/items/' . $item->id);
     }
 }

@@ -9,14 +9,14 @@
         <h3>Total managers: {{ $count }}</h3>
     </div>  
     <div>  
-        <a href="{{ url('/managers/create') }}" method="GET"> 
+        <a href="{{ url('/admin/managers/create') }}" method="GET"> 
             <button type="button" class="btn btn-success">Create Manager</button>
         </a>
     </div>
 </div>
 
 <div class="form-group has-search search">
-    <form class="search-form" action="{{ url('/managers/search') }}" method="GET">
+    <form class="search-form" action="{{ url('/admin/managers/search') }}" method="GET">
         @csrf
         @method('get')
         @if(empty($search))
@@ -74,10 +74,10 @@
             <td style="font-style:italic;"> none </td>
         @endif
         <td>
-            <a class="btn btn-primary" href="{{ url("/managers/" .$manager->id) }}">Show</a>
-            <a class="btn btn-warning" href="{{ url("/managers/" . $manager->id . "/edit") }}">Edit</a>
+            <a class="btn btn-primary" href="{{ url("/admin/managers/" .$manager->id) }}">Show</a>
+            <a class="btn btn-warning" href="{{ url("/admin/managers/" . $manager->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/managers/delete', ['id' => $manager->id]) }}" method="POST">
+            <form action="{{ url('/admin/managers/delete', ['id' => $manager->id]) }}" method="POST">
                 @csrf
                 @method('get')
                 <input type="submit" class="btn btn-danger" value="Delete"/>

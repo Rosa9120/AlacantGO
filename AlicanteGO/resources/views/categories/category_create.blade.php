@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="back">
-            <a href="/categories" id="back">Go Back</a>
+            <a href="/admin/categories" id="back">Go Back</a>
         </div>
 
         <div class="title">
@@ -15,7 +15,7 @@
 
         <div class="category">
             <div class="information">
-                <form action="{{ url('/categories/create') }}" method="POST">
+                <form action="{{ url('/admin/categories/create') }}" method="POST">
                     @csrf
                     @method('post')
                     <ul>

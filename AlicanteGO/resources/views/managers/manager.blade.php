@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="back">
-            <a href="/managers" id="back">Go Back</a>
+            <a href="/admin/managers" id="back">Go Back</a>
         </div>
 
         <div class="title">
@@ -25,12 +25,12 @@
                     <li>Full name: {{ $manager->name }}</li>
                     <li>DNI: {{ $manager->DNI }}</li>
                     @if(isset($manager->brand))
-                    <li>Brand: <a href="{{ url("/brands") }}"> {{ $manager->brand->name }}</a></li>    
+                    <li>Brand: <a href="{{ url("/admin/brands") }}"> {{ $manager->brand->name }}</a></li>    
                     @else
                     <li>  Brand: none  </li>    
                     @endif
                     @if(isset($manager->establishment))
-                        <li>Establishment: <a href="{{ url("/establishments/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
+                        <li>Establishment: <a href="{{ url("/admin/establishments/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
                     @else
                     <li> Establishment: none </li>  
                     @endif

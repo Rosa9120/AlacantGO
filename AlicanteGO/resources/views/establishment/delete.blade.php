@@ -6,20 +6,20 @@
 
     <div class="container">
             <div class="back">
-                <a href="/establishments" id="back">Go Back</a>
+                <a href="/admin/establishments" id="back">Go Back</a>
             </div>
 
                 <div class="information">
                     <span>ID #: {{ $establishment->id }}</span>
 
-                    <form action="{{ url('/establishments/remove', ["id" => $establishment->id]) }}" method="delete">
+                    <form action="{{ url('/admin/establishments/remove', ["id" => $establishment->id]) }}" method="delete">
                         <div class="modal-body">
                             @csrf
                             @method('delete')
                             <h5 class="text-center">Are you sure you want to delete {{ $establishment->name }} ?</h5>
                         </div>
-                        <a class="btn btn-secondary" href="{{ url('/establishments/') }}">Cancel</a>
-                        <form action="{{ url('/establishments/remove', ['id' => $establishment->id]) }}" method="DELETE">
+                        <a class="btn btn-secondary" href="{{ url('/admin/establishments/') }}">Cancel</a>
+                        <form action="{{ url('/admin/establishments/remove', ['id' => $establishment->id]) }}" method="DELETE">
                             @csrf
                             @method('delete')
                             <input type="submit" class="btn btn-danger" value="Yes, Delete"/>
