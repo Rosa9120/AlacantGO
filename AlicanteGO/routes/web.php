@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Establishment;
 use App\Models\Item;
+use App\Models\Brand;
+use App\Models\Category;
+
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -44,46 +47,36 @@ Route::group(['middleware' => 'admin'], function() {
  * MANAGER ROUTES
  */
 Route::get('/managers', [App\Http\Controllers\ManagerController::class, 'index']);
-Route::get('/managers/delete/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
-Route::get('/managers/remove/{manager}', [App\Http\Controllers\ManagerController::class, 'destroy']);
+Route::get('/managers/create', [App\Http\Controllers\ManagerController::class, 'create_view']);
+Route::post('/managers', [App\Http\Controllers\ManagerController::class, 'create']);
 Route::get('/managers/search', [App\Http\Controllers\ManagerController::class, 'search']);
 Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
-Route::get('/addmanagers', [App\Http\Controllers\ManagerController::class, 'create_view']);
-Route::post('/addmanagers/create', [App\Http\Controllers\ManagerController::class, 'create']);
-Route::get('/managers/show/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
-Route::get('/managers/edit/{manager}', [App\Http\Controllers\ManagerController::class, 'edit_view']);
+Route::get('/managers/{manager}/edit', [App\Http\Controllers\ManagerController::class, 'edit_view']);
 Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'edit']);
+Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
 
 // ESTABLISHMENTS' ROUTES
-Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'get_all']);
-Route::get('/addestablishments', [App\Http\Controllers\EstablishmentController::class, 'create_establishment']);
+Route::get('/establishments', [App\Http\Controllers\EstablishmentController::class, 'index']);
+Route::get('/establishments/create', [App\Http\Controllers\EstablishmentController::class, 'create_view']);
+Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'create']);
 Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
-Route::post('/addestablishments/create', [App\Http\Controllers\EstablishmentController::class, 'create_establishment_process']);
-Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search_establishment']);
-Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'get_establishment'])->name('establishment');
-Route::patch('/establishments/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment_process']);
-Route::get('/establishments/edit/{id}', [App\Http\Controllers\EstablishmentController::class, 'update_establishment']);
-Route::get('/establishments/delete/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete_establishment']);
-Route::get('/establishments/remove/{id}', [App\Http\Controllers\EstablishmentController::class, 'destroy']);
+Route::get('/establishments/search', [App\Http\Controllers\EstablishmentController::class, 'search']);
+Route::get('/establishments/{id}', [App\Http\adminControllers\EstablishmentController::class, 'show'])->name('establishment');
+Route::get('/establishments/{id}/edit', [App\Http\Controllers\EstablishmentController::class, 'edit_view']);
+Route::patch('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'edit']);
+Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete']);
 
 /**
  * BRAND ROUTES
  */
 
 Route::get('/brands', [App\Http\Controllers\BrandController::class, 'index']);
-Route::get('/brands/create', function () {return view('brand.brand_create');});
-Route::post('/brands/create', [App\Http\Controllers\BrandController::class, 'create_brand']);
-Route::get('/brands/remove/{id}', [App\Http\Controllers\BrandController::class, 'destroy']);
-Route::get('/brands/delete/{brand}', [App\Http\Controllers\BrandController::class, 'delete_brand']);
-Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search_brand']);
-
-Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit']);
-Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit_brand']);
-
-//MÉTODOS
-
-Route::get('/brands/get', function () {return view('brand.getForm');}); //ACCEDEMOS AL FORMULARIO
-Route::post('/brands/get', [App\Http\Controllers\BrandController::class, 'get_brand']); //ENVIAMOS LA INFORMACIÓN INTRODUCIDA DEL FORMULARIO AL CONTROLADOR
+Route::get('/brands/create', [App\Http\Controllers\BrandController::class, 'create_view']);
+Route::post('/brands', [App\Http\Controllers\BrandController::class, 'create']);
+Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search']);
+Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit_view']);
+Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit']);
+Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete']);
 
 Route::get('/brands/set', [App\Http\Controllers\BrandController::class, 'set_brand']);
 Route::put('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']); //THIS IS FOR THE SET BRAND
@@ -111,5 +104,26 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/profile', function () {
     return view('profile');
+});
+
+//las rutas anteriores que pertenezcan al admin deben llevar el prefijo admin
+//provisionalmente y para distinguirlas bien, estas rutas se llaman ilyan + lo que sea
+//por favor no toqueis estas rutas
+
+Route::get('/ilyan/edit/{item}', function ($item) {    
+    $item = Item::whereId($item)->first();
+    return view('ilyan_edit_item')->with('item',$item);
+});
+
+
+Route::get('/ilyan/create', function () {    
+    return view('ilyan_create_item');
+});
+
+Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment) {    
+    $establishment = Establishment::whereId($establishment)->first();
+    $brands = Brand::get();
+    $categories = Category::get();
+    return view('ilyan_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
 });
 

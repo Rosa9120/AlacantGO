@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('title', 'Set Brand success')
+
 @section('content')
 
 <div style="display:flex; justify-content:center; padding-top:35px">

@@ -9,6 +9,10 @@
             <a href="/items" id="back">Go Back</a>
         </div>
 
+        <div class="title">
+            <h1> Item Info </h1>
+        </div>
+
         <div class="item">
             <div class="img-container">
                 <img src="/assets/images/placeholder.png" alt="image">

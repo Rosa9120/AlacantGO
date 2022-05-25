@@ -9,19 +9,23 @@
             <a href="/brands" id="back">Go Back</a>
         </div>
 
+        <div class="title">
+            <h1> Create Brand </h1>
+        </div>
+
         <div class="brand">
             <div class="information">
-                <form action="{{ url('/brands/create') }}" method="POST">
+                <form action="{{ url('/brands') }}" method="POST">
                     @csrf
                     @method('post')
                     <ul>
 
                         <li>Name: 
-                            <input class="editable" value="{{ old('name') }}"  required name="name" type="text" class="form-control" placeholder="Brand Name"/>
+                            <input class="editable" required name="name" type="text" class="form-control" placeholder="Brand Name"/>
                         </li>
 
                         <li>Isin: 
-                            <input class="editable" value="{{ old('isin') }}" required name="isin"  class="@error('isin') is-invalid @enderror"  type="text" lang="en" placeholder="ES111111111"/>
+                            <input class="editable" required name="isin"  class="@error('isin') is-invalid @enderror"  type="text" lang="en" placeholder="ES111111111"/>
                         </li>
 
                         @error('isin')

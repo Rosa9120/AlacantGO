@@ -1,31 +1,38 @@
 @extends('admin')
 
-@section('title', 'Create Category')
+@section('title', 'Edit Brand')
 
 @section('content')
 
     <div class="container">
         <div class="back">
-            <a href="/categories" id="back">Go Back</a>
+            <a href="/brands" id="back">Go Back</a>
         </div>
 
         <div class="title">
-            <h1> Create Category </h1>
+            <h1> Edit Brand </h1>
         </div>
 
-        <div class="category">
             <div class="information">
-                <form action="{{ url('/categories/create') }}" method="POST">
+                <span>ID #: {{ $brand->id }}</span>
+                <form action="{{ url('/brands', ["id" => $brand->id]) }}" method="POST">
                     @csrf
-                    @method('post')
+                    @method('PATCH')
                     <ul>
-
-                        <li>Name: <input class="editable" required name="name" type="text" placeholder="Category Name"/>
+                        <li>Name: 
+                            <input class="editable" required name="name" type="text" value="{{ $brand->name }}" />
                         </li>
+                        <li>Isin: 
+                            <input class="editable" required name="isin" type="text" lang="en" class="@error('isin') is-invalid @enderror" value="{{ $brand->isin }}" /></li>
+                            @error('isin')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg"> ISIN must have 2 capital letters and 9 numbers </div>
+                            </li>
+                            @enderror
                     </ul>
                 
                     <div class="submit">
-                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="submit" class="btn btn-success">Confirm</button>
                     </div>
                 </form>
             </div>
@@ -36,7 +43,7 @@
 
 @section('style')
 
-.container {
+    .container {
         font-family: "Montserrat", sans-serif;
         margin-top: 100px;
         padding: 15px;
@@ -72,7 +79,20 @@
         color: white;
     }
 
-    .category {
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
+    }
+
+    .manager {
         display: flex;
         flex-direcion: row;
         flex-grow: 0;

@@ -1,38 +1,40 @@
 @extends('admin')
 
+@section('title', 'Edit Category')
+
 @section('content')
 
     <div class="container">
         <div class="back">
-            <a href="/managers" id="back">Go Back</a>
+            <a href="/categories" id="back">Go Back</a>
         </div>
 
-        <div class="manager">
-            <div class="img-container">
-                <img src="/assets/images/user.png" alt="image">
-            </div>
+        <div class="title">
+            <h1> Edit Category </h1>
+        </div>
 
             <div class="information">
-                <ul>
-                    <li>ID #: {{ $manager->id }}</li>
-                    <li>Full name: {{ $manager->name }}</li>
-                    <li>DNI: {{ $manager->DNI }}</li>
-                    @if(isset($manager->brand))
-                    <li>Brand: <a href="{{ url("/brands") }}"> {{ $manager->brand->name }}</a></li>    
-                    @else
-                    <li>  Brand: none  </li>    
-                    @endif
-                    @if(isset($manager->establishment))
-                        <li>Establishment: <a href="{{ url("/establishments/" . $manager->establishment->id) }}"> {{ $manager->establishment->name }} </a> </li>
-                    @else
-                    <li> Establishment: none </li>  
-                    @endif
-                </ul>
+                <span>ID #: {{ $category->id }}</span>
+                <form action="{{ url('/categories', ["id" => $category->id]) }}" method="POST">
+                    @csrf
+                    @method('patch')
+                    <ul>
+                        <li>Name: 
+                            <input class="editable" required name="name" type="text" value="{{ $category->name }}" />
+                        </li>
+                    </ul>
+                
+                    <div class="submit">
+                        <button type="submit" class="btn btn-success">Confirm</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <style>
+@endsection
+
+@section('style')
 
     .container {
         font-family: "Montserrat", sans-serif;
@@ -66,14 +68,8 @@
     }
 
     #back:hover {
-        color: white;
         transform: scale(1.1);
-    }
-
-    .img-container {
-        width: 30%;
-        height: 70%;
-        align-self: center;
+        color: white;
     }
 
     .manager {
@@ -85,14 +81,7 @@
         justify-content: space-between;
     }
 
-    img {
-        display: block;
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 15px;
-        border: 1px solid grey;
-    }
-    .information{
+    .information {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -110,7 +99,42 @@
         overflow-y: auto;
         padding: 20px;
     }
-    </style>
+
+    ::-webkit-input-placeholder {
+        font-style: italic;
+     }
+     :-moz-placeholder {
+        font-style: italic;  
+     }
+     ::-moz-placeholder {
+        font-style: italic;  
+     }
+     :-ms-input-placeholder {  
+        font-style: italic; 
+     }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .editable {
+        line-height: 14px;
+        margin-bottom: 8px;
+        width: 40%;
+        border-radius: 5px;
+        border: none;
+        padding: 3px;
+        padding-left: 5px;
+    }
+
+    .dropdown {
+        line-height: 20px;
+    }
+
+    .submit {
+        display: flex;
+        justify-content: flex-end;
+    }
 
 @endsection
-

@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('title', 'Manager List')
+
 @section('content')
 
 <div style="display:flex;justify-content:space-around;margin-top:40px;">
@@ -7,7 +9,7 @@
         <h3>Total managers: {{ $count }}</h3>
     </div>  
     <div>  
-        <a href="{{ url('/addmanagers') }}" method="GET"> 
+        <a href="{{ url('/managers/create') }}" method="GET"> 
             <button type="button" class="btn btn-success">Create Manager</button>
         </a>
     </div>
@@ -72,8 +74,8 @@
             <td style="font-style:italic;"> none </td>
         @endif
         <td>
-            <a class="btn btn-primary" href="{{ url("/managers/show/" .$manager->id) }}">Show</a>
-            <a class="btn btn-warning" href="{{ url("/managers/edit/" . $manager->id) }}">Edit</a>
+            <a class="btn btn-primary" href="{{ url("/managers/" .$manager->id) }}">Show</a>
+            <a class="btn btn-warning" href="{{ url("/managers/" . $manager->id . "/edit") }}">Edit</a>
  
             <form action="{{ url('/managers/delete', ['id' => $manager->id]) }}" method="POST">
                 @csrf

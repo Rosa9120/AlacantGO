@@ -236,6 +236,29 @@
         background-color:blue;
     } */
     
+    #app > main{
+        background-color:#e5e3df;
+    }
+
+    .back {
+        position: relative;
+    }
+
+    #back {
+        display: inline-block;
+        padding: 5px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #4E4E4E;
+        transition: 0.3s;
+    }
+
+    #back:hover {
+        transform: scale(1.1);
+        color: white;
+    }
+
+    
 
 </style>
 @yield('style')

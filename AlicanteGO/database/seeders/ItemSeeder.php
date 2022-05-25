@@ -42,27 +42,37 @@ class ItemSeeder extends Seeder
 		\DB::table('items')->insert([
 			'name' => 'Menú 1',
 			'price' => '12.90',
-			'description' => 'Ensaladilla rusa o patatas bravas.
-					Calamares andaluza o salteada de verduras.
-					Croquetas caseras 2uds. p/p.
-					Mini hamburguesa o Arepa.
+			'description' =>'Ensaladilla rusa o patatas bravas.
 
-					Bebida:
-					Jarra de cerveza o Jarra de tinto de verano.
-					Botella de vino de la casa.',
-			'establishment_id' => $ID
+Calamares andaluza o salteada de verduras.
+
+Croquetas caseras 2uds.
+
+Mini hamburguesa o Arepa.
+
+Bebida:
+
+Jarra de cerveza o Jarra de tinto de verano.
+
+Botella de vino de la casa.',
+
+'establishment_id' => $ID
 		]);
 
 		\DB::table('items')->insert([
 			'name' => 'Menú 2',
 			'price' => '11.50',
-			'description' => 'Croquetas caseras 2uds y tequeños 2uds.
-					Patatas strogonof o salteado de verduras.
-					Mini hamburguesa o Arepa.
+			'description' =>'Croquetas caseras 2uds y tequeños 2uds.
 
-					Bebida:
-					Caña/Tinto de verano/Refresco.',
-			'establishment_id' => $ID
+Patatas strogonof o salteado de verduras.
+
+Mini hamburguesa o Arepa.
+
+Bebida:
+
+Caña/Tinto de verano/Refresco.',
+
+'establishment_id' => $ID
 		]);
 
 		\DB::table('items')->insert([

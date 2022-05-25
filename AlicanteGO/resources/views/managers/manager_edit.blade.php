@@ -1,10 +1,16 @@
 @extends('admin')
 
+@section('title', 'Edit Manager')
+
 @section('content')
 
     <div class="container">
         <div class="back">
             <a href="/managers" id="back">Go Back</a>
+        </div>
+
+        <div class="title">
+            <h1> Edit Manager </h1>
         </div>
 
         <div class="manager">

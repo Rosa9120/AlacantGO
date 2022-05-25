@@ -1,26 +1,42 @@
-@extends('admin')
+@extends('layouts.app')
 
-@section('title', 'Create Category')
+@section('title', 'Create Item')
 
 @section('content')
-
+<section>
     <div class="container">
         <div class="back">
-            <a href="/categories" id="back">Go Back</a>
+            <a href="/items" id="back">Go Back</a>
         </div>
 
         <div class="title">
-            <h1> Create Category </h1>
+            <h1> Create Item </h1>
         </div>
 
-        <div class="category">
+        <div class="item">
             <div class="information">
-                <form action="{{ url('/categories/create') }}" method="POST">
+                <form action="{{ url('/items') }}" method="POST">
                     @csrf
                     @method('post')
                     <ul>
-
-                        <li>Name: <input class="editable" required name="name" type="text" placeholder="Category Name"/>
+                        <li>Name: 
+                            <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', null) }}" placeholder="Tarta de Oreo..."/>
+                        </li>
+                        @error('name')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("name")) }}</div>
+                            </li>
+                        @enderror
+                        <li>Price: 
+                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" value="{{ old("price", null) }}" step="0.01" lang="en" placeholder="3,99..."/>
+                        </li>
+                        @error('price')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("price")) }}</div>
+                            </li>
+                        @enderror
+                        <li>Description: 
+                            <textarea class="editable" name="description" type="text" wrap="off" type="text" rows="3"></textarea> 
                         </li>
                     </ul>
                 
@@ -31,19 +47,38 @@
             </div>
         </div>
     </div>
+</section>
+@endsection
+
+@section('script')
 
 @endsection
 
 @section('style')
+<style>
 
-.container {
+    section{
+        height: calc(100vh - 57px - 180px - 104px);
+        background-color: #e5e3df;
+    }
+
+    .title{
+        align-self: center;
+    }
+
+    textarea{
+        max-height: 140px;
+        white-space: pre;
+    }
+
+    .container {
         font-family: "Montserrat", sans-serif;
         margin-top: 100px;
         padding: 15px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 70%;
+        width: 50%;
         height: auto;
         max-height: 100%;
         background-color: rgba(109, 109, 109, 0.2);
@@ -72,13 +107,27 @@
         color: white;
     }
 
-    .category {
+    .img-container {
+        width: 30%;
+        height: 70%;
+        align-self: center;
+    }
+
+    .item {
         display: flex;
         flex-direcion: row;
         flex-grow: 0;
         flex-basis: 90%;
         margin-left: 20px;
         justify-content: space-between;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 15px;
+        border: 1px solid grey;
     }
 
     .information {
@@ -98,6 +147,25 @@
         margin-bottom: 20px;
         overflow-y: auto;
         padding: 20px;
+    }
+
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
+    }
+
+    .belongs {
+        display: flex;
+        align-items: center;
+        margin-top: 7px;
     }
 
     ::-webkit-input-placeholder {
@@ -130,11 +198,12 @@
 
     .dropdown {
         line-height: 20px;
+        height: calc(20px * 2);
     }
 
     .submit {
         display: flex;
         justify-content: flex-end;
     }
-
+</style>
 @endsection

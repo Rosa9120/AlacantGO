@@ -1,43 +1,60 @@
-@extends('admin')
+@extends('layouts.app')
 
-@section('title', 'Edit Brand')
+@section('title', 'Edit Item')
 
 @section('content')
-
+<section>
     <div class="container">
         <div class="back">
-            <a href="/brands" id="back">Go Back</a>
+            <a onclick="history.back()"id="back">Go Back</a>      
         </div>
 
+        <div class="title">
+            <h1> Edit Item </h1>
+        </div>
+
+        <div class="item">
             <div class="information">
-                <span>ID #: {{ $brand->id }}</span>
-                <form action="{{ url('/brands', ["id" => $brand->id]) }}" method="POST">
+                <span>ID #: {{ $item->id }}</span>
+                <form action="{{ url('/items', ["id" => $item->id]) }}" method="POST">
                     @csrf
                     @method('patch')
                     <ul>
                         <li>Name: 
-                            <input class="editable" required name="name" type="text" value="{{ $brand->name }}" />
+                            <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', $item->name) }}" />
                         </li>
-                        <li>Isin: 
-                            <input class="editable" required name="isin" type="text" lang="en" class="@error('isin') is-invalid @enderror" value="{{ $brand->isin }}" /></li>
-                            @error('isin')
+                        @error('name')
                             <li class="error-container">
-                                <div class="alert alert-danger error-msg"> ISIN must have 2 capital letters and 9 numbers </div>
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("name")) }}</div>
                             </li>
-                            @enderror
+                        @enderror
+                        <li>Price: 
+                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" lang="en" step="0.01" value="{{ old('price', $item->price) }}"/>
+                        </li>
+                        @error('price')
+                            <li class="error-container">
+                                <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("price")) }}</div>
+                            </li>
+                        @enderror
+                        <li>Description: 
+                            <textarea class="editable" name="description" wrap="off" type="text" rows="3"> {{ old("description", $item->description) }} 
+                            </textarea>
+                        </li>
                     </ul>
                 
                     <div class="submit">
-                        <button type="submit" class="btn btn-success">Confirm</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+</section>
 @endsection
 
 @section('style')
+
+<style>
 
     .container {
         font-family: "Montserrat", sans-serif;
@@ -46,7 +63,7 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 70%;
+        width: 50%;
         height: auto;
         max-height: 100%;
         background-color: rgba(109, 109, 109, 0.2);
@@ -57,22 +74,32 @@
         overflow-y: auto;
     }
 
-    .back {
-        position: relative;
+    textarea{
+        max-height: 140px;
+        white-space: pre;
     }
 
-    #back {
-        display: inline-block;
-        padding: 5px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #4E4E4E;
-        transition: 0.3s;
+    section{
+        height: calc(100vh - 57px - 180px - 104px);
+        background-color: #e5e3df;
     }
 
-    #back:hover {
-        transform: scale(1.1);
-        color: white;
+    .title{
+        align-self: center;
+    }
+    
+    .main{
+        padding:0;
+        margin:0;
+    }
+
+    .item {
+        display: flex;
+        flex-direcion: row;
+        flex-grow: 0;
+        flex-basis: 90%;
+        margin-left: 20px;
+        justify-content: space-between;
     }
 
     .error-container {
@@ -86,15 +113,6 @@
         padding-left: 6px;
         padding-right: 6px;
         color: #842029;
-    }
-
-    .manager {
-        display: flex;
-        flex-direcion: row;
-        flex-grow: 0;
-        flex-basis: 90%;
-        margin-left: 20px;
-        justify-content: space-between;
     }
 
     .information {
@@ -116,19 +134,6 @@
         padding: 20px;
     }
 
-    ::-webkit-input-placeholder {
-        font-style: italic;
-     }
-     :-moz-placeholder {
-        font-style: italic;  
-     }
-     ::-moz-placeholder {
-        font-style: italic;  
-     }
-     :-ms-input-placeholder {  
-        font-style: italic; 
-     }
-
     li {
         display: flex;
         justify-content: space-between;
@@ -144,13 +149,9 @@
         padding-left: 5px;
     }
 
-    .dropdown {
-        line-height: 20px;
-    }
-
     .submit {
         display: flex;
         justify-content: flex-end;
     }
-
+</style>
 @endsection

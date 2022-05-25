@@ -15,17 +15,9 @@ class BrandController extends Controller
         return view('brand.brands', ["success" => true, "brands" => $brands, "count" => $count]);
     }
 
-    public function get_brand(Request $request) 
+    public function create_view()
     {
-        if( Brand::find($request->input('brand_id')) ) //SI EL ID PERTENECE A UNA BRAND EXISTENTE
-        {
-            $brand = Brand::find($request->input('brand_id'));
-
-            return view('brand.get_brand', ['name' => $brand->name]);
-        }
-
-        else
-            return view('brand.exceptions.notFoundById', ['wrong_id' => $request->input('brand_id')]); //DEBERÍA ESTAR EN UNA CARPETA LLAMADA EXCEPTION???  
+        return view('brand.brand_create');
     }
 
     public function update_brand(Request $request) 
@@ -42,7 +34,7 @@ class BrandController extends Controller
                 return view('brand.updateDone', ['e_name' => $establish_wanted->name, 'b_name' => "no brand"]);
     }
 
-    public function search_brand() {
+    public function search() {
         $search = \Request::get('search');
 
         if ($search == null) {
@@ -56,7 +48,7 @@ class BrandController extends Controller
         return view('brand.brands', ["success" => true, "brands" => $brands, "count" => $count, "search" => $search]);
     }
 
-    public function delete_brand(Brand $brand) 
+    public function delete(Brand $brand) 
     {
         return view('brand.delete', ["success" => true, "brand" => $brand]);
     }
@@ -67,13 +59,13 @@ class BrandController extends Controller
         return redirect('/brands');
     }
 
-    public function create_brand(Request $request) 
+    public function create(Request $request) 
     {
         $request->validate([
             'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/'
         ]);
 
-        Brand::create($request->input('name'), $request->input('name'));
+        Brand::create($request->input('name'), $request->input('isin'));
 
         return redirect('/brands');
     }
@@ -84,12 +76,12 @@ class BrandController extends Controller
         return view('brand.updateForm', ['establishments' => $establishments, 'brands' => $brands]);
     }
 
-    public function edit(Brand $brand)
+    public function edit_view(Brand $brand)
     {
-        return view('brand.edit_brand', ["success" => true, "brand" => $brand]);
+        return view('brand.brand_edit', ["success" => true, "brand" => $brand]);
     }
 
-    public function edit_brand(Request $request, Brand $brand) 
+    public function edit(Request $request, Brand $brand) 
     {
 
         $request->validate([
