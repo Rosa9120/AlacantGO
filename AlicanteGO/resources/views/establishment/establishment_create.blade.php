@@ -22,21 +22,46 @@
                     <li>Name: 
                         <input class="editable" required name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter name" id="name">
                     </li>
+
                     <li>Phone Number: 
                         <input class="editable" name="phone_number" type="text" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
                     </li>
                     <li>Address: 
                         <input class="editable"requiered name="address" type="text" value="{{ old('address') }}" class="form-control" placeholder="Enter address" id="address">
                     </li>
+                    @error('address')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Address is required</div>
+                    </li>
+                    @enderror
+
                     <li>Postal Code: 
                         <input class="editable" requiered name="postal_code" type="text" value="{{ old('postal_code') }}" class="form-control" placeholder="Enter postal code" id="postal_code">
                     </li>
+                    @error('postal_code')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Postal code must have 5 numbers</div>
+                    </li>
+                    @enderror
+                    
                     <li>Latitude: 
                         <input class="editable" requiered name="latitude" type="text" value="{{ old('latitude') }}" class="form-control" placeholder="Enter latitude" id="latitude">
                     </li>
+                    @error('latitude')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Latitude must be a number</div>
+                    </li>
+                    @enderror
+
                     <li>Longitude: 
                         <input class="editable" requiered name="longitude" type="text" value="{{ old('longitude') }}" class="form-control" placeholder="Enter longitude" id="longitude">
                     </li>
+                    @error('longitude')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Longitude must be a number</div>
+                    </li>
+                    @enderror
+
                     <li>Brand: 
                         <select name="brand" class="form-control editable dropdown">
                             <option> </option>
@@ -65,6 +90,19 @@
 @endsection
 
 @section('style')
+
+.error-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+li > .error-msg {
+    min-width: 40%;
+    padding: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #842029;
+}
 
     .container {
         font-family: "Montserrat", sans-serif;
