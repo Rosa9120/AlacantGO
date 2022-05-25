@@ -99,8 +99,10 @@
 @section("style")
 <style>
 
-    html{
-        overflow-x:hidden;
+    section{
+        height:100vh;
+        margin-bottom:60px;
+        z-index: 999;
     }
 
     .manage-buttons{
@@ -109,11 +111,6 @@
         margin-top: 30px;
         justify-content: center;
         gap: 15px;
-    }
-
-    section{
-        min-height: calc(100vh - 70px - 123px - 48px);
-        background-color: #e5e3df;
     }
 
     .header{
@@ -182,7 +179,9 @@
         position:relative;
         /* padding: 0 2% 2% 2%; */
         border-radius:25px;
+        height:auto;
         /* margin-bottom: 15px; */
+        
     }
 
     .card{

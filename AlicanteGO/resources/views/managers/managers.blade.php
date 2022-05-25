@@ -3,8 +3,8 @@
 @section('title', 'Manager List')
 
 @section('content')
-
-<div style="display:flex;justify-content:space-around;margin-top:40px;">
+<section>
+<div style="display:flex;justify-content:space-around;margin-top:40px; height:auto;">
     <div>
         <h3>Total managers: {{ $count }}</h3>
     </div>  
@@ -88,11 +88,13 @@
 </table>
 
 {{$managers->links() }}
+</section>
 @endsection
 
 @section('style')
-
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+        
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+<style>
 
     .pagination {
         justify-content: center;    
@@ -125,5 +127,5 @@
         padding: 0.6em;
     }
 
-    
+</style>  
 @endsection

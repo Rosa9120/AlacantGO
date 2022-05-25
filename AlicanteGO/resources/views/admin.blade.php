@@ -56,13 +56,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-        html, body {
-            background-color: #z;
-        }
-
         .content {
-            height: calc(100vh - 180px);
-            overflow:hidden;
+            min-height: calc(100vh - 180px);
+            overflow:auto;
         }
 
         .head{
@@ -154,6 +150,7 @@
                 overflow:auto;
             }
         }
+        
         @yield('style')
         
     </style>

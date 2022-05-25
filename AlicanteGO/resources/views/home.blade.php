@@ -207,6 +207,7 @@
 
     html{
         overflow-x:hidden;
+        overflow-y:auto;
     }
 
     .head{

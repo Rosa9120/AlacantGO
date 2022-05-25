@@ -109,12 +109,10 @@
         box-sizing: border-box;
     }
 
-    body {
-        position: relative;
-        min-height: 100vh;
+    html,body {
         height:auto;
     }
-
+    
     /* .content-section {
         background-color: #e5e3df;
     } */
@@ -164,20 +162,6 @@
         margin-bottom: 0;
     }
 
-    /* .head{
-        height: 70px;
-        background-color: #b7d8f3;
-        display:flex;
-    } */
-    html {
-        min-height: 100vh;      
-    }
-
-    /* HABRIA QUE RESTAR EL FOOTER Y EL NAVBAR AL 100VH */
-    body {
-        min-height: 100vh;
-    }
-
     .head{
         height: 70px;
         display:flex;
@@ -222,22 +206,16 @@
         width: 100%;
         background-color: red;
     }
-
-    /* .map {
-        
-        background-image: url('assets/images/maps.png');
-        background-repeat: no-repeat;
-        position:fixed;
-        top:70px;
-        left:0;
-        background-size: cover;
-        min-height:100%;
-        min-width:100%;
-        background-color:blue;
-    } */
     
     #app > main{
         background-color:#e5e3df;
+        min-height: calc(100vh - 180px);
+        overflow-x:hidden;
+    }
+
+    .content {
+        min-height: calc(100vh - 180px);
+        overflow:hidden;
     }
 
     .back {
