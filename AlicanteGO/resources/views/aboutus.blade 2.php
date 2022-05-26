@@ -170,7 +170,7 @@
         /* height:calc(100vh - 57px); */
         height:auto;
         min-height: 100vh;
-        overflow:hidden;
+        overflow-x:hidden;
     }
 
     #section01 a {

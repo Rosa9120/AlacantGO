@@ -6,7 +6,7 @@
 <section>
     <div class="container">
         <div class="back">
-            <a onclick="history.back()"id="back">Go Back</a>      
+            <a onclick="{{ url()->previous() }}" id="back">Go Back</a>      
         </div>
 
         <div class="title">

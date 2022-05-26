@@ -31,6 +31,7 @@
         <th>ID #</th>
         <th>Name</th>
         <th>Isin</th>
+        <th>Action</th>
     </tr>
     @foreach ($brands as $brand)
     <tr>

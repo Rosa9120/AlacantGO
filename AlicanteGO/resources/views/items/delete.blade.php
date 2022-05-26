@@ -6,7 +6,7 @@
 
     <div class="container">
             <div class="back">
-                <a href="/admin/items" id="back">Go Back</a>
+                <a href="{{ url()->previous() }}" id="back">Go Back</a>
             </div>
 
                 <div class="information">
