@@ -66,7 +66,7 @@
             <a class="btn btn-primary" href="{{ url("/admin/items/" . $item->id) }}">Show</a>
             <a class="btn btn-warning" href="{{ url("/admin/items/" . $item->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/admin/items/delete', ['id' => $item->id]) }}" method="POST">
+            <form action="{{ url('/admin/items', ['id' => $item->id]) }}" method="POST">
                 @csrf
                 @method('delete')
                 <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>

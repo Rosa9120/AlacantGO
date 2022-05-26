@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     Route::get('/items/{item}', [App\Http\Controllers\ItemController::class, 'show']);
     Route::patch('/items/{item}', [App\Http\Controllers\ItemController::class, 'edit']);
     Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit_view']);
-    Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'delete']);
+    Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'destroy']);
 
     /**
      * MANAGER ROUTES
@@ -54,7 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     Route::get('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'show']);
     Route::patch('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'edit']);
     Route::get('/managers/{manager}/edit', [App\Http\Controllers\ManagerController::class, 'edit_view']);
-    Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'delete']);
+    Route::delete('/managers/{manager}', [App\Http\Controllers\ManagerController::class, 'destroy']);
 
     /**
      * ESTABLISHMENT ROUTES
@@ -67,7 +67,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     Route::get('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'show'])->name('establishment');
     Route::patch('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'edit']);
     Route::get('/establishments/{id}/edit', [App\Http\Controllers\EstablishmentController::class, 'edit_view']);
-    Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'delete']);
+    Route::delete('/establishments/{id}', [App\Http\Controllers\EstablishmentController::class, 'destroy']);
 
     /**
      * CATEGORY ROUTES
@@ -77,10 +77,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     Route::get('/categories/create', function () {return view('categories.category_create');});
     Route::post('/categories/create', [App\Http\Controllers\CategoryController::class, 'create_category']);
     Route::get('/categories/delete/{id}', [App\Http\Controllers\CategoryController::class, 'delete_category']);
-    Route::get('/categories/remove/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
     Route::get('/categories/search', [App\Http\Controllers\CategoryController::class, 'search_category']);
     Route::get('/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit']);
     Route::patch('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'edit_category']);
+    Route::delete('/categories/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
 
 
     /**
@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     Route::post('/brands', [App\Http\Controllers\BrandController::class, 'create']);
     Route::get('/brands/search', [App\Http\Controllers\BrandController::class, 'search']);
     Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'edit']);
-    Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'delete']);
+    Route::delete('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'destroy']);
     Route::get('/brands/set', [App\Http\Controllers\BrandController::class, 'set_brand']);
     Route::get('/brands/{brand}/edit', [App\Http\Controllers\BrandController::class, 'edit_view']);
     Route::put('/brands/update', [App\Http\Controllers\BrandController::class, 'update_brand']); //THIS IS FOR THE SET BRAND

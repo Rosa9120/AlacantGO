@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="back">
-            <a href="/admin/items" id="back">Go Back</a>
+            <a href="{{ url()->previous() }}" id="back">Go Back</a>
         </div>
 
         <div class="title">
@@ -41,9 +41,6 @@
                         @enderror
                         <li>Description: 
                             <input class="editable" name="description" type="text" value="{{ old("description", null) }}" placeholder="La mejor tarta de Oreo..."/>
-                        </li>
-                        <li>Type: 
-                            <input class="editable @error('type') is-invalid @enderror" name="type" type="text" value="{{ old("type", null) }}" placeholder="postre..."/>
                         </li>
                         @error('type')
                             <li class="error-container">

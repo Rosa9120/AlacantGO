@@ -77,10 +77,10 @@
             <a class="btn btn-primary" href="{{ url("/admin/managers/" .$manager->id) }}">Show</a>
             <a class="btn btn-warning" href="{{ url("/admin/managers/" . $manager->id . "/edit") }}">Edit</a>
  
-            <form action="{{ url('/admin/managers/delete', ['id' => $manager->id]) }}" method="POST">
+            <form action="{{ url('/admin/managers', ['id' => $manager->id]) }}" method="POST">
                 @csrf
-                @method('get')
-                <input type="submit" class="btn btn-danger" value="Delete"/>
+                @method('delete')
+                <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
             </form>
         </td>
     </tr>
