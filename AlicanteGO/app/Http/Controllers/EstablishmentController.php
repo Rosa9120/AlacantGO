@@ -113,16 +113,17 @@ class EstablishmentController extends Controller
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
                         'image' => 'required|image|mimes:jpeg,png,jpg']);
-
-        $path = $req->file('image')->store('public');
-        $establishment = Establishment::create($req->input('name'), 
+        if ($req->hasFile('image')) {
+            $path = $req->file('image')->store('public');
+            $establishment = Establishment::create($req->input('name'), 
                 $req->input('phone_number'), $req->input('address'), 
                 $req->input('postal_code'), $req->input('latitude'), 
                 $req->input('longitude'), $path,
                 Brand::whereId($req["brand"])->first(), 
                 Brand::whereId($req["category"])->first());
 
-        return redirect('/admin/establishments/' . $establishment->id);
+                return redirect('/admin/establishments/' . $establishment->id);
+        }
     }
 
     function filter_establishments(Request $request) {
