@@ -75,7 +75,9 @@
                         <input class="form-control-sm" id="image" type="file" required name="image"/>
                     </li>
                     @error('image')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg">{{ $message }}</div>
+                    </li>
                     @enderror
                 </ul>           
                 <div class="submit">
