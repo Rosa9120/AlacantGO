@@ -12,18 +12,11 @@
                 <div class="information">
                     <span>ID #: {{ $category->id }}</span>
 
-                    <form action="{{ url('/admin/categories/remove', ["id" => $category->id]) }}" method="delete">
-                        <div class="modal-body">
+                    <form action="{{ url('/admin/category', ['id' => $category->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <h5 class="text-center">Are you sure you want to delete {{ $category->name }} ?</h5>
-                        </div>
-                        <a class="btn btn-secondary" href="{{ url('/admin/categories/') }}">Cancel</a>
-                        <form action="{{ url('/admin/categories/remove', ['id' => $category->id]) }}" method="DELETE">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" class="btn btn-danger" value="Yes, Delete"/>
-                        </form>
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                            <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
                     </form>
 
                 </div>

@@ -22,7 +22,7 @@ class CreateEstablishmentsTable extends Migration
             $table->string('postal_code');
             $table->double('latitude', 17, 14);     //por qué latitud sí y longitud no ??
             $table->double('longitude');
-            $table->string('img_url');
+            $table->string('img_url')->nullable();
             $table->foreignId("brand_id")->nullable()->constrained("brands")->onDelete('cascade');
         });
     }

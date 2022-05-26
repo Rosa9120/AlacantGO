@@ -12,18 +12,11 @@
                 <div class="information">
                     <span>ID #: {{ $manager->id }}</span>
 
-                    <form action="{{ url('/admin/managers/remove', ["id" => $manager->id]) }}" method="delete">
-                        <div class="modal-body">
+                    <form action="{{ url('/admin/manager', ['id' => $manager->id]) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <h5 class="text-center">Are you sure you want to delete {{ $manager->name }} ?</h5>
-                        </div>
-                        <a class="btn btn-secondary" href="{{ url('/admin/managers/') }}">Cancel</a>
-                        <form action="{{ url('/admin/managers/remove', ['id' => $manager->id]) }}" method="DELETE">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" class="btn btn-danger" value="Yes, Delete"/>
-                        </form>
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                            <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
                     </form>
 
                 </div>
