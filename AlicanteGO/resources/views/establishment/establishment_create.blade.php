@@ -78,8 +78,8 @@
                     <li class="error-container">
                         <div class="alert alert-danger error-msg">{{ $message }}</div>
                     </li>
-                    @enderror
-                </ul>           
+                    @enderror    
+                </ul>        
                 <div class="submit">
                     <button type="submit" class="btn btn-success">Create</button>
                 </div>
@@ -92,17 +92,17 @@
 
 @section('style')
 
-.error-container {
-    display: flex;
-    justify-content: flex-end;
-}
+    .error-container {
+        display: flex;
+        justify-content: flex-end;  
+    }
 
-li > .error-msg {
-    min-width: 40%;
-    padding: 0;
-    padding-left: 6px;
-    padding-right: 6px;
-    color: #842029;
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
 }
 
     .container {
