@@ -87,7 +87,7 @@ class ItemController extends Controller
             abort(403);
         }
 
-        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), $item->type, $item->brand_id, $item->establishment_id);
+        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), $item->brand_id, $item->establishment_id);
 
         return redirect($request["url"]);
     }
@@ -114,7 +114,7 @@ class ItemController extends Controller
     }
     
     public function edit(Item $item, ItemRequest $request) {
-        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
+        Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]),
         Brand::whereId($request["brand"])->first(), Establishment::whereId($request["establishment"])->first());
 
         return redirect('/admin/items/' . $item->id);
@@ -129,7 +129,7 @@ class ItemController extends Controller
 
     public function create(ItemRequest $request) {
         
-        $item = Item::create(trim($request["name"]), $request["price"], trim($request["description"]), trim($request["type"]),
+        $item = Item::create(trim($request["name"]), $request["price"], trim($request["description"]),
         Brand::whereId($request->input('dropdownItem'))->first(), Establishment::whereId($request->input('dropdownItem'))->first());
 
         return redirect('/admin/items/' . $item->id);
