@@ -110,12 +110,17 @@ class EstablishmentController extends Controller
         $req->validate(['name' => 'required',
                         'address' => 'required',
                         'postal_code' => 'required|numeric|digits:5',
-                        'latitude' => 'required|numeric',
-                        'longitude' => 'required|numeric']);
+                        'latitude' => 'required|numeric|between:-90,90',
+                        'longitude' => 'required|numeric|between:-180,180',
+                        'image' => 'required|image|mimes:jpeg,png,jpg']);
 
-        $establishment = Establishment::create($req->input('name'),
-        $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
-        Brand::whereId($req["brand"])->first(), Brand::whereId($req["category"])->first());
+        $path = $req->file('image')->store('public');
+        $establishment = Establishment::create($req->input('name'), 
+                $req->input('phone_number'), $req->input('address'), 
+                $req->input('postal_code'), $req->input('latitude'), 
+                $req->input('longitude'), $path,
+                Brand::whereId($req["brand"])->first(), 
+                Brand::whereId($req["category"])->first());
 
         return redirect('/admin/establishments/' . $establishment->id);
     }
@@ -169,8 +174,8 @@ class EstablishmentController extends Controller
         }
 
         Establishment::edit($establishment->id, $request->input('name'),
-        $request->input('phone_number'), $request->input('address'), $request->input('postal_code'), $request->input('latitude'), $request->input('longitude'),
-        $establishment->brand_id, null);
+        $request->input('phone_number'), $request->input('address'), $request->input('postal_code'),
+        $request->input('latitude'), $request->input('longitude'), $establishment->brand_id, null);
 
         return redirect($request["url"]);
     }
@@ -188,12 +193,14 @@ class EstablishmentController extends Controller
         $req->validate(['name' => 'required',
                         'address' => 'required',
                         'postal_code' => 'required|numeric|digits:5',
-                        'latitude' => 'required|numeric',
-                        'longitude' => 'required|numeric']);
+                        'latitude' => 'required|numeric|',
+                        'longitude' => 'required|numeric|between:-180,180']);
 
-        $establishment = Establishment::edit($id, $req->input('name'),
-        $req->input('phone_number'), $req->input('address'), $req->input('postal_code'), $req->input('latitude'), $req->input('longitude'),
-        Brand::whereId($req["brand"])->first(), Brand::whereId($req["category"])->first());
+        $establishment = Establishment::edit($id, $req->input('name'), 
+            $req->input('phone_number'), $req->input('address'), 
+            $req->input('postal_code'), $req->input('latitude'), 
+            $req->input('longitude'), Brand::whereId($req["brand"])->first(), 
+            Brand::whereId($req["category"])->first());
 
         return redirect('/admin/establishments/' . $establishment->id);
     }

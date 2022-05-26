@@ -22,21 +22,14 @@
                     <li>Name: 
                         <input class="editable" required name="name" type="text" value="{{ old('name') }}" class="form-control" placeholder="Enter name" id="name">
                     </li>
-
                     <li>Phone Number: 
                         <input class="editable" name="phone_number" type="text" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
                     </li>
                     <li>Address: 
-                        <input class="editable"requiered name="address" type="text" value="{{ old('address') }}" class="form-control" placeholder="Enter address" id="address">
+                        <input class="editable" required name="address" type="text" value="{{ old('address') }}" class="form-control" placeholder="Enter address" id="address">
                     </li>
-                    @error('address')
-                    <li class="error-container">
-                        <div class="alert alert-danger error-msg"> Address is required</div>
-                    </li>
-                    @enderror
-
                     <li>Postal Code: 
-                        <input class="editable" requiered name="postal_code" type="text" value="{{ old('postal_code') }}" class="form-control" placeholder="Enter postal code" id="postal_code">
+                        <input class="editable" required name="postal_code" type="text" value="{{ old('postal_code') }}" class="form-control" placeholder="Enter postal code" id="postal_code">
                     </li>
                     @error('postal_code')
                     <li class="error-container">
@@ -45,20 +38,20 @@
                     @enderror
                     
                     <li>Latitude: 
-                        <input class="editable" requiered name="latitude" type="text" value="{{ old('latitude') }}" class="form-control" placeholder="Enter latitude" id="latitude">
+                        <input class="editable" required name="latitude" type="text" value="{{ old('latitude') }}" class="form-control" placeholder="Enter latitude" id="latitude">
                     </li>
                     @error('latitude')
                     <li class="error-container">
-                        <div class="alert alert-danger error-msg"> Latitude must be a number</div>
+                        <div class="alert alert-danger error-msg"> Latitude must be a number between -90 and 90</div>
                     </li>
                     @enderror
 
                     <li>Longitude: 
-                        <input class="editable" requiered name="longitude" type="text" value="{{ old('longitude') }}" class="form-control" placeholder="Enter longitude" id="longitude">
+                        <input class="editable" required name="longitude" type="text" value="{{ old('longitude') }}" class="form-control" placeholder="Enter longitude" id="longitude">
                     </li>
                     @error('longitude')
                     <li class="error-container">
-                        <div class="alert alert-danger error-msg"> Longitude must be a number</div>
+                        <div class="alert alert-danger error-msg"> Longitude must be a number between -180 and 180</div>
                     </li>
                     @enderror
 
@@ -77,6 +70,9 @@
                             <option value="{{ $category->id }}" {{ ($idxC == 0) ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
+                    </li>
+                    <li>Photo:
+                        <input class="form-control-sm" id="image" type="file" required name="image" />
                     </li>
                 </ul>           
                 <div class="submit">
