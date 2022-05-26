@@ -6,7 +6,7 @@
 <section>
 <br>
     <div class="back">
-        <a href="/" id="back">Go Back</a>
+        <a href="{{ url()->previous() }}" id="back">Go Back</a>
     </div>
     <div class="container">
         <div class="header">

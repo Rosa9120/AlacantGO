@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="back">
-            <a href="/admin/brands" id="back">Go Back</a>
+            <a href="{{ url()->previous() }}"  id="back">Go Back</a>
         </div>
 
         <div class="title">
@@ -33,7 +33,9 @@
                             <div class="alert alert-danger error-msg"> ISIN must have 2 capital letters and 9 numbers </div>
                         </li>
                         @enderror
-                        
+                        <li>Photo:
+                            <input class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
+                        </li>
                     </ul>
                 
                     <div class="submit">
@@ -47,6 +49,12 @@
 @endsection
 
 @section('style')
+
+<style>
+    .photo{
+        display:flex;
+        justify-content: center;
+    }
 
     .container {
         font-family: "Montserrat", sans-serif;
@@ -161,5 +169,5 @@
         display: flex;
         justify-content: flex-end;
     }
-
+</style>
 @endsection

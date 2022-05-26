@@ -145,7 +145,7 @@
             color:#4E4E4E;
             align-self: center;     
         }
-
+        
         @media (max-width: 500px){
 
             .content {

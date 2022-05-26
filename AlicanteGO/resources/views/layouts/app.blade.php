@@ -194,9 +194,6 @@
     #app {
         display: flex;
         flex-direction: column;
-        height: 100%;
-        width: 100%;
-        overflow:hidden;
     }
 
     footer {
@@ -212,12 +209,12 @@
     #app > main{
         background-color:#e5e3df;
         min-height: calc(100vh - 180px);
-        overflow:hidden;
+        overflow-x:hidden;
     }
 
     .content {
         min-height: calc(100vh - 180px);
-        overflow:hidden;
+        overflow-x:hidden;
     }
 
     .back {

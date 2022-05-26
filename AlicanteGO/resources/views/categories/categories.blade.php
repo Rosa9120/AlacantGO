@@ -29,13 +29,14 @@
     <tr>
         <th>ID #</th>
         <th>Name</th>
+        <th>Action</th>
     </tr>
     @foreach ($categories as $category)
     <tr>
         <td>{{ $category->id }}</td>
         <td>{{ $category->name }}</td>
 
-        <td>
+        <td width="280px">
             <a class="btn btn-warning" href="{{ url("/admin/categories/" . $category->id . "/edit") }}">Edit</a>
  
             <form action="{{ url('/admin/categories/delete', ['id' => $category->id]) }}" method="POST">
@@ -53,7 +54,7 @@
 @endsection
 
 @section('style')
-
+<style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
     .pagination {
@@ -73,4 +74,5 @@
     form {
         display: inline-block;
     }
+</style>
 @endsection
