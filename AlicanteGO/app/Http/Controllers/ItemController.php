@@ -77,6 +77,22 @@ class ItemController extends Controller
 
     // Still needs to check whether is an establishment item or brand item
     public function manager_edit_item(Item $item, ItemRequest $request) {
+        if ($item->brand_id != null) {
+            $brand = Brand::whereId($item->brand_id)->first();
+
+            if ($brand == null) {
+                abort(404);
+            }
+
+            if (!Auth::check() || (Auth::user()->rol != "manager" && Auth::user()->rol != "admin") || ($brand->manager()->first()->user()->first()->id != Auth::user()->id && Auth::user()->rol == "manager")) {
+                abort(403);
+            }
+
+            Item::edit($item, trim($request["name"]), $request["price"], trim($request["description"]), $item->brand_id, $item->establishment_id);
+
+            return redirect($request->input("url"));
+        }
+
         $establishment = Establishment::whereId($item->establishment_id)->first();
 
         if ($establishment == null) {
@@ -93,6 +109,22 @@ class ItemController extends Controller
     }
 
     public function manager_create_item(ItemRequest $request) {
+        if ($request->input("brand") != null) {
+            $brand = Brand::whereId($request->input("brand"))->first();
+
+            if ($brand == null) {
+                abort(404);
+            }
+
+            if (!Auth::check() || (Auth::user()->rol != "manager" && Auth::user()->rol != "admin") || ($brand->manager()->first()->user()->first()->id != Auth::user()->id && Auth::user()->rol == "manager")) {
+                abort(403);
+            }
+
+            Item::create(trim($request["name"]), $request["price"], trim($request["description"]), $brand->id, null); // Needs brand compatibility. No type needed for now
+
+            return redirect($request->input("url"));
+        }
+
         $establishment = Establishment::whereId($request->input("establishment"))->first();
 
         if ($establishment == null) {
@@ -103,7 +135,7 @@ class ItemController extends Controller
             abort(403);
         }
 
-        Item::create(trim($request["name"]), $request["price"], trim($request["description"]), null, null, $establishment->id); // Needs brand compatibility. No type needed for now
+        Item::create(trim($request["name"]), $request["price"], trim($request["description"]), null, $establishment->id); // Needs brand compatibility. No type needed for now
 
         return redirect($request["url"]);
     }

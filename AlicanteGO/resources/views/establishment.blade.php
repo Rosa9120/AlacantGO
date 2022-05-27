@@ -65,7 +65,7 @@
         {{-- TODO ESTO HABRÁ QUE CAMBIARLO POR MANAGER --}}
         @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))      
             <div style="display:flex; margin-top: 30px; justify-content:center;">
-                <a class="btn btn-success" href={{ "/ilyan/create/" . $establishment->id }}> Insert new item</a>
+                <a class="btn btn-success" href={{ "/ilyan/create?establishment=" . $establishment->id }}> Insert new item</a>
             </div>
             <div class="manage-buttons"> 
                 <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id) }}"  class="btn btn-primary"> Update information </a>

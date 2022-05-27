@@ -37,19 +37,19 @@
                         <td width="40%">{{ $establishment->name }}</td>
                         <td width="40%">{{ $establishment->address }}</td>
                         <td class="action-buttons">
-                            <a class="btn btn-warning" onclick="editEstablishment({{ $establishment->id }})">Edit</a>
-                            <form action="{{ url('/admin/establishments/delete', ["id" => $establishment->id]) }}" method="POST">
+                            <a class="btn btn-primary" href={{ "/establishment/" . $establishment->id }}>Show</a>
+                            {{-- <form action="{{ url('/admin/establishments/delete', ["id" => $establishment->id]) }}" method="POST">
                                 @csrf
                                 @method('get')
                                 <input type="submit" class="btn btn-danger" value="Delete"/>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                     @endforeach
                 </table>
-                <div style="display:flex; margin: 15px; justify-content:center;">
+                {{-- <div style="display:flex; margin: 15px; justify-content:center;">
                     <a class="btn btn-success" href={{ "/ilyan/create/" . $establishment->id }}> Insert new restaurant</a>  
-                </div>
+                </div> --}}
             </div>
             <div class="tab-pane fade" id="items-tab-pane" role="tabpanel" aria-labelledby="items-tab" tabindex="0">
                 <table class="table" style="width:85%;margin:auto;">
@@ -88,17 +88,17 @@
                 @endforeach
                 </table>
                 <div style="display:flex; margin: 15px; justify-content:center;">
-                    <a class="btn btn-success" href={{ "/ilyan/create/" . $establishment->id }}> Insert new item</a>  
+                    <a class="btn btn-success" href={{ "/ilyan/create?brand=" . $brand->id }}> Insert new item</a>  
                 </div>
             </div>
           </div>
           <div class="manage-buttons"> 
             <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id) }}"  class="btn btn-primary"> Update information </a>
-            <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete brand </button>
+            {{-- <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete brand </button>
             <form id="establishment-delete" action="{{ url('/ilyan/establishment/' . $establishment->id) }}" method="POST">
                 @csrf
                 @method("delete")
-            </form>
+            </form> --}}
         </div>
     </div>
 

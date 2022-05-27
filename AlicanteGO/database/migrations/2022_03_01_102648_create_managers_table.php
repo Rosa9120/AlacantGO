@@ -19,8 +19,8 @@ class CreateManagersTable extends Migration
             $table->string('name');
             $table->string('DNI');
             $table->string('phone');
-            $table->foreignId("brand_id")->nullable()->constrained("brands")->onDelete("cascade");
-            $table->foreignId("establishment_id")->nullable()->constrained("establishments")->onDelete("cascade");
+            $table->foreignId("brand_id")->nullable()->constrained("brands")->onDelete("set null");
+            $table->foreignId("establishment_id")->nullable()->constrained("establishments")->onDelete("set null");
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
         });
     }

@@ -6,7 +6,7 @@ use App\Models\Item;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Manager;
-
+use Illuminate\Http\Request;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -113,8 +113,23 @@ Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
 Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
 Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
 
-Route::get('/ilyan/create/{establishment}', function (Establishment $establishment) {    
-    return view('ilyan_create_item')->with("establishment", $establishment)->with("url", back()->getTargetUrl());
+Route::get('/ilyan/create/', function (Request $request) {   
+    $establishment = null;
+    $brand = null;
+
+    if ($request->has("establishment")) {
+        $establishment = Establishment::whereId($request->input("establishment"))->first();
+        if ($establishment == null) {
+            abort(404);
+        }
+    } elseif ($request->has("brand")) {
+        $brand = Brand::whereId($request->input("brand"))->first();
+        if ($brand == null) {
+            abort(404);
+        }
+    }
+
+    return view('ilyan_create_item')->with("establishment", $establishment)->with("brand", $brand)->with("url", back()->getTargetUrl());
 });
 Route::post('/ilyan', [App\Http\Controllers\ItemController::class, 'manager_create_item']);
 
@@ -143,6 +158,15 @@ Route::get('/brand/{brand}', function($brand){
 });
 
 Route::get('/profile', function () {
+    if (!Auth::check()) {
+        return redirect('/');
+    }
+    
+    if (Auth::user()->rol == "admin") {
+        return redirect('/admin');
+    }
+
     $manager = Manager::where('user_id','=', Auth::user()->id)->first();
+
     return view('profile')->with("manager", $manager);
 });
