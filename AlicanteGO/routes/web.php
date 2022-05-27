@@ -146,3 +146,7 @@ Route::get('/profile', function () {
     $manager = Manager::where('user_id','=', Auth::user()->id)->first();
     return view('profile')->with("manager", $manager);
 });
+
+Route::get('/ilyan/create/brand', function () {    
+    return view('ilyan_create_brand');
+});
