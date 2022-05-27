@@ -118,7 +118,9 @@ Route::get('/ilyan/create/brand', function () {
 Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
 
 Route::get('/ilyan/create/establishment', function () {
-    return view('ilyan_create_establishment');
+    $brands = Brand::get();
+    $categories = Category::get();
+    return view('ilyan_create_establishment')->with('brands',$brands)->with('categories',$categories);
 });
 
 Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);

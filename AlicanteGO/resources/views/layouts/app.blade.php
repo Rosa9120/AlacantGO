@@ -248,6 +248,10 @@
         color: #842029;
     }
 
+    .title{
+        align-self:center;
+    }
+
 </style>
 @yield('style')
 @yield('scripts')
