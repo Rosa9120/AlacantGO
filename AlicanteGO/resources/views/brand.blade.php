@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="manage-buttons"> 
-            <a href="{{ url("/ilyan/edit/establishment/" . $establishment->id) }}"  class="btn btn-primary"> Update information </a>
+            <a href="{{ url("/ilyan/edit/brand/" . $brand->id) }}"  class="btn btn-primary"> Update information </a>
             {{-- <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete brand </button>
             <form id="establishment-delete" action="{{ url('/ilyan/establishment/' . $establishment->id) }}" method="POST">
                 @csrf

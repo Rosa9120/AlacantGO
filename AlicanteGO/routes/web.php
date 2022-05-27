@@ -153,6 +153,12 @@ Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment
     return view('ilyan_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
 });
 
+
+Route::get('/ilyan/edit/brand/{brand}', function ($brand) {    
+    $brand = Brand::whereId($brand)->first();
+    return view('ilyan_edit_brand')->with('brand',$brand);
+});
+
 Route::patch('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_edit_establishment']);
 
 Route::delete('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_delete_establishment']);
