@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('layouts.app')
 
 @section('title', 'Create Establishment')
 
@@ -96,19 +96,7 @@
 @endsection
 
 @section('style')
-
-    .error-container {
-        display: flex;
-        justify-content: flex-end;  
-    }
-
-    li > .error-msg {
-        min-width: 40%;
-        padding: 0;
-        padding-left: 6px;
-        padding-right: 6px;
-        color: #842029;
-}
+<style>
 
     .container {
         font-family: "Montserrat", sans-serif;
@@ -117,7 +105,7 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 70%;
+        width: 50%;
         height: auto;
         max-height: 100%;
         background-color: rgba(109, 109, 109, 0.2);
@@ -128,24 +116,6 @@
         overflow-y: auto;
     }
 
-    .back {
-        position: relative;
-    }
-
-    #back {
-        display: inline-block;
-        padding: 5px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #4E4E4E;
-        transition: 0.3s;
-    }
-
-    #back:hover {
-        transform: scale(1.1);
-        color: white;
-    }
-
     .establishment {
         display: flex;
         flex-direcion: row;
@@ -154,6 +124,10 @@
         margin-left: 20px;
         justify-content: space-between;
     }
+
+
+
+
 
     .information {
         display: flex;
@@ -210,5 +184,5 @@
         display: flex;
         justify-content: flex-end;
     }
-
+</style>
 @endsection
