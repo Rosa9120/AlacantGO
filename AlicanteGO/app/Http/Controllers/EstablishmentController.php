@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Establishment;
 use Illuminate\Http\Request;
+use App\Models\Manager;
 use Auth;
 
 class EstablishmentController extends Controller
@@ -53,6 +54,32 @@ class EstablishmentController extends Controller
         $establishment = Establishment::findOrFail($id);
         $establishment->delete();
         return redirect()->back();
+    }
+
+    public function manager_create_establishment(Request $request) {
+        $request->validate(['name' => 'required',
+                        'address' => 'required',
+                        'phone_number' => 'required|numeric|digits:9',
+                        'postal_code' => 'required|numeric|digits:5',
+                        'latitude' => 'required|numeric|between:-90,90',
+                        'longitude' => 'required|numeric|between:-180,180',
+                        'image' => 'required|image|mimes:jpeg,png,jpg']);
+
+        $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file("image")->storeAs("public", $filename);
+        $establishment = Establishment::create($request->input('name'), 
+        $request->input('phone_number'), $request->input('address'), 
+        $request->input('postal_code'), $request->input('latitude'), 
+        $request->input('longitude'), "/storage/" . $filename,
+        Brand::whereId($request->input("brand"))->first(), 
+        Brand::whereId($request->input("category"))->first());
+
+        $manager = Manager::whereUserId(Auth::user()->id)->first();
+
+        $manager->establishment_id = $establishment->id;
+        $manager->save();
+
+        return redirect('/profile');
     }
 
     /**

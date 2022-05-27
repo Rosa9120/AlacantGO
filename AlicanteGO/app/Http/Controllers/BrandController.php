@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Establishment;
+use App\Models\Manager;
+use Auth;
 
 class BrandController extends Controller
 {
@@ -57,6 +59,41 @@ class BrandController extends Controller
         $brand = Brand::Find($id);
         $brand->delete();
         return redirect('/admin/brands');
+    }
+
+    public function manager_edit_brand(Brand $brand, Request $request) {
+        $request->validate([
+            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/',
+        ]);
+
+        if ($request->hasFile("image")) {
+            $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $path = $request->file("image")->storeAs("public", $filename);
+            Brand::edit($brand, $request->input('name'), $request->input('isin'), "/storage/" . $filename);
+
+            return redirect('/profile');
+        }
+
+        Brand::edit($brand, $request->input('name'), $request->input('isin'), $brand->img_url);
+
+        return redirect('/profile');
+    }
+
+    public function manager_create_brand(Request $request) {
+        $request->validate([
+            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/',
+            'image' => 'required|image'
+        ]);
+
+        $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $path = $request->file("image")->storeAs("public", $filename);
+        $brand = Brand::create($request->input('name'), $request->input('isin'), "/storage/" . $filename);
+        $manager = Manager::whereUserId(Auth::user()->id)->first();
+
+        $manager->brand_id = $brand->id;
+        $manager->save();
+
+        return redirect('/profile');
     }
 
     public function create(Request $request) 

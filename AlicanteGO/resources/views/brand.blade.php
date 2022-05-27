@@ -66,8 +66,8 @@
                     <td>
                         <a class="btn btn-primary" id="collapse-button" data-toggle="collapse" href="{{ '#collapse-' . $item->id }}" role="button" aria-expanded="false" aria-controls="collapse">
                             See description
-                          </a>
-                          <div class="collapse" id="{{ 'collapse-' . $item->id }}" >
+                        </a>
+                        <div class="collapse" id="{{ 'collapse-' . $item->id }}" >
                             <div class="card card-body">
                                 <p style="text-align: center; line-height: 1.6;"> {!! str_replace(".", "<br/>", $item->description) !!} </p>
                             </div>
@@ -76,6 +76,7 @@
                     <td></td>
                     @endif
                     <td width="10%">{{ $item->price }}€</td>
+                    @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
                     <td class="action-buttons">
                         <a class="btn btn-warning" href="{{ url("/ilyan/edit/" . $item->id) }}">Edit</a>
                         <form action="{{ url('/ilyan/' . $item->id . '?url=' . url()->current()) }}" method="POST">
@@ -84,14 +85,18 @@
                             <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
                 </table>
+                @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
                 <div style="display:flex; margin: 15px; justify-content:center;">
                     <a class="btn btn-success" href={{ "/ilyan/create?brand=" . $brand->id }}> Insert new item</a>  
                 </div>
+                @endif
             </div>
           </div>
+          @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
           <div class="manage-buttons"> 
             <a href="{{ url("/ilyan/edit/brand/" . $brand->id) }}"  class="btn btn-primary"> Update information </a>
             {{-- <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete brand </button>
@@ -100,6 +105,7 @@
                 @method("delete")
             </form> --}}
         </div>
+        @endif
     </div>
 
 </section>

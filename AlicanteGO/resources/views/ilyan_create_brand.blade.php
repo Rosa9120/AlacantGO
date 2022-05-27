@@ -16,7 +16,7 @@
 
         <div class="brand">
             <div class="information">
-                <form action="{{ url('/admin/brands') }}" method="POST">
+                <form action="{{ url('/brands') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <ul>
@@ -35,7 +35,7 @@
                         </li>
                         @enderror
                         <li>Photo:
-                            <input class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
+                            <input name="image" class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
                         </li>
                     </ul>
                 

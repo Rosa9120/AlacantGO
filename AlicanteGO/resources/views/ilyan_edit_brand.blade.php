@@ -15,7 +15,7 @@
 
             <div class="information">
                 <span>ID #: {{ $brand->id }}</span>
-                <form action="{{ url('/admin/brands', ["id" => $brand->id]) }}" method="POST">
+                <form action="{{ url('/brands', ["brand" => $brand->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <ul>
@@ -30,7 +30,7 @@
                             </li>
                             @enderror
                             <li>Photo:
-                                <input class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
+                                <input name="image" class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
                             </li>
                     </ul>
                 
