@@ -24,6 +24,11 @@
                     <li>Phone Number: 
                         <input class="editable" name="phone_number" type="number" lang="en" step="0.01" value="{{ old('phone_number', $establishment->phone_number) }}" />
                     </li>
+                    @error('phone_number')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Phone number must have 9 digits</div>
+                    </li>
+                    @enderror
                     <li>Address: 
                         <input class="editable" name="address" type="text" required value="{{ old('address', $establishment->address) }}" />
                     </li>

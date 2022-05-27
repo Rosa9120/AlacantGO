@@ -25,13 +25,18 @@
                     <li>Phone Number: 
                         <input class="editable" name="phone_number" type="text" value="{{ old('phone_number') }}" class="form-control" placeholder="Enter phone number" id="phone_number">
                     </li>
+                    @error('phone_number')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg"> Phone number must have 9 digits </div>
+                    </li>
+                    @enderror
                     <li>Address: 
                         <input class="editable" required name="address" type="text" value="{{ old('address') }}" class="form-control" placeholder="Enter address" id="address">
                     </li>
                     <li>Postal Code: 
                         <input class="editable" required name="postal_code" type="text" value="{{ old('postal_code') }}" class="form-control" placeholder="Enter postal code" id="postal_code">
                     </li>
-                    @error('postal_code')
+                    @error('postal_code')longitude
                     <li class="error-container">
                         <div class="alert alert-danger error-msg"> Postal code must have 5 numbers</div>
                     </li>
