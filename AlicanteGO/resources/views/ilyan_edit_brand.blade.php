@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('layouts.app')
 
 @section('title', 'Edit Brand')
 
@@ -15,7 +15,7 @@
 
             <div class="information">
                 <span>ID #: {{ $brand->id }}</span>
-                <form action="{{ url('/admin/brands', ["id" => $brand->id]) }}" method="POST">
+                <form action="{{ url('/brands', ["brand" => $brand->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <ul>
@@ -30,7 +30,7 @@
                             </li>
                             @enderror
                             <li>Photo:
-                                <input class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
+                                <input name="image" class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
                             </li>
                     </ul>
                 
@@ -45,7 +45,7 @@
 @endsection
 
 @section('style')
-
+<style>
     .container {
         font-family: "Montserrat", sans-serif;
         margin-top: 100px;
@@ -53,46 +53,13 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 70%;
-        height: auto;
-        max-height: 100%;
+        width: 50%;
         background-color: rgba(109, 109, 109, 0.2);
         border-radius: 20px;
         border: 1px solid grey;
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-    }
-
-    .back {
-        position: relative;
-    }
-
-    #back {
-        display: inline-block;
-        padding: 5px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #4E4E4E;
-        transition: 0.3s;
-    }
-
-    #back:hover {
-        transform: scale(1.1);
-        color: white;
-    }
-
-    .error-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    li > .error-msg {
-        min-width: 40%;
-        padding: 0;
-        padding-left: 6px;
-        padding-right: 6px;
-        color: #842029;
     }
 
     .manager {
@@ -159,5 +126,6 @@
         display: flex;
         justify-content: flex-end;
     }
+</style>
 
 @endsection

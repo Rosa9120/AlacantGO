@@ -61,6 +61,24 @@ class BrandController extends Controller
         return redirect('/admin/brands');
     }
 
+    public function manager_edit_brand(Brand $brand, Request $request) {
+        $request->validate([
+            'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/',
+        ]);
+
+        if ($request->hasFile("image")) {
+            $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $path = $request->file("image")->storeAs("public", $filename);
+            Brand::edit($brand, $request->input('name'), $request->input('isin'), "/storage/" . $filename);
+
+            return redirect('/profile');
+        }
+
+        Brand::edit($brand, $request->input('name'), $request->input('isin'), $brand->img_url);
+
+        return redirect('/profile');
+    }
+
     public function manager_create_brand(Request $request) {
         $request->validate([
             'isin' => 'required|regex:/^[A-Z]{2}\d{9}$/',

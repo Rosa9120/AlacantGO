@@ -98,7 +98,7 @@
           </div>
           @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
           <div class="manage-buttons"> 
-            <a href="{{ url("/") }}"  class="btn btn-primary"> Update information </a>
+            <a href="{{ url("/ilyan/edit/brand/" . $brand->id) }}"  class="btn btn-primary"> Update information </a>
             {{-- <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete brand </button>
             <form id="establishment-delete" action="{{ url('/ilyan/establishment/' . $establishment->id) }}" method="POST">
                 @csrf

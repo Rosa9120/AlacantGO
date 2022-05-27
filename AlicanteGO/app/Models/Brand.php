@@ -35,12 +35,13 @@ class Brand extends Model
         return $brand;
     }
 
-    static public function edit($brand, $name, $isin)
+    static public function edit($brand, $name, $isin, $img_url = null)
     {
 
         $brand->name = $name;
 
         $brand->isin = $isin;
+        $brand->img_url = $img_url;
 
         $brand->save();
     }

@@ -15,7 +15,7 @@
 
     <div class="establishment">
         <div class="information">
-            <form action="{{ url('/admin/establishments') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ url('/establishments') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('post')
                 <ul>
@@ -77,7 +77,7 @@
                         </select>
                     </li>
                     <li>Photo:
-                        <input class="form-control-sm" id="image" type="file" required name="image"/>
+                        <input class="form-control-sm" name="image" id="image" type="file" required name="image"/>
                     </li>
                     @error('image')
                     <li class="error-container">
