@@ -136,17 +136,17 @@ class EstablishmentController extends Controller
     function create(Request $req) {
         $req->validate(['name' => 'required',
                         'address' => 'required',
-                        'phone_number' => 'required|numeric|digits:9',
+                        'phone_number' => 'numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
                         'image' => 'required|image|mimes:jpeg,png,jpg']);
         if ($req->hasFile('image')) {
-            $path = $req->file('image')->store('public');
+            $path = $req->file('image')->store('storage');
             $establishment = Establishment::create($req->input('name'), 
                 $req->input('phone_number'), $req->input('address'), 
                 $req->input('postal_code'), $req->input('latitude'), 
-                $req->input('longitude'), $path,
+                $req->input('longitude'), "/" . $path,
                 Brand::whereId($req["brand"])->first(), 
                 Brand::whereId($req["category"])->first());
 
