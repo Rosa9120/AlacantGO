@@ -21,15 +21,18 @@ class Brand extends Model
         return $this->hasOne(Manager::class);
     }
 
-    static public function create($name, $isin)
+    static public function create($name, $isin, $img_url = null)
     {
         
         $brand = new Brand;
         $brand->name = $name;
 
         $brand->isin = $isin;
+        $brand->img_url = $img_url;
 
         $brand->save();
+
+        return $brand;
     }
 
     static public function edit($brand, $name, $isin)

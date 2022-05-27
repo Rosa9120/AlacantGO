@@ -111,7 +111,10 @@ Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
     return view('ilyan_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
 });
 
-Route::get('/ilyan/create/brand', function () {    
+Route::get('/ilyan/create/brand', function () { 
+    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->brand_id != null) {
+        abort(403);
+    }
     return view('ilyan_create_brand');
 });
 
@@ -125,7 +128,7 @@ Route::get('/ilyan/create/establishment', function () {
 
 Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
 
-Route::get('/ilyan/create/', function (Request $request) {   
+Route::get('/ilyan/create/', function (Request $request) {   // create item 
     $establishment = null;
     $brand = null;
 
@@ -170,6 +173,7 @@ Route::get('/brand/{brand}', function($brand){
     $brand = Brand::whereId($brand)->first();
     return view('brand')->with("brand", $brand)->with("establishments",$establishments)->with("items",$items);
 });
+Route::post('/brands', [App\Http\Controllers\BrandController::class, 'manager_create_brand']);
 
 Route::get('/profile', function () {
     if (!Auth::check()) {
