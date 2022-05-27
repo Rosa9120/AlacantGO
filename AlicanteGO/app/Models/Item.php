@@ -17,13 +17,12 @@ class Item extends Model
         return $this->belongsTo(Establishment::class);
     }
 
-    static public function create($name, $price, $description, $type, $brand, $establishment)
+    static public function create($name, $price, $description, $brand, $establishment)
     {
         $item = new Item;
         $item->name = $name;
         $item->price = $price;
         $item->description = $description;
-        $item->type = $type;
 
         if ($brand != NULL) 
             $item->brand()->associate($brand);
@@ -36,12 +35,11 @@ class Item extends Model
         return $item;
     }
 
-    static public function edit($item, $name, $price, $description, $type, $brand, $establishment)
+    static public function edit($item, $name, $price, $description, $brand, $establishment)
     {
         $item->name = $name;
         $item->price = $price;
         $item->description = $description;
-        $item->type = $type;
 
         if ($brand != NULL) 
             $item->brand()->associate($brand);

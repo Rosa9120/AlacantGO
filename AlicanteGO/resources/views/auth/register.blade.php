@@ -39,35 +39,33 @@
                             </div>
                         </div>
 
-
                         <div class="row mb-3">
-                            <label for="establishment" class="col-md-4 col-form-label text-md-end">{{ __('Managed establishment') }}</label>
+                            <label for="DNI" class="col-md-4 col-form-label text-md-end">{{ __('DNI') }}</label>
 
                             <div class="col-md-6">
-                                <select id="dropdown" name="dropdownEstablishment" class="form-control editable dropdown">
-                                    <option value = ""> </option>
-                                    @foreach ($establishments as $idx => $establishment)
-                                        <option value="{{ $establishment->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $establishment->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input id="DNI" type="text" class="form-control @error('DNI') is-invalid @enderror" name="DNI" value="{{ old('DNI') }}" required autocomplete="DNI">
+
+                                @error('DNI')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong class="alert alert-danger error-msg"> DNI must have 8 numbers and one capital letter</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="brand" class="col-md-4 col-form-label text-md-end">{{ __('Managed brand') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Phone number') }}</label>
 
                             <div class="col-md-6">
-                                <select id="dropdown" name="dropdownBrand" class="form-control editable dropdown">
-                    
-                                    <option value = ""> </option>
-                                    @foreach ($brands as $idx => $brand)
-                                        <option value="{{ $brand->id }}" {{ ($idx == -1) ? 'selected' : '' }}>{{ $brand->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <div class="alert alert-danger error-msg"> A phone number must have 9 digits</div>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
-
-
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

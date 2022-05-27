@@ -42,9 +42,6 @@
                         <li>Description: 
                             <input class="editable" name="description" type="text" value="{{ old("description", null) }}" placeholder="La mejor tarta de Oreo..."/>
                         </li>
-                        <li>Type: 
-                            <input class="editable @error('type') is-invalid @enderror" name="type" type="text" value="{{ old("type", null) }}" placeholder="postre..."/>
-                        </li>
                         @error('type')
                             <li class="error-container">
                                 <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("type")) }}</div>

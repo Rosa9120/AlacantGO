@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="back">
-            <a href="{{ url()->previous() }}" id="back">Go Back</a>
+            <a href="/admin/items" id="back">Go Back</a>
         </div>
 
         <div class="title">
@@ -24,7 +24,6 @@
                     <li>Name: {{ $item->name }}</li>
                     <li>Price: {{ $item->price }}€</li>
                     <li>Description: {{$item->description}}</li>
-                    <li>Type: {{ $item->type }}</li>
                     @if($item->establishment == null)
                         <li>Brand: <a href="{{ url("/admin/brand/get") }}">{{ $item->brand->name }}</a></li>
                     @else

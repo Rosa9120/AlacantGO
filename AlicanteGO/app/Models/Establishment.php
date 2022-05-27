@@ -26,7 +26,7 @@ class Establishment extends Model
         return $price;
     }
 
-    static public function create($name, $phone, $address, $pcod, $lat, $long, $brand, $category)
+    static public function create($name, $phone, $address, $pcod, $lat, $long, $img, $brand, $category)
     {
         $establishment = new Establishment();
         $establishment->name = $name;
@@ -35,6 +35,7 @@ class Establishment extends Model
         $establishment->postal_code = $pcod;
         $establishment->latitude = $lat;
         $establishment->longitude = $long;
+        $establishment->img_url = $img;
 
         if ($brand != NULL) {
             $establishment->brand()->associate($brand);

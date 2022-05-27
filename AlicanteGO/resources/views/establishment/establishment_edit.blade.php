@@ -19,28 +19,16 @@
                 @method('PATCH')
                 <ul>
                     <li>Name: 
-                        <input class="editable" name="name" type="text" requiered value="{{ old('name', $establishment->name) }}" />
+                        <input class="editable" name="name" type="text" required value="{{ old('name', $establishment->name) }}" />
                     </li>
-                    @error('name')
-                    <li class="error-container">
-                        <div class="alert alert-danger error-msg"> Name is required</div>
-                    </li>
-                    @enderror
-
                     <li>Phone Number: 
                         <input class="editable" name="phone_number" type="number" lang="en" step="0.01" value="{{ old('phone_number', $establishment->phone_number) }}" />
                     </li>
                     <li>Address: 
-                        <input class="editable" name="address" type="text" requiered value="{{ old('address', $establishment->address) }}" />
+                        <input class="editable" name="address" type="text" required value="{{ old('address', $establishment->address) }}" />
                     </li>
-                    @error('address')
-                    <li class="error-container">
-                        <div class="alert alert-danger error-msg"> Address is required</div>
-                    </li>
-                    @enderror
-
                     <li>Postal Code: 
-                        <input class="editable" name="postal_code" type="text" requiered value="{{ old('postal_code', $establishment->postal_code) }}" />
+                        <input class="editable" name="postal_code" type="text" required value="{{ old('postal_code', $establishment->postal_code) }}" />
                     </li>
                     @error('postal_code')
                     <li class="error-container">
@@ -49,7 +37,7 @@
                     @enderror
 
                     <li>Latitude: 
-                        <input class="editable" name="latitude" type="text" requiered value="{{ old('latitude', $establishment->latitude) }}" />
+                        <input class="editable" name="latitude" type="text" required value="{{ old('latitude', $establishment->latitude) }}" />
                     </li>
                     @error('latitude')
                     <li class="error-container">
@@ -58,7 +46,7 @@
                     @enderror
 
                     <li>Longitude: 
-                        <input class="editable" name="longitude" type="text" requiered value="{{ old('longitude', $establishment->longitude) }}" />
+                        <input class="editable" name="longitude" type="text" required value="{{ old('longitude', $establishment->longitude) }}" />
                     </li>
                     @error('longitude')
                     <li class="error-container">

@@ -43,9 +43,6 @@
                         <li>Description: 
                             <input class="editable" name="description" type="text" value="{{ old("description", $item->description) }}" />
                         </li>
-                        <li>Type: 
-                            <input class="editable @error('type') is-invalid @enderror" name="type" type="text" value="{{ old("type", $item->type) }}" />
-                        </li>
                         @error('type')
                             <li class="error-container">
                                 <div class="alert alert-danger error-msg">{{ ucfirst($errors->first("type")) }}</div>

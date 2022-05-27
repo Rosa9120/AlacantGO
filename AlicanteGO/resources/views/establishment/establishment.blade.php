@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="back">
-        <a href="{{ url()->previous() }}"  id="back">Go Back</a>
+        <a href="/admin/establishments"  id="back">Go Back</a>
     </div>
 
     <div class="title">
@@ -14,6 +14,9 @@
     </div>
 
     <div class="establishment">
+        <div class="img-container">
+            <img src="{{ asset($establishment->img_url) }}" alt="image">
+        </div>
         <div class="information">
             <ul>
                 <li>ID #: {{ $establishment->id }}</li>
@@ -31,6 +34,20 @@
 @endsection
 
 @section('style')
+
+    img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 15px;
+        border: 1px solid grey;
+    }
+
+    .img-container {
+        width: 40%;
+        height: 70%;
+        align-self: center;
+    }
 
     .container {
         font-family: "Montserrat", sans-serif;
