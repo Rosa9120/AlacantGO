@@ -59,7 +59,7 @@ class EstablishmentController extends Controller
     public function manager_create_establishment(Request $request) {
         $request->validate(['name' => 'required',
                         'address' => 'required',
-                        'phone_number' => 'required|numeric|digits:9',
+                        'phone_number' => 'nullable|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
@@ -136,17 +136,18 @@ class EstablishmentController extends Controller
     function create(Request $req) {
         $req->validate(['name' => 'required',
                         'address' => 'required',
-                        'phone_number' => 'numeric|digits:9',
+                        'phone_number' => 'nullable|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
                         'image' => 'required|image|mimes:jpeg,png,jpg']);
         if ($req->hasFile('image')) {
-            $path = $req->file('image')->store('storage');
+            $filename = time() . '.' . $req->file('image')->getClientOriginalExtension();
+            $req->file("image")->storeAs("public", $filename);
             $establishment = Establishment::create($req->input('name'), 
                 $req->input('phone_number'), $req->input('address'), 
                 $req->input('postal_code'), $req->input('latitude'), 
-                $req->input('longitude'), "/" . $path,
+                $req->input('longitude'), "/storage/" . $filename,
                 Brand::whereId($req["brand"])->first(), 
                 Brand::whereId($req["category"])->first());
 
@@ -221,7 +222,7 @@ class EstablishmentController extends Controller
 
         $req->validate(['name' => 'required',
                         'address' => 'required',
-                        'phone_number' => 'required|numeric|digits:9',
+                        'phone_number' => 'nullable|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|',
                         'longitude' => 'required|numeric|between:-180,180']);
