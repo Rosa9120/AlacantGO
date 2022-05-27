@@ -109,6 +109,7 @@ class EstablishmentController extends Controller
     function create(Request $req) {
         $req->validate(['name' => 'required',
                         'address' => 'required',
+                        'phone_number' => 'required|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
@@ -193,6 +194,7 @@ class EstablishmentController extends Controller
 
         $req->validate(['name' => 'required',
                         'address' => 'required',
+                        'phone_number' => 'required|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|',
                         'longitude' => 'required|numeric|between:-180,180']);

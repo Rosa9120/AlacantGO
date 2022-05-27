@@ -110,7 +110,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
     return view('ilyan_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
 });
+
+Route::get('/ilyan/create/brand', function () {    
+    return view('ilyan_create_brand');
+});
+
 Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
+
+Route::get('/ilyan/create/establishment', function () {
+    return view('ilyan_create_establishment');
+});
+
 Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
 
 Route::get('/ilyan/create/', function (Request $request) {   
@@ -131,6 +141,7 @@ Route::get('/ilyan/create/', function (Request $request) {
 
     return view('ilyan_create_item')->with("establishment", $establishment)->with("brand", $brand)->with("url", back()->getTargetUrl());
 });
+
 Route::post('/ilyan', [App\Http\Controllers\ItemController::class, 'manager_create_item']);
 
 Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment) {    
@@ -139,11 +150,12 @@ Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment
     $categories = Category::get();
     return view('ilyan_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
 });
+
 Route::patch('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_edit_establishment']);
+
 Route::delete('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_delete_establishment']);
 
 Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
-
 
 Route::get('/establishment/{establishment}', function($establishment){
     $establishment = Establishment::whereId($establishment)->first();
@@ -170,3 +182,5 @@ Route::get('/profile', function () {
 
     return view('profile')->with("manager", $manager);
 });
+
+

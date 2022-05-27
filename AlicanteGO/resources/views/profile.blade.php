@@ -42,7 +42,7 @@
             </div>
         @else
         <div style="display:flex; margin-top: 30px; justify-content:center;">
-            <a class="btn btn-success" > Create an establishment </a>
+            <a class="btn btn-success" href="/ilyan/create/establishment" > Create an establishment </a>
         </div>
         @endif
         </div> 
@@ -66,7 +66,7 @@
                 </div>
             @else
             <div style="display:flex; margin: 30px 0 30px 0; justify-content:center;">
-                <a class="btn btn-success" > Create a brand </a>
+                <a class="btn btn-success" href="/ilyan/create/brand"> Create a brand </a>
             </div>
             @endif
         </div>
