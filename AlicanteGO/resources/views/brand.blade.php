@@ -7,7 +7,7 @@
 
 
     <div class="back">
-        <a href="{{ url()->previous() }}" id="back">Go Back</a>
+        <a href="/profile" id="back">Go Back</a>
     </div>
     <div class="container">
         <div class="header">
