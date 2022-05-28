@@ -14,7 +14,7 @@
         <div class="establishment">
             <div class="information">
                 <span>ID #: {{ $establishment->id }}</span>
-                <form action="{{ url('/ilyan/establishment/' . $establishment->id . "?url=" . back()->getTargetUrl()) }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ url('/establishment/' . $establishment->id . "?url=" . back()->getTargetUrl()) }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PATCH')
                     <ul>

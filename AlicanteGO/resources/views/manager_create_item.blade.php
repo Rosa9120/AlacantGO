@@ -15,7 +15,7 @@
 
         <div class="item">
             <div class="information">
-                <form action="{{ url('/ilyan?' . ($establishment != null ? 'establishment=' . $establishment?->id : '') . ($brand != null ? '&brand=' . $brand?->id : '') . '&url=' . url()->previous()) }}" method="POST">
+                <form action="{{ url('/item?' . ($establishment != null ? 'establishment=' . $establishment?->id : '') . ($brand != null ? '&brand=' . $brand?->id : '') . '&url=' . url()->previous()) }}" method="POST">
                     @csrf
                     @method('post')
                     <ul>

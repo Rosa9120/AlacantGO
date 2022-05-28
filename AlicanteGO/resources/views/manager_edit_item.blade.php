@@ -16,7 +16,7 @@
         <div class="item">
             <div class="information">
                 <span>ID #: {{ $item->id }}</span>
-                <form action="{{ url('/ilyan', ["id" => $item->id]) }}" method="POST">
+                <form action="{{ url('/item', ["id" => $item->id]) }}" method="POST">
                     @csrf
                     @method('patch')
                     <input name="url" type="text" hidden value="{{ $url }}"/>
