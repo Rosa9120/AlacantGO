@@ -10,14 +10,11 @@ use Illuminate\Http\Request;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware("admin");
+/**
+ * PUBLIC PART ROUTES
+ */
 
-//MAIN PAGE ROUTES
-Route::get('/aboutus', function () {
-    return view('aboutus');
-});
+Route::get('/aboutus', function () {return view('aboutus');});
 
 //ALTERED REGISTER VIEW
 Route::get('/signin', function(){
@@ -26,10 +23,20 @@ Route::get('/signin', function(){
     return view('auth/register', ["success" => true, "brands" => $brands, "establishments" => $establishments]);
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 
 /** 
  * ADMIN ROUTES
  * */ 
+
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware("admin");
+
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
     /** 
      * ITEM ROUTES
@@ -99,13 +106,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function() {
 
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/**
+ * CREATE ESTABLISHMENT
+ */
 
-//las rutas anteriores que pertenezcan al admin deben llevar el prefijo admin
-//provisionalmente y para distinguirlas bien, estas rutas se llaman ilyan + lo que sea
-//por favor no toqueis estas rutas
+Route::get('/establishment/create', function () {
+    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->establishment_id != null) {
+        abort(403);
+    }
+    $brands = Brand::get();
+    $categories = Category::get();
+    return view('manager_create_establishment')->with('brands',$brands)->with('categories',$categories);
+});
+Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'manager_create_establishment']);
+
 
 Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
     return view('ilyan_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
@@ -120,15 +135,6 @@ Route::get('/ilyan/create/brand', function () {
 
 Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
 
-Route::get('/ilyan/create/establishment', function () {
-    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->establishment_id != null) {
-        abort(403);
-    }
-    $brands = Brand::get();
-    $categories = Category::get();
-    return view('ilyan_create_establishment')->with('brands',$brands)->with('categories',$categories);
-});
-Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'manager_create_establishment']);
 
 Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
 
