@@ -32,7 +32,7 @@
                     @endif
                 @endauth
             </tr>
-            @foreach ( $establishment->items()->get()->merge($establishment->brand()->first()?->items()->get()) as $item)
+            @foreach ( $establishment->items()->get()->merge($establishment->brand()->first() == null ? [] : $establishment->brand()->first()->items()->get()) as $item)
             <tr>
                 <td width="20%">{{ $item->name }}</td>
                 @if ($item->description != null)
