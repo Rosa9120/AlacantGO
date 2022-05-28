@@ -63,7 +63,7 @@ class EstablishmentController extends Controller
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
-                        'image' => 'required|image|mimes:jpeg,png,jpg']);
+                        'image' => 'required|image']);
 
         $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
         $request->file("image")->storeAs("public", $filename);
@@ -140,7 +140,7 @@ class EstablishmentController extends Controller
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
                         'longitude' => 'required|numeric|between:-180,180',
-                        'image' => 'required|image|mimes:jpeg,png,jpg']);
+                        'image' => 'required|image']);
         if ($req->hasFile('image')) {
             $path = $req->file('image')->store('public');
             $establishment = Establishment::create($req->input('name'), 
