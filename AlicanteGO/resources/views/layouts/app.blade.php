@@ -55,12 +55,12 @@
                     <div class="auth" style="display: flex;">
                         @auth
                             @if (Auth::user()->rol == 'admin')
-                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin Panel </a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/managers" > Admin Panel </a>
                             @endif
                         @endauth
                         @guest
                             <div class="auth" style="display: flex;">
-                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/signin">Sign in</a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/signin">Sign up</a>
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
                             </div>
                         @else
