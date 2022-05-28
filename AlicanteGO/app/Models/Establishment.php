@@ -50,7 +50,7 @@ class Establishment extends Model
 
     }
 
-    static public function edit($id, $name, $phone, $address, $pcod, $lat, $long, $brand, $category)
+    static public function edit($id, $name, $phone, $address, $pcod, $lat, $long, $img, $brand, $category)
     {
         $establishment = Establishment::findOrFail($id);
 
@@ -60,6 +60,7 @@ class Establishment extends Model
         $establishment->postal_code = $pcod;
         $establishment->latitude = $lat;
         $establishment->longitude = $long;
+        $establishment->img_url = $img;
 
         if ($brand != NULL) {
             $establishment->brand()->associate($brand);

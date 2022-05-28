@@ -203,9 +203,20 @@ class EstablishmentController extends Controller
             abort(403);
         }
 
+        $request->validate(['name' => 'required',
+                        'address' => 'required',
+                        'phone_number' => 'nullable|numeric|digits:9',
+                        'postal_code' => 'required|numeric|digits:5',
+                        'latitude' => 'required|numeric|between:-90,90',
+                        'longitude' => 'required|numeric|between:-180,180',
+                        'image' => 'required|image|mimes:jpeg,png,jpg']);
+
+        $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $request->file("image")->storeAs("public", $filename);
         Establishment::edit($establishment->id, $request->input('name'),
         $request->input('phone_number'), $request->input('address'), $request->input('postal_code'),
-        $request->input('latitude'), $request->input('longitude'), $establishment->brand_id, null);
+        $request->input('latitude'), $request->input('longitude'), "/storage/" . $filename,
+        $establishment->brand_id, null);
 
         return redirect($request["url"]);
     }
@@ -224,15 +235,21 @@ class EstablishmentController extends Controller
                         'address' => 'required',
                         'phone_number' => 'nullable|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
-                        'latitude' => 'required|numeric|',
-                        'longitude' => 'required|numeric|between:-180,180']);
+                        'latitude' => 'required|numeric|between:-90,90',
+                        'longitude' => 'required|numeric|between:-180,180',
+                        'image' => 'required|image|mimes:jpeg,png,jpg']);
 
-        $establishment = Establishment::edit($id, $req->input('name'), 
+        if ($req->hasFile('image')) {
+            $filename = time() . '.' . $req->file('image')->getClientOriginalExtension();
+            $req->file("image")->storeAs("public", $filename);
+            $establishment = Establishment::edit($id, $req->input('name'), 
             $req->input('phone_number'), $req->input('address'), 
             $req->input('postal_code'), $req->input('latitude'), 
-            $req->input('longitude'), Brand::whereId($req["brand"])->first(), 
+            $req->input('longitude'), "/storage/" . $filename,
+            Brand::whereId($req["brand"])->first(), 
             Brand::whereId($req["category"])->first());
 
-        return redirect('/admin/establishments/' . $establishment->id);
+            return redirect('/admin/establishments/' . $establishment->id);
+        }
     }
 }

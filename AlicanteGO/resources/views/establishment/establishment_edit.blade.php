@@ -14,7 +14,7 @@
     <div class="establishment">
         <div class="information">
             <span>ID #: {{ $establishment->id }}</span>
-            <form action="{{ url('/admin/establishments', ["id" => $establishment->id]) }}" method="POST">
+            <form action="{{ url('/admin/establishments', ["id" => $establishment->id]) }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('PATCH')
                 <ul>
@@ -75,6 +75,14 @@
                             @endforeach
                         </select>
                     </li>
+                    <li>Photo:
+                        <input class="form-control-sm" id="image" type="file" required name="image"/>
+                    </li>
+                    @error('image')
+                    <li class="error-container">
+                        <div class="alert alert-danger error-msg">{{ $message }}</div>
+                    </li>
+                    @enderror 
                 </ul>  
                 <div class="submit">
                     <button type="submit" class="btn btn-primary">Confirm</button>
