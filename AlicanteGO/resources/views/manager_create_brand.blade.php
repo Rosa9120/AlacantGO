@@ -16,7 +16,7 @@
 
         <div class="brand">
             <div class="information">
-                <form action="{{ url('/brands') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/brand') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <ul>

@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
 
 /** 
  * ADMIN ROUTES
@@ -119,26 +119,50 @@ Route::get('/establishment/create', function () {
     $categories = Category::get();
     return view('manager_create_establishment')->with('brands',$brands)->with('categories',$categories);
 });
-Route::post('/establishments', [App\Http\Controllers\EstablishmentController::class, 'manager_create_establishment']);
+Route::post('/establishment', [App\Http\Controllers\EstablishmentController::class, 'manager_create_establishment']);
 
 
-Route::get('/ilyan/edit/{item}', function (Item $item, Request $request) {
-    return view('ilyan_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
+/**
+ * ESTABLISHMENT VIEW
+ */
+
+Route::get('/establishment/{establishment}', function($establishment){
+    $establishment = Establishment::whereId($establishment)->first();
+    return view('establishment')->with("establishment", $establishment);
 });
 
-Route::get('/ilyan/create/brand', function () { 
-    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->brand_id != null) {
-        abort(403);
-    }
-    return view('ilyan_create_brand');
+/**
+ * BRAND VIEW
+*/
+
+Route::get('/brand/{brand}', function($brand){
+    $establishments = Establishment::where('brand_id','=',$brand)->get();
+    $items = Item::where('brand_id',"=",$brand)->get();
+    $brand = Brand::whereId($brand)->first();
+    return view('brand')->with("brand", $brand)->with("establishments",$establishments)->with("items",$items);
 });
 
-Route::patch('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
 
+/**
+ * UPDATE AND DELETE ESTABLISHMENT
+ */
 
-Route::delete('/ilyan/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
+Route::get('/establishment/{establishment}/edit', function ($establishment) {    
+    $establishment = Establishment::whereId($establishment)->first();
+    $brands = Brand::get();
+    $categories = Category::get();
+    return view('manager_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
+});
 
-Route::get('/ilyan/create/', function (Request $request) {   // create item 
+Route::patch('/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_edit_establishment']);
+
+Route::delete('/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_delete_establishment']);
+
+/**
+ * CREATE ITEM
+ */
+
+Route::get('/item/create/', function (Request $request) {   // create item 
     $establishment = null;
     $brand = null;
 
@@ -154,43 +178,45 @@ Route::get('/ilyan/create/', function (Request $request) {   // create item
         }
     }
 
-    return view('ilyan_create_item')->with("establishment", $establishment)->with("brand", $brand)->with("url", back()->getTargetUrl());
+    return view('manager_create_item')->with("establishment", $establishment)->with("brand", $brand)->with("url", back()->getTargetUrl());
 });
 
-Route::post('/ilyan', [App\Http\Controllers\ItemController::class, 'manager_create_item']);
+Route::post('/item', [App\Http\Controllers\ItemController::class, 'manager_create_item']);
 
-Route::get('/ilyan/edit/establishment/{establishment}', function ($establishment) {    
-    $establishment = Establishment::whereId($establishment)->first();
-    $brands = Brand::get();
-    $categories = Category::get();
-    return view('ilyan_edit_establishment',['brands' => $brands, 'establishment' => $establishment, 'categories' => $categories]);
+/**
+ * UPDATE AND DELETE ITEM
+ */
+
+Route::get('/item/{item}/edit', function (Item $item, Request $request) {
+    return view('manager_edit_item')->with('item',$item)->with('url', back()->getTargetUrl());
 });
 
+Route::patch('/item/{item}', [App\Http\Controllers\ItemController::class, 'manager_edit_item']);
+Route::delete('/item/{item}', [App\Http\Controllers\ItemController::class, 'manager_delete_item']);
 
-Route::get('/ilyan/edit/brand/{brand}', function ($brand) {    
+/**
+ * CREATE BRAND
+ */
+
+Route::get('/brand/create', function () { 
+    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->brand_id != null) {
+        abort(403);
+    }
+    return view('manager_create_brand');
+});
+
+Route::post('/brand', [App\Http\Controllers\BrandController::class, 'manager_create_brand']);
+
+/**
+ * UPDATE BRAND
+ */
+
+Route::get('/brand/{brand}/edit', function ($brand) {    
     $brand = Brand::whereId($brand)->first();
-    return view('ilyan_edit_brand')->with('brand',$brand);
+    return view('manager_edit_brand')->with('brand',$brand);
 });
 
-Route::patch('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_edit_establishment']);
-
-Route::delete('/ilyan/establishment/{establishment}', [App\Http\Controllers\EstablishmentController::class, 'manager_delete_establishment']);
-
-Route::get('/establishments/filter', [App\Http\Controllers\EstablishmentController::class, 'filter_establishments']);
-
-Route::get('/establishment/{establishment}', function($establishment){
-    $establishment = Establishment::whereId($establishment)->first();
-    return view('establishment')->with("establishment", $establishment);
-});
-
-Route::get('/brand/{brand}', function($brand){
-    $establishments = Establishment::where('brand_id','=',$brand)->get();
-    $items = Item::where('brand_id',"=",$brand)->get();
-    $brand = Brand::whereId($brand)->first();
-    return view('brand')->with("brand", $brand)->with("establishments",$establishments)->with("items",$items);
-});
-Route::post('/brands', [App\Http\Controllers\BrandController::class, 'manager_create_brand']);
-Route::patch('/brands/{brand}', [App\Http\Controllers\BrandController::class, 'manager_edit_brand']);
+Route::patch('/brand/{brand}', [App\Http\Controllers\BrandController::class, 'manager_edit_brand']);
 
 Route::get('/profile', function () {
     if (!Auth::check()) {

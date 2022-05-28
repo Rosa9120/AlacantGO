@@ -7,7 +7,11 @@
 
 
     <div class="back">
-        <a href="/profile" id="back">Go Back</a>
+        @if( (str_replace(url('/'), '', url()->previous()) == "/") || (str_replace(url('/'), '', url()->previous()) == "/home") )
+            <a href="/home" id="back">Go Back</a>
+        @else
+            <a href="/profile" id="back">Go Back</a>
+        @endif
     </div>
     <div class="container">
         <div class="header">
@@ -78,8 +82,8 @@
                     <td width="10%">{{ $item->price }}€</td>
                     @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
                     <td class="action-buttons">
-                        <a class="btn btn-warning" href="{{ url("/ilyan/edit/" . $item->id) }}">Edit</a>
-                        <form action="{{ url('/ilyan/' . $item->id . '?url=' . url()->current()) }}" method="POST">
+                        <a class="btn btn-warning" href="{{ url("/item/" . $item->id . "/edit") }}">Edit</a>
+                        <form action="{{ url('/item/' . $item->id . '?url=' . url()->current()) }}" method="POST">
                             @csrf
                             @method('delete')
                             <input type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger" value="Delete"/>
@@ -91,16 +95,18 @@
                 </table>
                 @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
                 <div style="display:flex; margin: 15px; justify-content:center;">
-                    <a class="btn btn-success" href={{ "/ilyan/create?brand=" . $brand->id }}> Insert new item</a>  
+                    <a class="btn btn-success" href={{ "/item/create?brand=" . $brand->id }}> Insert new item</a>  
                 </div>
                 @endif
             </div>
           </div>
           @if (Auth::check() && ((Auth::user()->rol == "manager" && $brand->manager()->first()->user()->first()->id == Auth::user()->id) || Auth::user()->rol == "admin"))
           <div class="manage-buttons"> 
-            <a href="{{ url("/ilyan/edit/brand/" . $brand->id) }}"  class="btn btn-primary"> Update information </a>
+            <a href="{{ url("/brand/" . $brand->id . "/edit") }}"  class="btn btn-primary"> Update information </a>
             {{-- <button form="establishment-delete" onclick="return confirm('Are you sure?')" class="btn btn-danger"> Delete brand </button>
-            <form id="establishment-delete" action="{{ url('/ilyan/establishment/' . $establishment->id) }}" method="POST">
+            <form id="establishment-delete" action="{{ url('/
+            
+            /establishment/' . $establishment->id) }}" method="POST">
                 @csrf
                 @method("delete")
             </form> --}}

@@ -14,8 +14,11 @@
 
     <body>
         <div class="head">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/">Home</a>
+
             @if (Auth::check() && Auth::user()->rol == "admin")
-                <nav class="navbar navbar-expand-lg navbar-light ">
+                
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

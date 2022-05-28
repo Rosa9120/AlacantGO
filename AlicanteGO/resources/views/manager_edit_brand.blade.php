@@ -15,7 +15,7 @@
 
             <div class="information">
                 <span>ID #: {{ $brand->id }}</span>
-                <form action="{{ url('/brands', ["brand" => $brand->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/brand', ["brand" => $brand->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <ul>

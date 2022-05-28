@@ -34,8 +34,13 @@
                         </li>
                         @enderror
                         <li>Photo:
-                            <input class="form-control-sm" id="formFileSm" type="file" accept="image/*" />
+                            <input class="form-control-sm" id="image" type="file" required name="image"/>
                         </li>
+                        @error('image')
+                        <li class="error-container">
+                            <div class="alert alert-danger error-msg">{{ $message }}</div>
+                        </li>
+                        @enderror
                     </ul>
                 
                     <div class="submit">

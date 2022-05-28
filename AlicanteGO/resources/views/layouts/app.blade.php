@@ -41,21 +41,26 @@
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
             </button> --}}
+            
             <nav class="navbar navbar-expand-lg navbar-light ">
+
+            <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/">Home</a>
+
                 <button class="navbar-toggler mr-2" style="color: #e5e3df;" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-        
+
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    
                     <div class="auth" style="display: flex;">
                         @auth
                             @if (Auth::user()->rol == 'admin')
-                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin Panel </a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/managers" > Admin Panel </a>
                             @endif
                         @endauth
                         @guest
                             <div class="auth" style="display: flex;">
-                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/signin">Sign in</a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/signin">Sign up</a>
                                 <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/login">Login</a>
                             </div>
                         @else

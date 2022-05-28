@@ -1,26 +1,28 @@
 @extends('layouts.app')
 
-@section('title', 'Create Item')
+@section('title', 'Edit Item')
 
 @section('content')
 <section>
     <div class="container">
         <div class="back">
-            <a href="{{ url()->previous() }}" id="back">Go Back</a>
+            <a href="{{ url()->previous() }}" id="back">Go Back</a>      
         </div>
 
         <div class="title">
-            <h1> Create Item </h1>
+            <h1> Edit Item </h1>
         </div>
 
         <div class="item">
             <div class="information">
-                <form action="{{ url('/ilyan?' . ($establishment != null ? 'establishment=' . $establishment?->id : '') . ($brand != null ? '&brand=' . $brand?->id : '') . '&url=' . url()->previous()) }}" method="POST">
+                <span>ID #: {{ $item->id }}</span>
+                <form action="{{ url('/item', ["id" => $item->id]) }}" method="POST">
                     @csrf
-                    @method('post')
+                    @method('patch')
+                    <input name="url" type="text" hidden value="{{ $url }}"/>
                     <ul>
                         <li>Name: 
-                            <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', null) }}" placeholder="Tarta de Oreo..."/>
+                            <input class="editable @error('name') is-invalid @enderror" name="name" type="text" value="{{ old('name', $item->name) }}" />
                         </li>
                         @error('name')
                             <li class="error-container">
@@ -28,7 +30,7 @@
                             </li>
                         @enderror
                         <li>Price: 
-                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" value="{{ old("price", null) }}" step="0.01" lang="en" placeholder="3,99..."/>
+                            <input class="editable @error('price') is-invalid @enderror" name="price" type="number" lang="en" step="0.01" value="{{ old('price', $item->price) }}"/>
                         </li>
                         @error('price')
                             <li class="error-container">
@@ -36,12 +38,13 @@
                             </li>
                         @enderror
                         <li>Description: 
-                            <textarea class="editable" name="description" type="text" wrap="off" type="text" rows="3"></textarea> 
+                            <textarea class="editable" name="description" wrap="off" type="text" rows="3"> {{ old("description", $item->description) }} 
+                            </textarea>
                         </li>
                     </ul>
                 
                     <div class="submit">
-                        <button type="submit" class="btn btn-success">Create</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
                     </div>
                 </form>
             </div>
@@ -50,26 +53,9 @@
 </section>
 @endsection
 
-@section('script')
-
-@endsection
-
 @section('style')
+
 <style>
-
-    section{
-        height: calc(100vh - 57px - 180px - 104px);
-        background-color: #e5e3df;
-    }
-
-    .title{
-        align-self: center;
-    }
-
-    textarea{
-        max-height: 140px;
-        white-space: pre;
-    }
 
     .container {
         font-family: "Montserrat", sans-serif;
@@ -89,28 +75,23 @@
         overflow-y: auto;
     }
 
-    .back {
-        position: relative;
+    textarea{
+        max-height: 140px;
+        white-space: pre;
     }
 
-    #back {
-        display: inline-block;
-        padding: 5px;
-        text-decoration: none;
-        font-size: 20px;
-        color: #4E4E4E;
-        transition: 0.3s;
+    section{
+        height: calc(100vh - 57px - 180px - 104px);
+        background-color: #e5e3df;
     }
 
-    #back:hover {
-        transform: scale(1.1);
-        color: white;
-    }
-
-    .img-container {
-        width: 30%;
-        height: 70%;
+    .title{
         align-self: center;
+    }
+    
+    .main{
+        padding:0;
+        margin:0;
     }
 
     .item {
@@ -122,12 +103,17 @@
         justify-content: space-between;
     }
 
-    img {
-        display: block;
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 15px;
-        border: 1px solid grey;
+    .error-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    li > .error-msg {
+        min-width: 40%;
+        padding: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: #842029;
     }
 
     .information {
@@ -149,38 +135,6 @@
         padding: 20px;
     }
 
-    .error-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    li > .error-msg {
-        min-width: 40%;
-        padding: 0;
-        padding-left: 6px;
-        padding-right: 6px;
-        color: #842029;
-    }
-
-    .belongs {
-        display: flex;
-        align-items: center;
-        margin-top: 7px;
-    }
-
-    ::-webkit-input-placeholder {
-        font-style: italic;
-     }
-     :-moz-placeholder {
-        font-style: italic;  
-     }
-     ::-moz-placeholder {
-        font-style: italic;  
-     }
-     :-ms-input-placeholder {  
-        font-style: italic; 
-     }
-
     li {
         display: flex;
         justify-content: space-between;
@@ -194,11 +148,6 @@
         border: none;
         padding: 3px;
         padding-left: 5px;
-    }
-
-    .dropdown {
-        line-height: 20px;
-        height: calc(20px * 2);
     }
 
     .submit {
