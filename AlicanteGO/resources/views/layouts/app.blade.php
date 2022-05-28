@@ -55,7 +55,7 @@
                     <div class="auth" style="display: flex;">
                         @auth
                             @if (Auth::user()->rol == 'admin')
-                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin" > Admin Panel </a>
+                                <a class="nav-item nav-link" style="color:rgb(221, 221, 221);" href="/admin/managers" > Admin Panel </a>
                             @endif
                         @endauth
                         @guest
