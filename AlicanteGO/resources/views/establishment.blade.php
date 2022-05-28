@@ -23,12 +23,12 @@
                 <th>Description</th>
                 <th>Price</th>
                 @auth
-                    @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))
+                    @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)) || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->brand()->first()?->manager()->first()?->user()->first()->id == Auth::user()->id)))
                     <th width="180px">Action</th>
                     @endif
                 @endauth
             </tr>
-            @foreach ( $establishment->items()->get() as $item)
+            @foreach ( $establishment->items()->get()->merge($establishment->brand()->first()?->items()->get()) as $item)
             <tr>
                 <td width="20%">{{ $item->name }}</td>
                 @if ($item->description != null)
@@ -47,7 +47,7 @@
                 <td width="10%">{{ $item->price }}€</td>
 
                 @auth
-                    @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id)))
+                    @if (Auth::user()->rol == 'admin' || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->manager()->first()?->user()->first()->id == Auth::user()->id) && $item->brand_id == null) || (Auth::check() && Auth::user()->rol == "manager" && ($establishment->brand()->first()?->manager()->first()?->user()->first()->id == Auth::user()->id) && $item->establishment_id == null))
                     <td class="action-buttons">
                         <a class="btn btn-warning" href="{{ url("/ilyan/edit/" . $item->id) }}">Edit</a>
                         <form action="{{ url('/ilyan/' . $item->id . '?url=' . url()->current()) }}" method="POST">
