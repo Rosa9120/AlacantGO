@@ -7,7 +7,11 @@
 
 
     <div class="back">
-        <a href="/profile" id="back">Go Back</a>
+        @if( (str_replace(url('/'), '', url()->previous()) == "/") || (str_replace(url('/'), '', url()->previous()) == "/home") )
+            <a href="/home" id="back">Go Back</a>
+        @else
+            <a href="/profile" id="back">Go Back</a>
+        @endif
     </div>
     <div class="container">
         <div class="header">
