@@ -199,7 +199,7 @@ Route::delete('/item/{item}', [App\Http\Controllers\ItemController::class, 'mana
  */
 
 Route::get('/brand/create', function () { 
-    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->brand_id != null) {
+    if (!Auth::check() || Auth::user()->rol != "manager" || Manager::whereUserId(Auth::user()->id)->first()->brand_id == null) {
         abort(403);
     }
     return view('manager_create_brand');

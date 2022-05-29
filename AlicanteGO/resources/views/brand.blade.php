@@ -5,7 +5,9 @@
 @section('content')
 <section>
 
-
+@if((str_replace(url('/'), '', url()->previous()) == "/profile") && $brand == NULL)
+        window.location.href = '{{view('manager_create_brand')}}';
+@else
     <div class="back">
         @if( (str_replace(url('/'), '', url()->previous()) == "/") || (str_replace(url('/'), '', url()->previous()) == "/home") )
             <a href="/home" id="back">Go Back</a>
@@ -115,7 +117,7 @@
     </div>
 
 </section>
-
+@endif
 @endsection
 
 @section("style")
