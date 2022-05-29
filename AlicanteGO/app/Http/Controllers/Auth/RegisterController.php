@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'rol' => 'manager',
         ]);
 
         Manager::create(
@@ -81,6 +82,7 @@ class RegisterController extends Controller
             null,
             $user->id
         );
+
         return $user;
     }
 }
