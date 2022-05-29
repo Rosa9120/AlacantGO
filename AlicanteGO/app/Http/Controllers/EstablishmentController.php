@@ -208,15 +208,23 @@ class EstablishmentController extends Controller
                         'phone_number' => 'nullable|numeric|digits:9',
                         'postal_code' => 'required|numeric|digits:5',
                         'latitude' => 'required|numeric|between:-90,90',
-                        'longitude' => 'required|numeric|between:-180,180',
-                        'image' => 'required|image|mimes:jpeg,png,jpg']);
+                        'longitude' => 'required|numeric|between:-180,180']);
 
-        $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $request->file("image")->storeAs("public", $filename);
+        if ($request->hasFile("image")) {
+            $filename = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file("image")->storeAs("public", $filename);
+            Establishment::edit($establishment->id, $request->input('name'),
+            $request->input('phone_number'), $request->input('address'), $request->input('postal_code'),
+            $request->input('latitude'), $request->input('longitude'), "/storage/" . $filename,
+            $request->input('brand'), $request->input('category'));
+
+            return redirect('/profile');
+        }
+
         Establishment::edit($establishment->id, $request->input('name'),
         $request->input('phone_number'), $request->input('address'), $request->input('postal_code'),
-        $request->input('latitude'), $request->input('longitude'), "/storage/" . $filename,
-        $establishment->brand_id, null);
+        $request->input('latitude'), $request->input('longitude'), $establishment->img_url,
+        $request->input('brand'), $request->input('category'));
 
         return redirect($request["url"]);
     }
